@@ -1,0 +1,78 @@
+import type { Show, Episode, NewsArticle, Presenter, ScheduleItem, Podcast } from "@/types";
+
+// NOTE: This file simulates a CMS data layer. In production, swap these
+// exports for fetch calls to your CMS (Sanity, Strapi, Contentful, etc.)
+// while keeping the same shapes so components require no changes.
+
+const img = (seed: string, w = 800, h = 500) =>
+  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+
+export const shows: Show[] = [
+  { slug: "crimson-hour", title: "Crimson Hour", category: "Drama", synopsis: "A gripping primetime drama following a family navigating power and betrayal in the capital.", duration: "45 min", rating: "PG-13", image: img("crimson-hour"), isNewEpisode: true, trending: true, host: "Nadia Fernando" },
+  { slug: "island-beats", title: "Island Beats", category: "Music", synopsis: "Live performances and interviews with the island's rising musical talent.", duration: "60 min", rating: "PG", image: img("island-beats"), trending: true },
+  { slug: "frontline-report", title: "Frontline Report", category: "News", synopsis: "In-depth investigative journalism covering the stories that matter most.", duration: "30 min", rating: "PG", image: img("frontline"), isNewEpisode: true },
+  { slug: "match-night", title: "Match Night", category: "Sports", synopsis: "Full coverage, analysis and highlights from the weekend's biggest fixtures.", duration: "90 min", rating: "PG", image: img("match-night"), trending: true },
+  { slug: "everyday-luxe", title: "Everyday Luxe", category: "Lifestyle", synopsis: "Design, food and travel for the modern household.", duration: "40 min", rating: "PG", image: img("everyday-luxe") },
+  { slug: "little-stars", title: "Little Stars", category: "Kids", synopsis: "Fun, safe and educational adventures for the whole family.", duration: "25 min", rating: "G", image: img("little-stars") },
+  { slug: "morning-light", title: "Morning Light", category: "Religious", synopsis: "Reflections and community stories to start your day with purpose.", duration: "35 min", rating: "G", image: img("morning-light") },
+  { slug: "the-green-room", title: "The Green Room", category: "Entertainment", synopsis: "Celebrity chat, viral moments and the culture stories everyone's talking about.", duration: "50 min", rating: "PG-13", image: img("green-room"), isNewEpisode: true, trending: true },
+  { slug: "wild-reality", title: "Wild Reality", category: "Reality", synopsis: "Strangers, one villa, and a season of unscripted drama.", duration: "55 min", rating: "PG-13", image: img("wild-reality"), trending: true },
+];
+
+export const episodes: Episode[] = [
+  { slug: "crimson-hour-s3e8", showSlug: "crimson-hour", showTitle: "Crimson Hour", episodeNumber: 8, title: "The Reckoning", duration: "45 min", publishDate: "2026-07-26", image: img("ep-crimson-8"), category: "Drama" },
+  { slug: "island-beats-s2e12", showSlug: "island-beats", showTitle: "Island Beats", episodeNumber: 12, title: "Live from the Harbour Stage", duration: "58 min", publishDate: "2026-07-25", image: img("ep-island-12"), category: "Music" },
+  { slug: "frontline-report-s5e21", showSlug: "frontline-report", showTitle: "Frontline Report", episodeNumber: 21, title: "The Cost of Concrete", duration: "31 min", publishDate: "2026-07-24", image: img("ep-frontline-21"), category: "News" },
+  { slug: "green-room-s4e30", showSlug: "the-green-room", showTitle: "The Green Room", episodeNumber: 30, title: "Backstage at the Awards", duration: "48 min", publishDate: "2026-07-23", image: img("ep-green-30"), category: "Entertainment" },
+  { slug: "match-night-s1e19", showSlug: "match-night", showTitle: "Match Night", episodeNumber: 19, title: "Derby Week Highlights", duration: "92 min", publishDate: "2026-07-22", image: img("ep-match-19"), category: "Sports" },
+  { slug: "wild-reality-s6e4", showSlug: "wild-reality", showTitle: "Wild Reality", episodeNumber: 4, title: "New Arrivals", duration: "54 min", publishDate: "2026-07-21", image: img("ep-wild-4"), category: "Reality" },
+  { slug: "everyday-luxe-s2e9", showSlug: "everyday-luxe", showTitle: "Everyday Luxe", episodeNumber: 9, title: "Coastal Kitchens", duration: "41 min", publishDate: "2026-07-20", image: img("ep-luxe-9"), category: "Lifestyle" },
+  { slug: "little-stars-s3e15", showSlug: "little-stars", showTitle: "Little Stars", episodeNumber: 15, title: "The Kindness Project", duration: "24 min", publishDate: "2026-07-19", image: img("ep-stars-15"), category: "Kids" },
+];
+
+export const news: NewsArticle[] = [
+  { slug: "capital-budget-vote", title: "Parliament passes revised national budget after late-night session", excerpt: "Lawmakers approved the amended finance bill following hours of debate over infrastructure allocations.", category: "Politics", image: img("news-budget"), readingTime: "4 min read", date: "2026-07-28", author: "Ishara Perera", breaking: true, featured: true },
+  { slug: "market-rally", title: "Local markets rally as export figures beat forecasts", excerpt: "The stock exchange closed higher for a third session as manufacturers reported strong quarterly exports.", category: "Business", image: img("news-market"), readingTime: "3 min read", date: "2026-07-28", author: "Dinuka Silva" },
+  { slug: "national-team-friendly", title: "National team secures friendly win ahead of qualifiers", excerpt: "A second-half brace sealed a confidence-boosting victory in the squad's final warm-up match.", category: "Sports", image: img("news-team"), readingTime: "2 min read", date: "2026-07-27", author: "Kasun Jayawardena" },
+  { slug: "fibre-rollout", title: "Nationwide fibre rollout to reach rural districts by year-end", excerpt: "The telecom regulator confirmed an accelerated timeline for high-speed internet access outside the capital.", category: "Technology", image: img("news-fibre"), readingTime: "5 min read", date: "2026-07-27", author: "Amaya Rathnayake" },
+  { slug: "regional-summit", title: "Regional leaders convene for climate and trade summit", excerpt: "Delegates discussed a shared framework for climate resilience funding across the region.", category: "International", image: img("news-summit"), readingTime: "4 min read", date: "2026-07-26", author: "Ruwan Gunasekara" },
+  { slug: "awards-night-recap", title: "Everything that happened at last night's biggest awards show", excerpt: "From surprise wins to standout performances, here's a full recap of the night.", category: "Entertainment", image: img("news-awards"), readingTime: "3 min read", date: "2026-07-26", author: "Sithara Wijesinghe" },
+];
+
+export const presenters: Presenter[] = [
+  { slug: "nadia-fernando", name: "Nadia Fernando", role: "Lead Anchor, Frontline Report", bio: "Nadia has anchored primetime news for over a decade, known for measured, incisive interviews with the country's newsmakers.", image: img("presenter-nadia", 600, 700), shows: ["Frontline Report"], social: [{ platform: "X", url: "#" }, { platform: "Instagram", url: "#" }] },
+  { slug: "dinuka-silva", name: "Dinuka Silva", role: "Host, Match Night", bio: "A former national athlete turned broadcaster, Dinuka brings sharp tactical analysis to weekend sports coverage.", image: img("presenter-dinuka", 600, 700), shows: ["Match Night"], social: [{ platform: "Instagram", url: "#" }, { platform: "TikTok", url: "#" }] },
+  { slug: "amaya-rathnayake", name: "Amaya Rathnayake", role: "Host, The Green Room", bio: "Amaya's warmth and quick wit have made The Green Room a must-watch for entertainment culture.", image: img("presenter-amaya", 600, 700), shows: ["The Green Room"], social: [{ platform: "Instagram", url: "#" }, { platform: "YouTube", url: "#" }] },
+  { slug: "kasun-jaya", name: "Kasun Jayawardena", role: "Music Correspondent, Island Beats", bio: "Kasun has spent years championing homegrown musical talent on stage and screen.", image: img("presenter-kasun", 600, 700), shows: ["Island Beats"], social: [{ platform: "X", url: "#" }] },
+];
+
+export const podcasts: Podcast[] = [
+  { slug: "founders-hour-ep12", title: "Founders' Hour", guest: "With entrepreneur Malinda Perera", duration: "52 min", image: img("podcast-founders"), date: "2026-07-24" },
+  { slug: "behind-the-lens-ep7", title: "Behind the Lens", guest: "With director Chami Rodrigo", duration: "38 min", image: img("podcast-lens"), date: "2026-07-20" },
+  { slug: "unscripted-ep33", title: "Unscripted", guest: "With comedian Vinod Fernando", duration: "44 min", image: img("podcast-unscripted"), date: "2026-07-16" },
+];
+
+export const schedule: ScheduleItem[] = [
+  { day: "Today", time: "06:00", block: "Morning", title: "Morning Light", category: "Religious", host: "Rev. A. Costa" },
+  { day: "Today", time: "07:30", block: "Morning", title: "Sunrise Bulletin", category: "News", host: "Nadia Fernando" },
+  { day: "Today", time: "09:00", block: "Morning", title: "Everyday Luxe", category: "Lifestyle" },
+  { day: "Today", time: "12:30", block: "Afternoon", title: "Midday Report", category: "News" },
+  { day: "Today", time: "14:00", block: "Afternoon", title: "Little Stars", category: "Kids" },
+  { day: "Today", time: "16:00", block: "Afternoon", title: "Island Beats", category: "Music", host: "Kasun Jayawardena" },
+  { day: "Today", time: "19:00", block: "Evening", title: "Frontline Report", category: "News", host: "Nadia Fernando", live: true },
+  { day: "Today", time: "20:00", block: "Evening", title: "Crimson Hour", category: "Drama" },
+  { day: "Today", time: "21:30", block: "Evening", title: "The Green Room", category: "Entertainment", host: "Amaya Rathnayake" },
+  { day: "Today", time: "23:00", block: "Night", title: "Match Night Highlights", category: "Sports" },
+  { day: "Today", time: "00:30", block: "Night", title: "Wild Reality", category: "Reality" },
+];
+
+export const stats = [
+  { label: "Weekly Reach", value: "4.2M" },
+  { label: "Live Viewers Peak", value: "310K" },
+  { label: "Original Shows", value: "38" },
+  { label: "Years On Air", value: "22" },
+];
+
+export const sponsors = [
+  "Ceylon Bank", "Skyline Air", "Orbit Telecom", "Nova Retail", "Harbour Foods", "Zenith Motors", "Bright Insurance", "Coral Resorts",
+];
