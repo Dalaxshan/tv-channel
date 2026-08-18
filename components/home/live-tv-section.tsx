@@ -24,7 +24,9 @@ function useRemainingMinutes(endTime: string) {
       const end = new Date(now);
       end.setHours(h, m, 0, 0);
       if (end.getTime() < now.getTime()) end.setDate(end.getDate() + 1);
-      setRemaining(Math.max(0, Math.round((end.getTime() - now.getTime()) / 60000)));
+      setRemaining(
+        Math.max(0, Math.round((end.getTime() - now.getTime()) / 60000)),
+      );
     };
     calc();
     const t = setInterval(calc, 30000);
@@ -75,10 +77,16 @@ export function LiveTvSection() {
             </span>
           </div>
           <div className="absolute right-4 top-4 flex gap-2">
-            <button aria-label="Share stream" className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent">
+            <button
+              aria-label="Share stream"
+              className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent"
+            >
               <Share2 className="h-4 w-4" />
             </button>
-            <button aria-label="Watch fullscreen" className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent">
+            <button
+              aria-label="Watch fullscreen"
+              className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent"
+            >
               <Maximize2 className="h-4 w-4" />
             </button>
           </div>
@@ -89,7 +97,9 @@ export function LiveTvSection() {
             <span className="text-xs font-semibold uppercase tracking-wide text-text-muted">
               On Air Now
             </span>
-            <h3 className="mt-2 font-display text-2xl font-bold">{CURRENT_PROGRAM.title}</h3>
+            <h3 className="mt-2 font-display text-2xl font-bold">
+              {CURRENT_PROGRAM.title}
+            </h3>
             <dl className="mt-4 space-y-2.5 text-sm">
               <Row label="Host" value={CURRENT_PROGRAM.host} />
               <Row label="Genre" value={CURRENT_PROGRAM.genre} />

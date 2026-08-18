@@ -1,0 +1,266 @@
+{
+  "info": {
+    "name": "TV Channel API",
+    "_postman_id": "tv-channel-api-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Home Hero",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/home-hero"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/home-hero",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Watch Live TV\",\n  \"subtitle\": \"Stream your favourite shows anytime\",\n  \"liveButton\": \"Watch Now\",\n  \"exploreButton\": \"Explore Shows\",\n  \"badge\": \"HD\",\n  \"imageUrl\": \"https://picsum.photos/1920/1080\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/home-hero/{{heroId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/home-hero/{{heroId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Title\",\n  \"subtitle\": \"Updated subtitle\",\n  \"liveButton\": \"Go Live\",\n  \"exploreButton\": \"Browse\",\n  \"badge\": \"4K\",\n  \"imageUrl\": \"https://picsum.photos/1920/1080\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/home-hero/{{heroId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Live TV",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/live-tv"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/live-tv",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Morning News\",\n  \"subtitle\": \"Start your day informed\",\n  \"host\": \"Jane Doe\",\n  \"genre\": \"News\",\n  \"startTime\": \"2025-01-01T06:00:00.000Z\",\n  \"endTime\": \"2025-01-01T07:00:00.000Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/live-tv/{{liveTvId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/live-tv/{{liveTvId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Evening News\",\n  \"subtitle\": \"End your day informed\",\n  \"host\": \"John Smith\",\n  \"genre\": \"News\",\n  \"startTime\": \"2025-01-01T18:00:00.000Z\",\n  \"endTime\": \"2025-01-01T19:00:00.000Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/live-tv/{{liveTvId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "News",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/news"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/news",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Breaking: Major Event Unfolds\",\n  \"slug\": \"breaking-major-event-unfolds\",\n  \"subtitle\": \"Details emerging from the scene\",\n  \"thumbnailUrl\": \"https://picsum.photos/800/450\",\n  \"genre\": [\"Breaking\", \"Latest\"],\n  \"newsUrl\": \"https://example.com/news/breaking-major-event\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/news/{{newsId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/news/{{newsId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated: Major Event Continues\",\n  \"slug\": \"updated-major-event-continues\",\n  \"subtitle\": \"More details have emerged\",\n  \"thumbnailUrl\": \"https://picsum.photos/800/450\",\n  \"genre\": [\"Breaking\", \"Politics\"],\n  \"newsUrl\": \"https://example.com/news/updated-major-event\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/news/{{newsId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Programs",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/programs"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/programs",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Grand Adventure\",\n  \"slug\": \"the-grand-adventure\",\n  \"thumbnail\": \"https://picsum.photos/400/600\",\n  \"Genre\": \"Drama\",\n  \"badges\": [\"HD\", \"New\"],\n  \"duration\": \"2025-01-01T01:30:00.000Z\",\n  \"showType\": \"featured\",\n  \"episodeUrl\": \"https://example.com/episodes/grand-adventure-ep1\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/programs/{{programId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/programs/{{programId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"The Grand Adventure S2\",\n  \"slug\": \"the-grand-adventure-s2\",\n  \"thumbnail\": \"https://picsum.photos/400/600\",\n  \"Genre\": \"Drama\",\n  \"badges\": [\"HD\", \"Season 2\"],\n  \"duration\": \"2025-01-01T01:45:00.000Z\",\n  \"showType\": \"trending\",\n  \"episodeUrl\": \"https://example.com/episodes/grand-adventure-s2-ep1\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/programs/{{programId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "TV Schedule",
+      "item": [
+        {
+          "name": "Get All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tv-schedule"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tv-schedule",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Morning Show\",\n  \"duration\": \"60 mins\",\n  \"dateTime\": \"2025-01-06T08:00:00.000Z\",\n  \"dayPart\": \"Morning\",\n  \"week\": \"Monday\",\n  \"genre\": \"Talk Show\",\n  \"isLive\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Get By ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tv-schedule/{{scheduleId}}"
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/tv-schedule/{{scheduleId}}",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Morning Show Special\",\n  \"duration\": \"90 mins\",\n  \"dateTime\": \"2025-01-06T08:00:00.000Z\",\n  \"dayPart\": \"Morning\",\n  \"week\": \"Monday\",\n  \"genre\": \"Talk Show\",\n  \"isLive\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tv-schedule/{{scheduleId}}"
+          }
+        }
+      ]
+    }
+  ]
+}
