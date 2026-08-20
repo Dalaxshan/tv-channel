@@ -8,6 +8,7 @@ import {
   BackToTop,
   CookieConsent,
 } from "@/components/layout/floating-widgets";
+import { SocialIcons } from "@/components/home/social-icon";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -94,6 +95,7 @@ export default function RootLayout({
         <FloatingWatchLive />
         <BackToTop />
         <CookieConsent />
+        <SocialIcons />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

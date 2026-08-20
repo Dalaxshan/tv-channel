@@ -6,6 +6,14 @@ const HeroSchema = new Schema(
       type: String,
       required: true,
     },
+    kind: {
+      type: String,
+      required: true,
+    },
+    tagline: {
+      type: String,
+      required: true,
+    },
     subtitle: {
       type: String,
       required: true,
