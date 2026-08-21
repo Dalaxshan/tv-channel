@@ -14,9 +14,9 @@ import {
   Radio,
 } from "lucide-react";
 import { PulseMark } from "@/components/ui/pulse-mark";
-import { Button } from "@/components/ui/button";
 import { SearchModal } from "@/components/layout/search-modal";
 import { shows } from "@/lib/data";
+import { Button } from "../ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -26,7 +26,7 @@ const navLinks = [
     mega: true,
   },
   { label: "TV Schedule", href: "/schedule" },
-  { label: "News", href: "/news" },
+  // { label: "News", href: "/news" },
   { label: "Videos", href: "/videos" },
   { label: "Presenters", href: "/presenters" },
   { label: "About", href: "/about" },
@@ -56,7 +56,7 @@ export function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-lg shadow-black/20" : "bg-transparent"
+          scrolled ? "bg-black theme-light:bg-white" : "bg-transparent"
         }`}
       >
         <div className="container-page flex h-16 lg:h-20 items-center justify-between">
@@ -90,7 +90,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.75 }}
-                        className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl glass p-6 shadow-2xl"
+                        className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl bg-white p-6 shadow-2xl"
                       >
                         <div className="grid grid-cols-3 gap-x-6 gap-y-3">
                           {categories.map((cat) => (

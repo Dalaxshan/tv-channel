@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { FacebookIcon, InstagramIcon, YoutubeIcon, XIcon } from "@/components/ui/social-icons";
 import { PulseMark } from "@/components/ui/pulse-mark";
 import { NewsletterForm } from "@/components/home/newsletter";
+import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "../ui/social-icons";
 
 const columns = [
   {

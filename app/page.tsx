@@ -26,12 +26,12 @@ export default function HomePage() {
       <FeaturedShows />
       <LatestEpisodes />
       <TrendingPrograms />
-      <NewsCenter />
+      {/* <NewsCenter /> */}
       <VideoLibraryPreview />
       <Podcasts />
       <FeaturedHosts />
       <AppPromo />
-      <SocialWall />
+      {/* <SocialWall /> */}
       <NewsletterSection />
       <Sponsors />
     </>

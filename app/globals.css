@@ -35,6 +35,8 @@
   border-color: rgba(0, 0, 0, 0.08);
 }
 
+@custom-variant theme-light (.theme-light &);
+
 @theme inline {
   --color-primary: var(--color-primary);
   --color-primary-light: var(--color-primary-light);
