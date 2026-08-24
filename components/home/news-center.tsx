@@ -16,7 +16,7 @@ export function NewsCenter() {
         <SectionHeading
           eyebrow="News Center"
           title="Latest News"
-          description="Politics, business, sport, technology and international coverage — updated around the clock."
+          description="Politics, business, sport, technology and international coverage - updated around the clock."
           action={{ label: "All news", href: "/news" }}
         />
         <div className="grid gap-6 lg:grid-cols-3">

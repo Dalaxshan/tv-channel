@@ -1,6 +1,6 @@
 import { model, models, Schema } from "mongoose";
 
-const Badges = ["Featured", "New", "Trending"] as const;
+const Badges = ["New", "Trending"] as const;
 const Genres = [
   "Reality",
   "Music",

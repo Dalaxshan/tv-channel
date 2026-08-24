@@ -19,7 +19,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
   if (submitted) {
     return (
       <div className="mt-4 flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-3 text-sm text-accent">
-        <Check className="h-4 w-4" /> You&apos;re subscribed — welcome aboard.
+        <Check className="h-4 w-4" /> You&apos;re subscribed - welcome aboard.
       </div>
     );
   }
@@ -57,7 +57,7 @@ export function NewsletterSection() {
           <SectionHeading
             eyebrow="Newsletter"
             title="Never miss a moment"
-            description="Weekly episode drops, breaking news alerts and schedule updates — delivered every Friday."
+            description="Weekly episode drops, breaking news alerts and schedule updates - delivered every Friday."
             className="justify-center text-center [&>div]:mx-auto"
           />
           <div className="flex justify-center">

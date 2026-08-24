@@ -51,7 +51,7 @@ export default function AboutPage() {
           <h2 className="mt-3 font-display text-xl font-semibold">Our Mission</h2>
           <p className="mt-2 text-sm text-text-muted">
             To inform, entertain and connect every household in the country with content that
-            reflects who we are — honestly, ambitiously and without compromise.
+            reflects who we are - honestly, ambitiously and without compromise.
           </p>
         </div>
         <div className="rounded-2xl glass p-8">
@@ -99,8 +99,8 @@ export default function AboutPage() {
           <Award className="h-6 w-6 text-accent" />
           <h2 className="mt-3 font-display text-xl font-semibold">Awards</h2>
           <ul className="mt-3 space-y-2 text-sm text-text-muted">
-            <li>Best News Broadcast — National Media Awards, 2025</li>
-            <li>Best Original Drama — Crimson Hour, 2024</li>
+            <li>Best News Broadcast - National Media Awards, 2025</li>
+            <li>Best Original Drama - Crimson Hour, 2024</li>
             <li>Broadcaster of the Year, 2023</li>
           </ul>
         </div>

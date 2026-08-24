@@ -2,7 +2,6 @@ import { HeroCarousel } from "@/components/home/hero-carousel";
 import { StatsCounter } from "@/components/home/stats-counter";
 import { LiveTvSection } from "@/components/home/live-tv-section";
 import { ScheduleTimeline } from "@/components/home/schedule-timeline";
-import { FeaturedShows } from "@/components/home/featured-shows";
 import { LatestEpisodes } from "@/components/home/latest-episodes";
 import { TrendingPrograms } from "@/components/home/trending-programs";
 import { NewsCenter } from "@/components/home/news-center";
@@ -14,16 +13,20 @@ import { SocialWall } from "@/components/home/social-wall";
 import { NewsletterSection } from "@/components/home/newsletter";
 import { Sponsors } from "@/components/home/sponsors";
 import { PulseDivider } from "@/components/ui/pulse-mark";
+import { FeaturedShows } from "@/components/home/featured-shows";
+import { getYouTubeEpisodes } from "@/lib/youtube";
 
-export default function HomePage() {
+export default async function HomePage() {
+
+  const featuredShows = (await getYouTubeEpisodes()).slice(0, 10);
   return (
     <>
       <HeroCarousel />
-      <StatsCounter />
+      {/* <StatsCounter /> */}
       <LiveTvSection />
       <PulseDivider className="container-page opacity-40" />
       <ScheduleTimeline />
-      <FeaturedShows />
+      <FeaturedShows shows={featuredShows} />
       <LatestEpisodes />
       <TrendingPrograms />
       {/* <NewsCenter /> */}
@@ -32,7 +35,7 @@ export default function HomePage() {
       <FeaturedHosts />
       <AppPromo />
       {/* <SocialWall /> */}
-      <NewsletterSection />
+      {/* <NewsletterSection /> */}
       <Sponsors />
     </>
   );

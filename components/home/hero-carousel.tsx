@@ -180,7 +180,7 @@ export function HeroCarousel() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link href="/watch-live">
-                    <Radio className="h-4 w-4" /> Watch Live
+                    <Radio className="h-4 w-4" /> Watch Now
                   </Link>
                 </Button>
                 <Button asChild variant="glass" size="lg">

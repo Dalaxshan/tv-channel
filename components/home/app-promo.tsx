@@ -1,4 +1,5 @@
 import { Apple, PlayCircle, Bell, Bookmark, WifiOff, QrCode } from "lucide-react";
+import Image from "next/image";
 
 const features = [
   { icon: Bell, label: "Live episode & schedule alerts" },
@@ -17,7 +18,7 @@ export function AppPromo() {
               TV Channel, Everywhere
             </span>
             <h2 className="mt-2 font-display text-3xl font-bold sm:text-4xl">
-              Take live TV with you
+              Take our TV channel with you
             </h2>
             <p className="mt-3 max-w-lg text-sm text-text-muted sm:text-base">
               Download the TV Channel app for a full-screen streaming experience, tailored recommendations and instant breaking news alerts.
@@ -34,10 +35,10 @@ export function AppPromo() {
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#" className="flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium hover:border-white/30">
-                <Apple className="h-5 w-5" /> App Store
+            <Image src="/app-store.svg" alt="App Store" width={150} height={80} />
               </a>
               <a href="#" className="flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 text-sm font-medium hover:border-white/30">
-                <PlayCircle className="h-5 w-5" /> Google Play
+                <Image src="/google-play.svg" alt="Google Play" width={150} height={80} />
               </a>
             </div>
           </div>

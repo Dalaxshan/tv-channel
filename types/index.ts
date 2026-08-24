@@ -1,6 +1,15 @@
+import { JSX } from "react";
+
 export type Category =
   | "Reality"
+  | "Teledrama"
+  | "Movie"
+  | "Interactive"
   | "Music"
+  | "Talk Show"
+  | "Arts"
+  | "Gaming"
+  | "Travel"
   | "Drama"
   | "News"
   | "Sports"
@@ -23,6 +32,7 @@ export interface Show {
 }
 
 export interface Episode {
+  map(arg0: (show: any) => JSX.Element): import("react").ReactNode;
   slug: string;
   showSlug: string;
   showTitle: string;
@@ -32,6 +42,9 @@ export interface Episode {
   publishDate: string;
   image: string;
   category: Category;
+  youtubeId?: string;
+  viewCount?: number;
+  featured?: boolean;
 }
 
 export interface NewsArticle {
@@ -67,6 +80,15 @@ export interface ScheduleItem {
   live?: boolean;
 }
 
+export interface ScheduleWeekItem {
+  day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
+  time: string;
+  block: "Morning" | "Afternoon" | "Evening" | "Night";
+  title: string;
+  category: Category;
+  live?: boolean;
+}
+
 export interface Podcast {
   slug: string;
   title: string;
@@ -74,4 +96,5 @@ export interface Podcast {
   duration: string;
   image: string;
   date: string;
+  youtubeId?: string;
 }

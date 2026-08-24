@@ -22,12 +22,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://www.tvchannel.comexample";
+const siteUrl = "https://www.tvchannel.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "TV Channel — Live TV, News & Original Shows",
+    default: "TV Channel - Live TV, News & Original Shows",
     template: "%s | TV Channel",
   },
   description:
@@ -37,7 +37,6 @@ export const metadata: Metadata = {
     "live TV",
     "TV schedule",
     "national broadcaster",
-    "watch live",
     "breaking news",
     "TV shows",
   ],
@@ -45,14 +44,14 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "TV Channel",
-    title: "TV Channel — Live TV, News & Original Shows",
+    title: "TV Channel - Live TV, News & Original Shows",
     description:
-      "Watch live television, catch up on the latest episodes, and stay on top of breaking news — all in one premium streaming destination.",
+      "Watch live television, catch up on the latest episodes, and stay on top of breaking news - all in one premium streaming destination.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "TV Channel" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TV Channel — Live TV, News & Original Shows",
+    title: "TV Channel - Live TV, News & Original Shows",
     description:
       "Watch live television, catch up on the latest episodes, and stay on top of breaking news.",
     images: ["/og-image.jpg"],

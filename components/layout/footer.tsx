@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { PulseMark } from "@/components/ui/pulse-mark";
 import { NewsletterForm } from "@/components/home/newsletter";
-import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "../ui/social-icons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  XIcon,
+  YoutubeIcon,
+} from "../ui/social-icons";
+import Image from "next/image";
 
 const columns = [
   {
@@ -55,20 +61,23 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-text-muted">
-              The nation&apos;s home for live television, original drama, breaking
-              news and the moments everyone will be talking about tomorrow.
+              The nation&apos;s home for live television, original drama,
+              breaking news and the moments everyone will be talking about
+              tomorrow.
             </p>
             <div className="mt-6 flex gap-3">
-              {[FacebookIcon, InstagramIcon, YoutubeIcon, XIcon].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-primary hover:text-primary-light transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+              {[FacebookIcon, InstagramIcon, YoutubeIcon, XIcon].map(
+                (Icon, i) => (
+                  <a
+                    key={i}
+                    href="#"
+                    aria-label="Social link"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-primary hover:text-primary-light transition-colors"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ),
+              )}
             </div>
           </div>
 
@@ -99,26 +108,31 @@ export function Footer() {
               Stay in the loop
             </h3>
             <p className="mt-3 text-sm text-text-muted">
-              New episodes, breaking news and schedule changes — straight to your inbox.
+              New episodes, breaking news and schedule changes - straight to
+              your inbox.
             </p>
             <NewsletterForm compact />
-            <div className="mt-6 flex gap-3">
-              <a href="#" className="rounded-xl border border-white/10 px-3 py-2 text-xs text-text-muted hover:border-white/30">
-                App Store
+            <div className="mt-0 flex gap-1 ">
+              <a
+                href="#"
+                className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
+              >
+               <Image src="/app-store.svg" alt="App Store" width={120} height={30} />
               </a>
-              <a href="#" className="rounded-xl border border-white/10 px-3 py-2 text-xs text-text-muted hover:border-white/30">
-                Google Play
+              <a
+                href="#"
+                className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
+              >
+               <Image src="/google-play.svg" alt="Google Play" width={120} height={30} />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 sm:flex-row">
+        <div className="mt-1 flex flex-col items-center border-t border-white/10 py-6 sm:flex-row">
           <p className="text-xs text-text-muted">
-            © {new Date().getFullYear()} TV Channel Network. All rights reserved.
-          </p>
-          <p className="text-xs text-text-muted">
-            Built with Next.js · Designed for every screen
+            © {new Date().getFullYear()} TV Channel Network. All rights
+            reserved.
           </p>
         </div>
       </div>

@@ -73,7 +73,7 @@ export function SocialIcons() {
   ];
 
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
+    <div className="fixed right-1 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
       {socials.map((social) => (
         <a
           key={social.name}

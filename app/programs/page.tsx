@@ -5,7 +5,7 @@ import { ProgramsBrowser } from "@/components/programs/programs-browser";
 
 export const metadata: Metadata = {
   title: "Programs",
-  description: "Browse every TV Channel original show by genre — drama, news, music, sport, lifestyle, kids and more.",
+  description: "Browse every TV Channel original show by genre - drama, news, music, sport, lifestyle, kids and more.",
   alternates: { canonical: "/programs" },
 };
 
@@ -16,7 +16,7 @@ export default function ProgramsPage() {
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">Catalogue</span>
         <h1 className="mt-2 font-display text-4xl font-bold">Programs</h1>
         <p className="mt-3 text-text-muted">
-          {shows.length} original shows across every genre — search, filter and find your next watch.
+          {shows.length} original shows across every genre - search, filter and find your next watch.
         </p>
       </div>
       <Suspense fallback={null}>

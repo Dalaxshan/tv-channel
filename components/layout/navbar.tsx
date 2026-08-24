@@ -27,7 +27,7 @@ const navLinks = [
   },
   { label: "TV Schedule", href: "/schedule" },
   // { label: "News", href: "/news" },
-  { label: "Videos", href: "/videos" },
+  { label: "News", href: "/news" },
   { label: "Presenters", href: "/presenters" },
   { label: "About", href: "/about" },
 ];
@@ -151,12 +151,12 @@ export function Navbar() {
             >
               <Globe className="h-4.5 w-4.5" />
             </button>
-            <Button asChild size="sm" className="hidden md:inline-flex">
+            {/* <Button asChild size="sm" className="hidden md:inline-flex">
               <Link href="/watch-live">
                 <Radio className="h-3.5 w-3.5" />
                 Watch Live
               </Link>
-            </Button>
+            </Button> */}
             <button
               onClick={() => setMobileOpen(true)}
               className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-white/10"
