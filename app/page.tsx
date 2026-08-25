@@ -32,7 +32,7 @@ export default async function HomePage() {
       {/* <NewsCenter /> */}
       <VideoLibraryPreview />
       <Podcasts />
-      <FeaturedHosts />
+      {/* <FeaturedHosts /> */}
       <AppPromo />
       {/* <SocialWall /> */}
       {/* <NewsletterSection /> */}

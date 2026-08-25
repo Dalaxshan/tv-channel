@@ -48,6 +48,8 @@ const columns = [
   },
 ];
 
+
+
 export function Footer() {
   return (
     <footer className="relative border-t border-white/10 bg-secondary/60 pt-16">
@@ -61,11 +63,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-text-muted">
-              The nation&apos;s home for live television, original drama,
-              breaking news and the moments everyone will be talking about
-              tomorrow.
-            </p>
-            <div className="mt-6 flex gap-3">
+The nation’s home for live television, original drama, and breaking news, bringing you the latest entertainment, stories, and unforgettable moments all in one place. Stay connected with your favorite programs, discover exclusive original content, and never miss the important events shaping the nation.            </p>
+            {/* <div className="mt-6 flex gap-3">
               {[FacebookIcon, InstagramIcon, YoutubeIcon, XIcon].map(
                 (Icon, i) => (
                   <a
@@ -78,7 +77,7 @@ export function Footer() {
                   </a>
                 ),
               )}
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -117,13 +116,13 @@ export function Footer() {
                 href="#"
                 className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
               >
-               <Image src="/app-store.svg" alt="App Store" width={120} height={30} />
+                <Image src="/app-store.svg" alt="App Store" width={120} height={30} />
               </a>
               <a
                 href="#"
                 className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
               >
-               <Image src="/google-play.svg" alt="Google Play" width={120} height={30} />
+                <Image src="/google-play.svg" alt="Google Play" width={120} height={30} />
               </a>
             </div>
           </div>

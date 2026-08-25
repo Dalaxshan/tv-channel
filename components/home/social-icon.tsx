@@ -2,7 +2,7 @@ export function SocialIcons() {
   const socials = [
     {
       name: "YouTube",
-      href: "https://youtube.com/@yourchannel",
+      href: "https://www.youtube.com/@AluthmaEka",
       color: "#FF0000",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -12,7 +12,7 @@ export function SocialIcons() {
     },
     {
       name: "Instagram",
-      href: "https://instagram.com/yourhandle",
+      href: "https://www.instagram.com/aluthmaeka/",
       color: "#E4405F",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -22,7 +22,7 @@ export function SocialIcons() {
     },
     {
       name: "Facebook",
-      href: "https://facebook.com/yourpage",
+      href: "https://www.facebook.com/AluthmaEkaTV",
       color: "#1877F2",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -32,7 +32,7 @@ export function SocialIcons() {
     },
     {
       name: "Twitter",
-      href: "https://twitter.com/yourhandle",
+      href: "https://x.com/AluthmaEka",
       color: "#000000",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -41,8 +41,18 @@ export function SocialIcons() {
       ),
     },
     {
+      name: 'TikTok',
+      href:"https://www.tiktok.com/@aluthmaeka",
+      color: "#000",
+      svg: (
+     <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743 2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
+        </svg>
+      )
+    },
+    {
       name: "Threads",
-      href: "https://threads.net/@yourhandle",
+      href: "https://www.threads.com/@aluthmaeka",
       color: "#000000",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">
@@ -52,7 +62,7 @@ export function SocialIcons() {
     },
     {
       name: "Telegram",
-      href: "https://t.me/yourhandle",
+      href: "https://t.me/AluthmaEka",
       color: "#26A5E4",
       svg: (
         <svg viewBox="0 0 24 24" fill="currentColor">

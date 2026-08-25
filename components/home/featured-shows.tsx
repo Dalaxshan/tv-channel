@@ -14,8 +14,6 @@ export function FeaturedShows({ shows }: { shows: Show[] }) {
     scroller.current?.scrollBy({ left: dir * 340, behavior: "smooth" });
   };
 
-  console.log("shows:", shows);
-
   return (
     <section className="py-16 lg:py-24">
       <div className="container-page">

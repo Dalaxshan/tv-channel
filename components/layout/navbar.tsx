@@ -28,7 +28,7 @@ const navLinks = [
   { label: "TV Schedule", href: "/schedule" },
   // { label: "News", href: "/news" },
   { label: "News", href: "/news" },
-  { label: "Presenters", href: "/presenters" },
+  // { label: "Presenters", href: "/presenters" },
   { label: "About", href: "/about" },
 ];
 
@@ -77,7 +77,7 @@ export function Navbar() {
                   onMouseLeave={() => setMegaOpen(false)}
                 >
                   <button
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors"
+                    className="flex items-center gap-1 px-4 py-2 text-md text-white font-medium text-text-muted hover:text-text transition-colors"
                     aria-expanded={megaOpen}
                   >
                     {link.label}
@@ -122,13 +122,16 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors"
+                  className="px-4 py-2 text-md font-medium text-text-muted text-white hover:text-text transition-colors"
                 >
                   {link.label}
                 </Link>
               )
             )}
           </nav>
+
+
+
 
           <div className="flex items-center gap-1.5 lg:gap-2">
             <button
