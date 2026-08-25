@@ -23,7 +23,7 @@ export default function AdvertisePage() {
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">Partner With Us</span>
         <h1 className="mt-2 font-display text-4xl font-bold">Advertise With TV Channel</h1>
         <p className="mt-3 text-text-muted">
-          Reach a nationwide audience across broadcast, streaming and digital — with packages built
+          Reach a nationwide audience across broadcast, streaming and digital - with packages built
           for every budget.
         </p>
       </div>

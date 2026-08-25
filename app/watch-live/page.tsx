@@ -17,7 +17,7 @@ export default function WatchLivePage() {
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">Live</span>
         <h1 className="mt-2 font-display text-4xl font-bold">Watch Live</h1>
         <p className="mt-3 text-text-muted">
-          Stream TV Channel&apos;s main channel and our alternative regional feed — free, live, no sign-in required.
+          Stream TV Channel&apos;s main channel and our alternative regional feed - free, live, no sign-in required.
         </p>
       </div>
 

@@ -1,29 +1,25 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
-import { news } from "@/lib/data";
-import { NewsTicker } from "@/components/home/news-ticker";
+import { podcasts } from "@/lib/data";
+import { getYouTubeEpisodes } from "@/lib/youtube";
 import { NewsBrowser } from "@/components/news/news-browser";
 
 export const metadata: Metadata = {
   title: "News",
-  description: "Breaking news, politics, business, sport, technology, international and entertainment coverage from TV Channel.",
+  description: "Latest news and updates from the TV Channel.",
   alternates: { canonical: "/news" },
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const episodes = await getYouTubeEpisodes();
+
   return (
-    <div className="pb-24 pt-32 lg:pt-40">
-      <NewsTicker />
-      <div className="container-page mt-10 mb-6 max-w-2xl">
-        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">News Center</span>
-        <h1 className="mt-2 font-display text-4xl font-bold">Latest News</h1>
-        <p className="mt-3 text-text-muted">Search and filter TV Channel&apos;s newsroom coverage.</p>
+    <div className="container-page pb-24 pt-32 lg:pt-40">
+      <div className="mb-10 max-w-2xl">
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">On Demand</span>
+        <h1 className="mt-2 font-display text-4xl font-bold">News</h1>
+        <p className="mt-3 text-text-muted">Recently added and most viewed - all in one searchable library.</p>
       </div>
-      <div className="container-page">
-        <Suspense fallback={null}>
-          <NewsBrowser articles={news} />
-        </Suspense>
-      </div>
+      <NewsBrowser episodes={episodes} podcasts={podcasts} />
     </div>
   );
 }

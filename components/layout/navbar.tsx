@@ -14,9 +14,9 @@ import {
   Radio,
 } from "lucide-react";
 import { PulseMark } from "@/components/ui/pulse-mark";
-import { Button } from "@/components/ui/button";
 import { SearchModal } from "@/components/layout/search-modal";
 import { shows } from "@/lib/data";
+import { Button } from "../ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -26,9 +26,9 @@ const navLinks = [
     mega: true,
   },
   { label: "TV Schedule", href: "/schedule" },
+  // { label: "News", href: "/news" },
   { label: "News", href: "/news" },
-  { label: "Videos", href: "/videos" },
-  { label: "Presenters", href: "/presenters" },
+  // { label: "Presenters", href: "/presenters" },
   { label: "About", href: "/about" },
 ];
 
@@ -56,7 +56,7 @@ export function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-lg shadow-black/20" : "bg-transparent"
+          scrolled ? "bg-black theme-light:bg-white" : "bg-transparent"
         }`}
       >
         <div className="container-page flex h-16 lg:h-20 items-center justify-between">
@@ -77,7 +77,7 @@ export function Navbar() {
                   onMouseLeave={() => setMegaOpen(false)}
                 >
                   <button
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors"
+                    className="flex items-center gap-1 px-4 py-2 text-md text-white font-medium text-text-muted hover:text-text transition-colors"
                     aria-expanded={megaOpen}
                   >
                     {link.label}
@@ -90,7 +90,7 @@ export function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.75 }}
-                        className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl glass p-6 shadow-2xl"
+                        className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl bg-white p-6 shadow-2xl"
                       >
                         <div className="grid grid-cols-3 gap-x-6 gap-y-3">
                           {categories.map((cat) => (
@@ -122,13 +122,16 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm font-medium text-text-muted hover:text-text transition-colors"
+                  className="px-4 py-2 text-md font-medium text-text-muted text-white hover:text-text transition-colors"
                 >
                   {link.label}
                 </Link>
               )
             )}
           </nav>
+
+
+
 
           <div className="flex items-center gap-1.5 lg:gap-2">
             <button
@@ -151,12 +154,12 @@ export function Navbar() {
             >
               <Globe className="h-4.5 w-4.5" />
             </button>
-            <Button asChild size="sm" className="hidden md:inline-flex">
+            {/* <Button asChild size="sm" className="hidden md:inline-flex">
               <Link href="/watch-live">
                 <Radio className="h-3.5 w-3.5" />
                 Watch Live
               </Link>
-            </Button>
+            </Button> */}
             <button
               onClick={() => setMobileOpen(true)}
               className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-white/10"

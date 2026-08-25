@@ -5,16 +5,14 @@ import { stats } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "TV Channel's history, mission, vision, management team, awards and national coverage.",
+  description: "TV Channel's story, mission, vision and management team.",
   alternates: { canonical: "/about" },
 };
 
 const milestones = [
-  { year: "2004", text: "TV Channel launches with a single studio and a promise: honest news, every night." },
-  { year: "2011", text: "Nationwide broadcast coverage reaches every province." },
-  { year: "2018", text: "Launch of TV Channel's first original drama slate." },
-  { year: "2023", text: "Streaming platform and mobile app launch to 1M+ downloads." },
-  { year: "2026", text: "TV Channel becomes the country's most-watched independent broadcaster." },
+  { year: "Aug 2026", text: "TV Channel is founded with a single promise: honest, ambitious storytelling from day one." },
+  { year: "Aug 2026", text: "Studio build-out begins and our founding team comes together." },
+  { year: "Coming soon", text: "First broadcast and streaming launch." },
 ];
 
 const management = [
@@ -29,10 +27,11 @@ export default function AboutPage() {
     <div className="pb-24 pt-32 lg:pt-40">
       <div className="container-page max-w-2xl">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">About Us</span>
-        <h1 className="mt-2 font-display text-4xl font-bold">Twenty-two years of telling the nation&apos;s stories</h1>
+        <h1 className="mt-2 font-display text-4xl font-bold">A New National Broadcaster, Starting his Month</h1>
         <p className="mt-4 text-text-muted">
-          TV Channel is an independent national broadcaster delivering live television, original
-          drama, music, sport and trusted journalism to millions of households every week.
+          TV Channel is a brand-new independent broadcaster, founded in August 2026, on a mission to
+          bring live television, original drama, music, sport and trusted journalism to households
+          across the country.
         </p>
       </div>
 
@@ -51,24 +50,24 @@ export default function AboutPage() {
           <h2 className="mt-3 font-display text-xl font-semibold">Our Mission</h2>
           <p className="mt-2 text-sm text-text-muted">
             To inform, entertain and connect every household in the country with content that
-            reflects who we are — honestly, ambitiously and without compromise.
+            reflects who we are - honestly, ambitiously and without compromise.
           </p>
         </div>
         <div className="rounded-2xl glass p-8">
           <Eye className="h-6 w-6 text-accent" />
           <h2 className="mt-3 font-display text-xl font-semibold">Our Vision</h2>
           <p className="mt-2 text-sm text-text-muted">
-            To be the most trusted and most watched media platform in the region, on every screen,
-            in every home.
+            To become the most trusted and most watched media platform in the region, on every
+            screen, in every home.
           </p>
         </div>
       </div>
 
       <div className="container-page mt-16">
-        <h2 className="font-display text-2xl font-bold">Our History</h2>
+        <h2 className="font-display text-2xl font-bold">Our Story So Far</h2>
         <ol className="mt-8 space-y-8 border-l border-white/10 pl-6">
-          {milestones.map((m) => (
-            <li key={m.year} className="relative">
+          {milestones.map((m, i) => (
+            <li key={`${m.year}-${i}`} className="relative">
               <span className="absolute -left-7.75 top-1 h-3 w-3 rounded-full bg-primary-light" />
               <p className="font-display text-lg font-bold text-accent">{m.year}</p>
               <p className="mt-1 text-sm text-text-muted">{m.text}</p>
@@ -97,19 +96,20 @@ export default function AboutPage() {
       <div className="container-page mt-16 grid gap-6 sm:grid-cols-2">
         <div className="rounded-2xl glass p-8">
           <Award className="h-6 w-6 text-accent" />
-          <h2 className="mt-3 font-display text-xl font-semibold">Awards</h2>
+          <h2 className="mt-3 font-display text-xl font-semibold">What We&apos;re Building Toward</h2>
           <ul className="mt-3 space-y-2 text-sm text-text-muted">
-            <li>Best News Broadcast — National Media Awards, 2025</li>
-            <li>Best Original Drama — Crimson Hour, 2024</li>
-            <li>Broadcaster of the Year, 2023</li>
+            <li>A daily news broadcast people can trust</li>
+            <li>Original drama and entertainment made locally</li>
+            <li>A streaming experience available nationwide</li>
           </ul>
         </div>
         <div className="rounded-2xl glass p-8">
           <MapPin className="h-6 w-6 text-accent" />
           <h2 className="mt-3 font-display text-xl font-semibold">Coverage</h2>
           <p className="mt-2 text-sm text-text-muted">
-            Terrestrial broadcast across all nine provinces, satellite coverage nationwide, and
-            live streaming available worldwide via the TV Channel app and website.
+            We&apos;re building out terrestrial and satellite coverage across all nine
+  provinces, with live streaming available worldwide via the TV Channel app
+  and website at launch.
           </p>
         </div>
       </div>
@@ -118,8 +118,8 @@ export default function AboutPage() {
         <Briefcase className="mx-auto h-6 w-6 text-accent" />
         <h2 className="mt-3 font-display text-2xl font-bold">Careers at TV Channel</h2>
         <p className="mx-auto mt-2 max-w-xl text-sm text-text-muted">
-          We&apos;re always looking for storytellers, engineers and broadcasters who want to build
-          the future of television.
+         We&apos;re building a founding team of storytellers, engineers, and
+  broadcasters who want to build the future of television from the ground up.
         </p>
         <a href="/contact" className="mt-6 inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-secondary">
           View open roles

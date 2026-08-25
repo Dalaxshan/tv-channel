@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { shows } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProgramCard } from "@/components/home/program-card";
+import { Show } from "@/types";
 
-export function FeaturedShows() {
+export function FeaturedShows({ shows }: { shows: Show[] }) {
   const scroller = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: 1 | -1) => {

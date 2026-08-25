@@ -1,12 +1,12 @@
-# TV Channel — Premium National Broadcaster Platform
+# TV Channel - Premium National Broadcaster Platform
 
-A production-ready Next.js 15 media platform built for a national TV broadcaster —
+A production-ready Next.js 15 media platform built for a national TV broadcaster -
 live streaming, original shows, breaking news, a video library, presenter profiles
 and more, in a cinematic dark UI inspired by Netflix, BBC and Apple TV.
 
 > **Note on the name:** "TV Channel" and its waveform mark are placeholder branding.
 > Swap the name, colors, and logo mark (`components/ui/pulse-mark.tsx`) for your
-> own channel identity — the rest of the codebase doesn't hardcode the brand name
+> own channel identity - the rest of the codebase doesn't hardcode the brand name
 > anywhere else of consequence except copy strings, which are easy to find/replace.
 
 ## Stack
@@ -16,8 +16,8 @@ and more, in a cinematic dark UI inspired by Netflix, BBC and Apple TV.
 - **Tailwind CSS v4** (CSS-first config via `@theme inline` in `app/globals.css`)
 - **Framer Motion** for animation
 - **Radix UI primitives** (`@radix-ui/react-dialog`, etc.) styled in shadcn/ui fashion
-- **lucide-react** for iconography (brand/social icons are hand-drawn SVGs — see
-  `components/ui/social-icons.tsx` — since lucide-react no longer ships brand marks)
+- **lucide-react** for iconography (brand/social icons are hand-drawn SVGs - see
+  `components/ui/social-icons.tsx` - since lucide-react no longer ships brand marks)
 
 ## Getting started
 
@@ -33,7 +33,7 @@ Visit `http://localhost:3000`. Requires network access on first build so
 
 ```
 app/                      Route segments (App Router)
-  page.tsx                Homepage — assembles all homepage sections
+  page.tsx                Homepage - assembles all homepage sections
   watch-live/              Live streaming page
   programs/, programs/[slug]/     Program catalogue + detail
   schedule/                TV schedule
@@ -48,7 +48,7 @@ components/
   programs/, news/, videos/, contact/   Page-specific client browsers/forms
   ui/                     Design-system primitives (Button, Badge, etc.)
 lib/
-  data.ts                 Mock CMS content — swap for real API/CMS calls
+  data.ts                 Mock CMS content - swap for real API/CMS calls
   utils.ts                Small helpers (cn, date formatting, countdowns)
 types/
   index.ts                Shared content model types
@@ -59,7 +59,7 @@ types/
 - **Content:** every section reads from `lib/data.ts`. Each exported array
   (`shows`, `episodes`, `news`, `presenters`, `podcasts`, `schedule`) matches the
   shapes in `types/index.ts`. Point these at your CMS (Sanity, Strapi, Contentful,
-  a headless WordPress instance, etc.) or a database query — no component changes
+  a headless WordPress instance, etc.) or a database query - no component changes
   required as long as the shape matches.
 - **Live video:** the live player sections (`components/home/live-tv-section.tsx`,
   `app/watch-live/page.tsx`) currently render a static preview image with a play
@@ -76,7 +76,7 @@ types/
 - JSON-LD: `TelevisionStation` (root layout), `TVSeries` (program pages),
   `NewsArticle` (news pages), `Person` (presenter pages), `VideoObject` (video pages)
 - `app/sitemap.ts` and `app/robots.ts` generate `/sitemap.xml` and `/robots.txt`
-  dynamically from the mock content — update the `siteUrl` constant in each file
+  dynamically from the mock content - update the `siteUrl` constant in each file
   (and in `app/layout.tsx`) to your real domain before deploying
 
 ## Accessibility
@@ -90,5 +90,5 @@ types/
 
 Ready to deploy to **Vercel** (zero config) or **Cloudflare Pages** (via the
 `@cloudflare/next-on-pages` adapter). Remote images currently point at
-`picsum.photos` placeholders — update `next.config.ts` `images.remotePatterns`
+`picsum.photos` placeholders - update `next.config.ts` `images.remotePatterns`
 to match your real media host(s).

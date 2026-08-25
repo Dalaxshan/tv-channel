@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Maximize2, Share2, Users, Play } from "lucide-react";
+import { Maximize2, Share2, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -51,7 +51,7 @@ export function LiveTvSection() {
       <SectionHeading
         eyebrow="Live Now"
         title="Live TV"
-        description="Stream TV Channel's primary channel live — no sign-up required."
+        description="Stream TV Channel's primary channel live - no sign-up required."
         action={{ label: "Alternative stream", href: "/watch-live" }}
       />
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
@@ -63,12 +63,12 @@ export function LiveTvSection() {
             className="object-cover opacity-80"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button
+            {/* <button
               aria-label="Play live stream"
               className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/30 transition-transform hover:scale-105"
             >
               <Play className="h-6 w-6 translate-x-0.5" fill="white" />
-            </button>
+            </button> */}
           </div>
           <div className="absolute left-4 top-4 flex items-center gap-2">
             <Badge variant="live">Live</Badge>

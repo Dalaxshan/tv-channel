@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const albums = [
   { title: "Awards Night 2026", count: 24, image: "https://picsum.photos/seed/gallery-awards/700/500" },
-  { title: "Crimson Hour — Behind the Scenes", count: 18, image: "https://picsum.photos/seed/gallery-crimson/700/500" },
+  { title: "Crimson Hour - Behind the Scenes", count: 18, image: "https://picsum.photos/seed/gallery-crimson/700/500" },
   { title: "Island Beats Live", count: 32, image: "https://picsum.photos/seed/gallery-beats/700/500" },
   { title: "Newsroom Tour", count: 12, image: "https://picsum.photos/seed/gallery-newsroom/700/500" },
   { title: "National Sports Gala", count: 27, image: "https://picsum.photos/seed/gallery-sports/700/500" },
