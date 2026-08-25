@@ -1,14 +1,9 @@
-// lib/youtube.ts
-// Server-side helpers for the YouTube Data API v3.
-// Env vars required: YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID
-// Optional: YOUTUBE_FEATURED_PLAYLIST_ID (a playlist you curate in YouTube Studio)
-
 import type { Episode } from "@/types";
 
 const API_BASE = "https://www.googleapis.com/youtube/v3";
 
 async function fetchJson(url: string) {
-  const res = await fetch(url, { next: { revalidate: 3600 } }); // cache 1hr
+  const res = await fetch(url, { next: { revalidate: 3600 } });
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`YouTube API error ${res.status}: ${body}`);
@@ -49,7 +44,7 @@ type RawPlaylistVideo = {
 };
 
 async function getPlaylistVideos(playlistId: string, apiKey: string): Promise<RawPlaylistVideo[]> {
-  let videos: RawPlaylistVideo[] = [];
+  const videos: RawPlaylistVideo[] = [];
   let pageToken = "";
 
   do {
@@ -132,6 +127,7 @@ export async function getYouTubeEpisodes(): Promise<Episode[]> {
 
   return rawVideos.map((v) => ({
     slug: v.id,
+    showSlug: channelId,
     title: v.title,
     image: v.thumbnail,
     publishDate: v.publishedAt,
@@ -139,6 +135,7 @@ export async function getYouTubeEpisodes(): Promise<Episode[]> {
     episodeNumber: episodeNumbers.get(v.id) ?? 0,
     duration: details[v.id]?.duration ?? "0:00",
     viewCount: details[v.id]?.viewCount ?? 0,
+    category: "Entertainment" as const,
     featured: featuredIds.has(v.id),
   }));
 }

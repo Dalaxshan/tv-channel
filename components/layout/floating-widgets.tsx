@@ -15,25 +15,25 @@ export function FloatingWatchLive() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // return (
-  //   <AnimatePresence>
-  //     {visible && (
-  //       <motion.div
-  //         initial={{ opacity: 0, scale: 0.8, y: 20 }}
-  //         animate={{ opacity: 1, scale: 1, y: 0 }}
-  //         exit={{ opacity: 0, scale: 0.8, y: 20 }}
-  //         className="fixed bottom-6 left-6 z-40"
-  //       >
-  //         <Button asChild size="lg" className="glow-primary">
-  //           <Link href="/watch-live">
-  //             <Radio className="h-4 w-4 animate-pulse-live" />
-  //             Watch Live
-  //           </Link>
-  //         </Button>
-  //       </motion.div>
-  //     )}
-  //   </AnimatePresence>
-  // );
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          className="fixed bottom-6 left-6 z-40"
+        >
+          <Button asChild size="lg" className="glow-primary">
+            <Link href="/watch-live">
+              <Radio className="h-4 w-4 animate-pulse-live" />
+              Watch Live
+            </Link>
+          </Button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
 
 export function BackToTop() {

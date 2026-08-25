@@ -32,7 +32,6 @@ export interface Show {
 }
 
 export interface Episode {
-  map(arg0: (show: any) => JSX.Element): import("react").ReactNode;
   slug: string;
   showSlug: string;
   showTitle: string;

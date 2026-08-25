@@ -27,7 +27,7 @@ export default function AboutPage() {
     <div className="pb-24 pt-32 lg:pt-40">
       <div className="container-page max-w-2xl">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">About Us</span>
-        <h1 className="mt-2 font-display text-4xl font-bold">A New National Broadcaster, Starting This Month</h1>
+        <h1 className="mt-2 font-display text-4xl font-bold">A New National Broadcaster, Starting his Month</h1>
         <p className="mt-4 text-text-muted">
           TV Channel is a brand-new independent broadcaster, founded in August 2026, on a mission to
           bring live television, original drama, music, sport and trusted journalism to households
@@ -96,7 +96,7 @@ export default function AboutPage() {
       <div className="container-page mt-16 grid gap-6 sm:grid-cols-2">
         <div className="rounded-2xl glass p-8">
           <Award className="h-6 w-6 text-accent" />
-          <h2 className="mt-3 font-display text-xl font-semibold">What We're Building Toward</h2>
+          <h2 className="mt-3 font-display text-xl font-semibold">What We&apos;re Building Toward</h2>
           <ul className="mt-3 space-y-2 text-sm text-text-muted">
             <li>A daily news broadcast people can trust</li>
             <li>Original drama and entertainment made locally</li>
@@ -107,8 +107,9 @@ export default function AboutPage() {
           <MapPin className="h-6 w-6 text-accent" />
           <h2 className="mt-3 font-display text-xl font-semibold">Coverage</h2>
           <p className="mt-2 text-sm text-text-muted">
-            We're building out terrestrial and satellite coverage across all nine provinces, with
-            live streaming available worldwide via the TV Channel app and website at launch.
+            We&apos;re building out terrestrial and satellite coverage across all nine
+  provinces, with live streaming available worldwide via the TV Channel app
+  and website at launch.
           </p>
         </div>
       </div>
@@ -117,8 +118,8 @@ export default function AboutPage() {
         <Briefcase className="mx-auto h-6 w-6 text-accent" />
         <h2 className="mt-3 font-display text-2xl font-bold">Careers at TV Channel</h2>
         <p className="mx-auto mt-2 max-w-xl text-sm text-text-muted">
-          We're building a founding team of storytellers, engineers and broadcasters who want to
-          build the future of television from the ground up.
+         We&apos;re building a founding team of storytellers, engineers, and
+  broadcasters who want to build the future of television from the ground up.
         </p>
         <a href="/contact" className="mt-6 inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-secondary">
           View open roles

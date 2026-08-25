@@ -1,4 +1,4 @@
-import { Apple, PlayCircle, Bell, Bookmark, WifiOff, QrCode } from "lucide-react";
+import { Bell, Bookmark, WifiOff, QrCode } from "lucide-react";
 import Image from "next/image";
 
 const features = [
