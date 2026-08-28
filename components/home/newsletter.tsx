@@ -25,7 +25,10 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={compact ? "mt-4" : "mt-6 flex flex-col sm:flex-row gap-3 max-w-md"}>
+    <form
+      onSubmit={handleSubmit}
+      className={compact ? "mt-4 flex items-center gap-3" : "mt-6 flex items-center gap-3 max-w-md"}
+    >
       <label htmlFor={compact ? "footer-email" : "newsletter-email"} className="sr-only">
         Email address
       </label>
@@ -41,7 +44,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
           className="w-full rounded-full border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm outline-none placeholder:text-text-muted focus:border-accent"
         />
       </div>
-      <Button type="submit" variant={compact ? "outline" : "accent"} size={compact ? "sm" : "md"}>
+      <Button className="flex-shrink-0" type="submit" size={compact ? "sm" : "md"}>
         Subscribe
       </Button>
     </form>
@@ -50,7 +53,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
 
 export function NewsletterSection() {
   return (
-    <section className="container-page py-16 lg:py-24">
+    <section className="container-page py-6 lg:py-4">
       <div className="relative overflow-hidden rounded-3xl glass p-10 lg:p-16 text-center">
         <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-primary/30 blur-[100px]" />
         <div className="relative">

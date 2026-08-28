@@ -11,12 +11,10 @@ import {
   Moon,
   Globe,
   ChevronDown,
-  Radio,
 } from "lucide-react";
 import { PulseMark } from "@/components/ui/pulse-mark";
 import { SearchModal } from "@/components/layout/search-modal";
 import { shows } from "@/lib/data";
-import { Button } from "../ui/button";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -26,9 +24,7 @@ const navLinks = [
     mega: true,
   },
   { label: "TV Schedule", href: "/schedule" },
-  // { label: "News", href: "/news" },
   { label: "News", href: "/news" },
-  // { label: "Presenters", href: "/presenters" },
   { label: "About", href: "/about" },
 ];
 
@@ -56,7 +52,7 @@ export function Navbar() {
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-black theme-light:bg-white" : "bg-transparent"
+          scrolled ? "bg-black theme-light:bg-zinc-100" : "bg-transparent"
         }`}
       >
         <div className="container-page flex h-16 lg:h-20 items-center justify-between">
@@ -77,7 +73,7 @@ export function Navbar() {
                   onMouseLeave={() => setMegaOpen(false)}
                 >
                   <button
-                    className="flex items-center gap-1 px-4 py-2 text-md text-white font-medium text-text-muted hover:text-text transition-colors"
+                    className="flex items-center gap-1 px-4 py-2 text-md font-medium theme-light:text-text-muted hover:theme-light:text-text transition-colors"
                     aria-expanded={megaOpen}
                   >
                     {link.label}
@@ -122,17 +118,13 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-md font-medium text-text-muted text-white hover:text-text transition-colors"
+                  className="px-4 py-2 text-md font-medium theme-light:text-text-muted hover:theme-light:text-text transition-colors"
                 >
                   {link.label}
                 </Link>
               )
             )}
           </nav>
-
-
-
-
           <div className="flex items-center gap-1.5 lg:gap-2">
             <button
               onClick={() => setSearchOpen(true)}
@@ -143,7 +135,7 @@ export function Navbar() {
             </button>
             <button
               onClick={() => setLight((v) => !v)}
-              className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
               aria-label="Toggle theme"
             >
               {light ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />}
@@ -200,12 +192,9 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Button asChild className="mt-6" size="lg">
-                <Link href="/watch-live" onClick={() => setMobileOpen(false)}>
-                  <Radio className="h-4 w-4" /> Watch Live
-                </Link>
-              </Button>
             </nav>
+
+            
           </motion.div>
         )}
       </AnimatePresence>

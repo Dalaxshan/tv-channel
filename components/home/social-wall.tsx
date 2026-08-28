@@ -11,7 +11,7 @@ const posts = [
 
 export function SocialWall() {
   return (
-    <section className="container-page py-16 lg:py-24">
+    <section className="container-page py-6 lg:py-4">
       <SectionHeading eyebrow="Follow Along" title="Social Media Wall" description="Our latest posts from across the platforms." />
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {posts.map((post) => (

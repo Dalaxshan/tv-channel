@@ -39,7 +39,7 @@ export function ContactForm({ department }: { department?: string }) {
             className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
           >
             {departments.map((d) => (
-              <option key={d}>{d}</option>
+              <option key={d} className="text-black">{d}</option>
             ))}
           </select>
         </div>

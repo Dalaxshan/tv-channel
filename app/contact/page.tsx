@@ -16,7 +16,7 @@ const departments = [
 
 export default function ContactPage() {
   return (
-    <div className="container-page pb-24 pt-32 lg:pt-40">
+    <div className="container-page pb-24 pt-22 lg:pt-30">
       <div className="mb-10 max-w-2xl">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">Get In Touch</span>
         <h1 className="mt-2 font-display text-4xl font-bold">Contact Us</h1>
@@ -42,7 +42,7 @@ export default function ContactPage() {
           <div className="mt-6 space-y-4 rounded-2xl glass p-6">
             <div className="flex items-start gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-              <p className="text-sm text-text-muted">42 Broadcast Avenue, Colombo 03</p>
+              <p className="text-sm text-text-muted">236/1 Denzil Kobbekaduwa Mawatha, Battaramulla 10120</p>
             </div>
             <div className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-accent" />
@@ -57,10 +57,12 @@ export default function ContactPage() {
           <div className="mt-6 aspect-video overflow-hidden rounded-2xl border border-white/10">
             <iframe
               title="TV Channel location map"
-              className="h-full w-full grayscale invert-0"
+              className="h-full w-full"
               loading="lazy"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=79.83%2C6.91%2C79.87%2C6.95&layer=mapnik"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d727.6895795429439!2d79.92574432826245!3d6.898887154821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae257005c0057a7%3A0x9c6c2d6bceea8b83!2sBusiness%20Media%20International!5e0!3m2!1sen!2slk!4v1787889202907!5m2!1sen!2slk"
             />
+
+
           </div>
         </div>
 

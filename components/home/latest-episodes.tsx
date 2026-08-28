@@ -7,12 +7,12 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function LatestEpisodes() {
   return (
-    <section className="container-page py-16 lg:py-24">
+    <section className="container-page py-6 lg:py-4">
       <SectionHeading
         eyebrow="Fresh Off Air"
-        title="Latest Episodes"
+        title="TV TeleDrama"
         description="Catch up on everything that aired this week, on demand."
-        action={{ label: "Video library", href: "/videos" }}
+        action={{ label: "All TeleDramas", href: "/videos" }}
       />
       <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
         {episodes.map((ep) => (
@@ -29,10 +29,10 @@ export function LatestEpisodes() {
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width:768px) 45vw, 260px"
               />
-              <span className="absolute left-2 top-2 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px] font-semibold">
+              <span className="absolute left-2 top-2 rounded-md bg-black/60 text-white/90 px-1.5 py-0.5 text-[10px] font-semibold">
                 EP {ep.episodeNumber}
               </span>
-              <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px]">
+              <span className="absolute bottom-2 right-2 flex items-center gap-1 text-white/90 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px]">
                 <Clock className="h-2.5 w-2.5" /> {ep.duration}
               </span>
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">

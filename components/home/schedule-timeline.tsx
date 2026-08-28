@@ -9,8 +9,8 @@ const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const blocks: { name: "Morning" | "Afternoon" | "Evening" | "Night"; time: string }[] = [
   { name: "Morning", time: "6AM – 12PM" },
   { name: "Afternoon", time: "12PM – 5PM" },
-  { name: "Evening", time: "5PM – 10PM" },
-  { name: "Night", time: "10PM – 6AM" },
+  { name: "Evening", time: "5PM – 9PM" },
+  { name: "Night", time: "9PM – 12AM" },
 ];
 
 export function ScheduleTimeline() {
@@ -35,7 +35,7 @@ export function ScheduleTimeline() {
             onClick={() => setActiveDay(d)}
             className={cn(
               "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-              activeDay === d ? "bg-primary text-white" : "bg-white/5 text-text-muted hover:bg-white/10"
+              activeDay === d ? "bg-primary text-white" : "bg-accent/5 text-text-muted hover:bg-accent/10"
             )}
           >
             {d}
