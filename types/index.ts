@@ -80,6 +80,7 @@ export interface ScheduleItem {
 }
 
 export interface ScheduleWeekItem {
+  airTime: string | number | Date;
   day: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
   time: string;
   block: "Morning" | "Afternoon" | "Evening" | "Night";

@@ -24,7 +24,7 @@ const management = [
 
 export default function AboutPage() {
   return (
-    <div className="pb-24 pt-32 lg:pt-40">
+    <div className="pb-24 pt-22 lg:pt-30">
       <div className="container-page max-w-2xl">
         <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-light">About Us</span>
         <h1 className="mt-2 font-display text-4xl font-bold">A New National Broadcaster, Starting his Month</h1>

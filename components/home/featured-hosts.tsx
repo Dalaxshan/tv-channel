@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function FeaturedHosts() {
   return (
-    <section className="container-page py-16 lg:py-24">
+    <section className="container-page py-6 lg:py-4">
       <SectionHeading
         eyebrow="The Faces of Pulse"
         title="Featured Hosts"

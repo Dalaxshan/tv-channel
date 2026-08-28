@@ -4,16 +4,16 @@ import { Play, Eye } from "lucide-react";
 import { episodes } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-export function VideoLibraryPreview() {
+export function Entertainments() {
   const items = [...episodes].slice(0, 5);
   return (
-    <section className="container-page py-16 lg:py-24">
+    <section className="container-page py-6 lg:py-4">
       <SectionHeading
-        eyebrow="On Demand"
-        title="Video Library"
-        description="Search, filter and sort thousands of hours of TV Channel content."
-        action={{ label: "Browse library", href: "/videos" }}
-      />
+  eyebrow="On Demand"
+  title="Entertainment"
+  description="Catch the latest entertainment news, celebrity stories, movies, music, and trending highlights."
+  action={{ label: "Browse Library", href: "/videos" }}
+/>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {items.map((ep) => (
           <Link key={ep.slug} href={`/videos/${ep.slug}`} className="group relative overflow-hidden rounded-xl">

@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import {
-  FloatingWatchLive,
   BackToTop,
   CookieConsent,
 } from "@/components/layout/floating-widgets";
@@ -91,7 +90,6 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
-        <FloatingWatchLive />
         <BackToTop />
         <CookieConsent />
         <SocialIcons />

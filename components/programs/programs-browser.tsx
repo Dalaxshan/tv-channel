@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import type { Show, Category } from "@/types";
 import { ProgramCard } from "@/components/home/program-card";
 import { cn } from "@/lib/utils";
@@ -20,7 +20,13 @@ export function ProgramsBrowser({ shows }: { shows: Show[] }) {
     return shows
       .filter((s) => category === "All" || s.category === category)
       .filter((s) => s.title.toLowerCase().includes(query.toLowerCase()))
-      .sort((a, b) => (sort === "title" ? a.title.localeCompare(b.title) : a.duration.localeCompare(b.duration)));
+      .sort((a, b) => {
+        const aPriority = Number(Boolean(a.isNewEpisode)) + Number(Boolean(a.trending));
+        const bPriority = Number(Boolean(b.isNewEpisode)) + Number(Boolean(b.trending));
+
+        if (aPriority !== bPriority) return bPriority - aPriority;
+        return sort === "title" ? a.title.localeCompare(b.title) : a.duration.localeCompare(b.duration);
+      });
   }, [shows, category, query, sort]);
 
   return (
@@ -35,14 +41,17 @@ export function ProgramsBrowser({ shows }: { shows: Show[] }) {
             className="w-full rounded-full border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-accent"
           />
         </div>
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value as "title" | "duration")}
-          className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm outline-none"
-        >
-          <option value="title">Sort: A–Z</option>
-          <option value="duration">Sort: Duration</option>
-        </select>
+        <div className="relative w-full sm:w-auto">
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as "title" | "duration")}
+            className="w-full appearance-none rounded-full border border-white/10 bg-white/5 py-2.5 pl-4 pr-10 text-sm outline-none focus:border-accent sm:w-auto"
+          >
+            <option value="title" className="text-black">Sort: A–Z</option>
+            <option value="duration" className="text-black">Sort: Duration</option>
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+        </div>
       </div>
 
       <div className="mb-8 flex flex-wrap gap-2">
@@ -56,9 +65,9 @@ export function ProgramsBrowser({ shows }: { shows: Show[] }) {
           <button
             key={c}
             onClick={() => setCategory(c)}
-            className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === c ? "bg-accent text-secondary" : "bg-white/5 text-text-muted hover:bg-white/10")}
+            className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === c ? "bg-accent text-secondary" : "bg-accent/5 text-text-muted hover:bg-accent/10")}
           >
-            {c}
+           {c} 
           </button>
         ))}
       </div>

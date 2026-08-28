@@ -79,7 +79,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
           >
             <div className="relative aspect-video overflow-hidden">
               <Image src={ep.image} alt={ep.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="260px" />
-              <span className="absolute left-2 top-2 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px] font-semibold">NS {ep.episodeNumber}</span>
+              <span className="absolute left-2 top-2 rounded-md bg-black/60 text-white/90 px-1.5 py-0.5 text-[10px] font-semibold">NS {ep.episodeNumber}</span>
               <span className="absolute bottom-2 right-2 flex items-center gap-1 rounded-md bg-black/60 px-1.5 py-0.5 text-[10px]"><Clock className="h-2.5 w-2.5" /> {ep.duration}</span>
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">
                 <Play className="h-8 w-8" fill="white" />
