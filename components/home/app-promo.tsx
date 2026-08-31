@@ -63,7 +63,7 @@ export function AppPromo() {
               ))}
             </ul>
 
-            {/* Store buttons + QR badge — wraps to its own row on small screens */}
+            {/* Store buttons + QR badge - wraps to its own row on small screens */}
             <div className="mt-6 flex flex-col gap-2">
               {/* Row 1: Store buttons */}
               <div className="flex flex-wrap items-center gap-3">
@@ -87,7 +87,7 @@ export function AppPromo() {
                 </a>
               </div>
 
-              {/* Row 2: QR badge — always on its own row */}
+              {/* Row 2: QR badge - always on its own row */}
               <div className="flex w-fit items-center gap-1 rounded-xl bg-white/90 p-3 shadow-lg backdrop-blur-sm sm:p-4">
                 <QrCode
                   className="h-20 w-20 shrink-0 text-black sm:h-28 sm:w-28"
@@ -102,7 +102,7 @@ export function AppPromo() {
             </div>
           </div>
 
-          {/* Image slider — vertically aligned with the feature column */}
+          {/* Image slider - vertically aligned with the feature column */}
           <div className="flex flex-col items-center justify-center gap-4">
             <div className="group relative w-full max-w-[220px] sm:max-w-xs overflow-hidden rounded-2xl glass">
               <button

@@ -9,16 +9,16 @@ export function Entertainments() {
   return (
     <section className="container-page py-6 lg:py-4">
       <SectionHeading
-  eyebrow="On Demand"
-  title="Entertainment"
-  description="Catch the latest entertainment news, celebrity stories, movies, music, and trending highlights."
-  action={{ label: "Browse Library", href: "/videos" }}
-/>
+        eyebrow="On Demand"
+        title="Entertainment"
+        description="Catch the latest entertainment news, celebrity stories, movies, music, and trending highlights."
+        action={{ label: "Browse Library", href: "/videos" }}
+      />
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {items.map((ep) => (
           <Link key={ep.slug} href={`/videos/${ep.slug}`} className="group relative overflow-hidden rounded-xl">
             <div className="relative aspect-3/4">
-              <Image src={ep.image} alt={ep.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 40vw, 200px" />
+              <Image src={ep.image} alt={ep.title} fill className="object-contain transition-transform duration-500 group-hover:scale-110" sizes="(max-width:768px) 40vw, 200px" />
               <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/10 to-transparent" />
             </div>
             <div className="absolute inset-x-0 bottom-0 p-3">

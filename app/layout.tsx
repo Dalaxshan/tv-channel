@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import {
-  BackToTop,
-  CookieConsent,
-} from "@/components/layout/floating-widgets";
-import { SocialIcons } from "@/components/home/social-icon";
+import { SiteChrome } from "@/components/layout/site-chrome";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -87,12 +81,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <BackToTop />
-        <CookieConsent />
-        <SocialIcons />
+        <SiteChrome>{children}</SiteChrome>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
