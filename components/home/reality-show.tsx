@@ -1,12 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { Play } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { ProgramResponse } from "@/types/admin";
-import { groupSchedule } from "@/lib/utils";
 import { ProgramCard2 } from "./program-card2";
 
 export function RealityShows() {

@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import { getDb, COLLECTIONS, ensureIndexes } from "@/lib/db/mongodb";
 import { toProgramResponse } from "@/lib/program-serializer";
 import { apiSuccess, apiError } from "@/lib/api-response";
-import type { ProgramDocument } from "@/types/admin";
+import type { ProgramDocument, ProgramCategory } from "@/types/admin";
 import type { ObjectId } from "mongodb";
 
 export async function GET(req: NextRequest) {
@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
     const db = await getDb();
     const category = req.nextUrl.searchParams.get("category");
 
-    const filter = category ? { category } : {};
+    const filter = category ? { category: category as ProgramCategory } : {};
     const programs = await db
       .collection<ProgramDocument>(COLLECTIONS.programs)
       .find(filter)

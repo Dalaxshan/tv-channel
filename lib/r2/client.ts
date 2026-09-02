@@ -80,7 +80,7 @@ function extensionFromMimeType(mimeType: string): string {
 export async function uploadImageToR2(
   buffer: Buffer,
   mimeType: string,
-  folder: "heroes" | "teledramas"
+  folder: "heroes" | "teledramas" | "programs"
 ): Promise<{ key: string; url: string }> {
   const key = `${folder}/${randomUUID()}.${extensionFromMimeType(mimeType)}`;
 
@@ -127,7 +127,7 @@ export function publicUrlForKey(key: string): string {
  */
 export async function createPresignedUploadUrl(
   mimeType: string,
-  folder: "heroes" | "teledramas"
+  folder: "heroes" | "teledramas" | "programs"
 ): Promise<{ key: string; uploadUrl: string; publicUrl: string }> {
   const key = `${folder}/${randomUUID()}.${extensionFromMimeType(mimeType)}`;
 

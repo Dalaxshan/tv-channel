@@ -9,41 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { HeroResponse } from "@/types/admin";
 
-const slides = [
-  {
-    kind: "Featured Show",
-    title: "Crimson Hour",
-    tagline: "Season 3 premieres tonight at 8:00 PM",
-    description: "Power, family and betrayal collide in the capital's most talked-about drama.",
-    image: "https://picsum.photos/seed/hero-crimson/1600/900",
-    href: "/programs/crimson-hour",
-  },
-  {
-    kind: "Breaking News",
-    title: "Capital Budget.",
-    tagline: "Full coverage on Frontline Report",
-    description: "Lawmakers approved the amended finance bill after a late-night session.",
-    image: "https://picsum.photos/seed/hero-news/1600/900",
-    href: "/news/capital-budget-vote",
-  },
-  {
-    kind: "Live Event",
-    title: "National Music Awards",
-    tagline: "Live this Saturday, 7:00 PM",
-    description: "The island's biggest artists gather for one unforgettable night.",
-    image: "https://picsum.photos/seed/hero-awards/1600/900",
-    href: "/watch-live",
-  },
-  {
-    kind: "Campaign",
-    title: "Download the TV Channel App",
-    tagline: "Live TV in your pocket",
-    description: "Stream every channel, set reminders and never miss a premiere.",
-    image: "https://picsum.photos/seed/hero-app/1600/900",
-    href: "#app-promo",
-  },
-];
-
 const socials = [
   {
     name: "YouTube",
