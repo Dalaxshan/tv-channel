@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
-import { Plus, Pencil, Trash2, Clapperboard } from "lucide-react";
+import { Plus, Pencil, Trash2, Clapperboard, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button, Spinner } from "@/components/admin/ui/form-controls";
 import { Modal } from "@/components/admin/ui/modal";
 import { ConfirmDialog } from "@/components/admin/ui/confirm-dialog";
@@ -12,6 +12,9 @@ import { UploadedImage } from "@/components/admin/image-upload";
 import { useToast } from "@/components/admin/toast";
 import { SCHEDULE_DAY_SHORT } from "@/lib/schedule-block";
 import type { ProgramResponse } from "@/types/admin";
+import { PROGRAM_CATEGORIES } from "@/types/admin";
+
+const PAGE_SIZE = 10;
 
 export default function ProgramManagementPage() {
   const toast = useToast();
@@ -23,6 +26,32 @@ export default function ProgramManagementPage() {
 
   const [deleteTarget, setDeleteTarget] = useState<ProgramResponse | null>(null);
   const [deleting, setDeleting] = useState(false);
+
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [page, setPage] = useState(1);
+
+  const filtered = useMemo(() => {
+    if (!programs) return [];
+    return programs.filter((p) => {
+      const matchSearch = p.title.toLowerCase().includes(search.toLowerCase());
+      const matchCategory = categoryFilter ? p.category === categoryFilter : true;
+      return matchSearch && matchCategory;
+    });
+  }, [programs, search, categoryFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  function handleSearchChange(val: string) {
+    setSearch(val);
+    setPage(1);
+  }
+
+  function handleCategoryChange(val: string) {
+    setCategoryFilter(val);
+    setPage(1);
+  }
 
   async function loadPrograms() {
     try {
@@ -131,6 +160,31 @@ export default function ProgramManagementPage() {
         </div>
       )}
 
+      {programs && programs.length > 0 && (
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="relative flex-1 min-w-48">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+            <input
+              type="text"
+              placeholder="Search programs…"
+              value={search}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="w-full rounded-lg border border-slate-700 bg-slate-900 py-2 pl-9 pr-3 text-sm text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none"
+            />
+          </div>
+          <select
+            value={categoryFilter}
+            onChange={(e) => handleCategoryChange(e.target.value)}
+            className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-indigo-500 focus:outline-none"
+          >
+            <option value="">All Categories</option>
+            {PROGRAM_CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {programs && programs.length === 0 && (
         <EmptyState
           icon={<Clapperboard className="h-6 w-6" />}
@@ -145,7 +199,11 @@ export default function ProgramManagementPage() {
         />
       )}
 
-      {programs && programs.length > 0 && (
+      {programs && filtered.length === 0 && (search || categoryFilter) && (
+        <p className="py-10 text-center text-sm text-slate-500">No programs match your filters.</p>
+      )}
+
+      {programs && paginated.length > 0 && (
         <div className="overflow-hidden rounded-xl border border-slate-800">
           <div className="hidden grid-cols-[64px_1fr_120px_1.4fr_160px] gap-4 border-b border-slate-800 bg-slate-900 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid">
             <span>Thumb</span>
@@ -155,7 +213,7 @@ export default function ProgramManagementPage() {
             <span className="text-right">Actions</span>
           </div>
           <div className="divide-y divide-slate-800 bg-slate-900/40">
-            {programs.map((item) => (
+            {paginated.map((item) => (
               <div
                 key={item.id}
                 className="flex flex-col gap-3 px-4 py-3 sm:grid sm:grid-cols-[64px_1fr_120px_1.4fr_160px] sm:items-center sm:gap-4"
@@ -192,6 +250,29 @@ export default function ProgramManagementPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between text-sm text-slate-400">
+          <span>{filtered.length} program{filtered.length !== 1 ? "s" : ""}</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="rounded-lg border border-slate-700 p-1.5 hover:bg-slate-800 disabled:opacity-40"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span>Page {page} of {totalPages}</span>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="rounded-lg border border-slate-700 p-1.5 hover:bg-slate-800 disabled:opacity-40"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
       )}
