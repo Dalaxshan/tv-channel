@@ -66,6 +66,7 @@ export async function getDb(): Promise<Db> {
 export const COLLECTIONS = {
   admins: "admins",
   heroes: "heroes",
+  programs: "programs",
   teledramas: "teledramas",
   schedules: "schedules",
 } as const;
@@ -83,6 +84,8 @@ export async function ensureIndexes(): Promise<void> {
 
   await Promise.all([
     db.collection(COLLECTIONS.admins).createIndex({ email: 1 }, { unique: true }),
+    db.collection(COLLECTIONS.programs).createIndex({ slug: 1 }, { unique: true }),
+    db.collection(COLLECTIONS.programs).createIndex({ createdAt: -1 }),
     db.collection(COLLECTIONS.teledramas).createIndex({ slug: 1 }, { unique: true }),
     db.collection(COLLECTIONS.heroes).createIndex({ createdAt: -1 }),
     db.collection(COLLECTIONS.teledramas).createIndex({ createdAt: -1 }),

@@ -34,6 +34,7 @@ export function FeaturedShows({ shows }: { shows: Show[] }) {
             </div>
           ))}
         </div>
+
         <div className="mt-6 hidden justify-end gap-2 container-page sm:flex">
           <button
             onClick={() => scroll(-1)}

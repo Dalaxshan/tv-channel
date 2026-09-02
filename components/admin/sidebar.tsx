@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Image as ImageIcon, Clapperboard, LogOut, Tv, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { LayoutDashboard, Image as ImageIcon, ListVideo, CalendarClock, LogOut, Tv, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useToast } from "@/components/admin/toast";
 import { useState } from "react";
-import { PulseMark } from "../ui/pulse-mark";
 
 const NAV_ITEMS = [
   { href: "/admin-panel/dashboard", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin-panel/dashboard/hero", label: "Hero Management", icon: ImageIcon },
-  { href: "/admin-panel/dashboard/teledrama", label: "Teledrama Management", icon: Clapperboard },
+  { href: "/admin-panel/dashboard/program", label: "Program Management", icon: ListVideo },
+  { href: "/admin-panel/dashboard/schedule", label: "TV Schedule", icon: CalendarClock },
 ];
 
 export function Sidebar({
@@ -46,15 +46,12 @@ export function Sidebar({
   return (
     <div className="flex h-full flex-col bg-slate-950">
       <div className={`flex items-center gap-2 border-b border-slate-800 px-4 py-5 ${collapsed ? "justify-center" : ""}`}>
-      
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-indigo-600">
+          <Tv className="h-5 w-5 text-white" />
+        </div>
         {!collapsed && (
           <div className="min-w-0">
-            <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="TV Channel home">
-            <PulseMark className="h-6 w-14 text-primary-light" />
-            <span className="font-display text-xl lg:text-2xl font-bold tracking-tight">
-              TV<span className="text-primary-light">Channel</span>
-            </span>
-          </Link>
+            <p className="truncate text-sm font-bold text-white">TV Channel</p>
             <p className="truncate text-xs text-slate-500">Admin Panel</p>
           </div>
         )}

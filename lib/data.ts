@@ -327,7 +327,7 @@ export const presenters: Presenter[] = [
   },
 ];
 
-export const latestnews: Podcast[] = [
+export const realityShow: Podcast[] = [
 {
   slug: "bus-lalith-brought-back-to-sri-lanka",
   title: "‘Bus Lalith’ Brought Back to Sri Lanka",

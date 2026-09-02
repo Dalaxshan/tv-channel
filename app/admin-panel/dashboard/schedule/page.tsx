@@ -1,40 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Pencil, Trash2, CalendarClock } from "lucide-react";
-import { Button, Spinner } from "@/components/admin/ui/form-controls";
-import { Modal } from "@/components/admin/ui/modal";
-import { ConfirmDialog } from "@/components/admin/ui/confirm-dialog";
+import { CalendarClock } from "lucide-react";
+import { Spinner } from "@/components/admin/ui/form-controls";
 import { EmptyState } from "@/components/admin/ui/empty-state";
-import { ScheduleForm, ScheduleFormValues } from "@/components/admin/schedule/schedule-form";
-import { useToast } from "@/components/admin/toast";
-import { SCHEDULE_DAYS, type ScheduleBlock } from "@/lib/schedule-block";
-import type { ScheduleResponse } from "@/types/admin";
+import { SCHEDULE_DAYS, SCHEDULE_DAY_SHORT, type ScheduleBlock } from "@/lib/schedule-block";
+import type { GeneratedScheduleItem } from "@/types/admin";
 import { cn } from "@/lib/utils";
 
 // Mirrors the four columns rendered by components/home/schedule-timeline.tsx
 const BLOCKS: { name: ScheduleBlock; time: string }[] = [
-  { name: "Morning", time: "12AM – 12PM" },
-  { name: "Afternoon", time: "12PM – 5PM" },
-  { name: "Evening", time: "5PM – 9PM" },
-  { name: "Night", time: "9PM – 12AM" },
+  { name: "Morning", time: "4AM – 12PM" },
+  { name: "Afternoon", time: "12PM – 4PM" },
+  { name: "Evening", time: "4PM – 6PM" },
+  { name: "Night", time: "6PM – 12AM" },
 ];
 
 export default function ScheduleManagementPage() {
-  const toast = useToast();
-  const [schedule, setSchedule] = useState<ScheduleResponse[] | null>(null);
+  const [schedule, setSchedule] = useState<GeneratedScheduleItem[] | null>(null);
   const [loadError, setLoadError] = useState("");
   const [activeDay, setActiveDay] = useState<string>(SCHEDULE_DAYS[0]);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editing, setEditing] = useState<ScheduleResponse | null>(null);
-
-  const [deleteTarget, setDeleteTarget] = useState<ScheduleResponse | null>(null);
-  const [deleting, setDeleting] = useState(false);
-
   async function loadSchedule() {
     try {
-      const res = await fetch("/api/admin/schedules");
+      const res = await fetch("/api/schedule");
       const json = await res.json();
       if (!res.ok || !json.success) throw new Error(json.error || "Failed to load schedule");
       setSchedule(json.data);
@@ -47,74 +36,16 @@ export default function ScheduleManagementPage() {
     loadSchedule();
   }, []);
 
-  function openAddModal() {
-    setEditing(null);
-    setModalOpen(true);
-  }
-
-  function openEditModal(item: ScheduleResponse) {
-    setEditing(item);
-    setModalOpen(true);
-  }
-
-  async function handleSubmit(values: ScheduleFormValues) {
-    const url = editing ? `/api/admin/schedules/${editing.id}` : "/api/admin/schedules";
-    const method = editing ? "PUT" : "POST";
-
-    try {
-      const res = await fetch(url, {
-        method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      const json = await res.json();
-
-      if (!res.ok || !json.success) {
-        if (json.fieldErrors) return json.fieldErrors;
-        toast.error(json.error || "Something went wrong");
-        return;
-      }
-
-      toast.success(editing ? "Schedule item updated" : "Schedule item added");
-      setModalOpen(false);
-      setEditing(null);
-      loadSchedule();
-    } catch {
-      toast.error("Network error. Please try again.");
-    }
-  }
-
-  async function handleDelete() {
-    if (!deleteTarget) return;
-    setDeleting(true);
-    try {
-      const res = await fetch(`/api/admin/schedules/${deleteTarget.id}`, { method: "DELETE" });
-      const json = await res.json();
-      if (!res.ok || !json.success) throw new Error(json.error || "Failed to delete schedule item");
-
-      toast.success("Schedule item deleted");
-      setDeleteTarget(null);
-      loadSchedule();
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Failed to delete schedule item");
-    } finally {
-      setDeleting(false);
-    }
-  }
-
   const dayItems = schedule?.filter((item) => item.day === activeDay) ?? [];
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="text-2xl font-bold text-white">TV Schedule</h1>
-          <p className="mt-1 text-sm text-slate-500">Manage the programming schedule shown on the homepage.</p>
-        </div>
-        <Button onClick={openAddModal}>
-          <Plus className="h-4 w-4" />
-          Add Schedule
-        </Button>
+      <div>
+        <h1 className="text-2xl font-bold text-white">TV Schedule</h1>
+        <p className="mt-1 text-sm text-slate-500">
+          Automatically generated from active programs in Program Management. To change what airs, edit a
+          program&apos;s schedule there — this view updates on its own.
+        </p>
       </div>
 
       {schedule === null && !loadError && (
@@ -145,7 +76,7 @@ export default function ScheduleManagementPage() {
                     : "bg-slate-900 text-slate-400 hover:bg-slate-800"
                 )}
               >
-                {d}
+                {SCHEDULE_DAY_SHORT[d]}
               </button>
             ))}
           </div>
@@ -153,14 +84,8 @@ export default function ScheduleManagementPage() {
           {schedule.length === 0 ? (
             <EmptyState
               icon={<CalendarClock className="h-6 w-6" />}
-              title="No schedule items yet"
-              description="Add your first programming slot to build out the weekly schedule."
-              action={
-                <Button onClick={openAddModal}>
-                  <Plus className="h-4 w-4" />
-                  Add Schedule
-                </Button>
-              }
+              title="No active programs scheduled"
+              description="Add a program with a schedule and an active Effective From / Effective End period in Program Management, and it will appear here automatically."
             />
           ) : (
             <div className="grid gap-6 lg:grid-cols-4">
@@ -177,32 +102,13 @@ export default function ScheduleManagementPage() {
                         <p className="text-sm text-slate-500">No listings.</p>
                       ) : (
                         items.map((item) => (
-                          <li
-                            key={item.id}
-                            className="relative flex items-start justify-between gap-2 border-l border-slate-700 pl-4"
-                          >
+                          <li key={item.id} className="relative border-l border-slate-700 pl-4">
                             <span className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-indigo-500" />
-                            <div className="min-w-0">
-                              <span className="font-mono text-xs text-indigo-400">{item.time}</span>
-                              <p className="mt-1 truncate text-sm font-medium text-slate-100">{item.title}</p>
-                              <p className="text-xs text-slate-500">{item.category}</p>
-                            </div>
-                            <div className="flex shrink-0 gap-1 pt-0.5">
-                              <button
-                                onClick={() => openEditModal(item)}
-                                className="rounded-md p-1.5 text-slate-400 hover:bg-slate-800 hover:text-indigo-400"
-                                aria-label={`Edit ${item.title}`}
-                              >
-                                <Pencil className="h-3.5 w-3.5" />
-                              </button>
-                              <button
-                                onClick={() => setDeleteTarget(item)}
-                                className="rounded-md p-1.5 text-slate-400 hover:bg-red-950 hover:text-red-400"
-                                aria-label={`Delete ${item.title}`}
-                              >
-                                <Trash2 className="h-3.5 w-3.5" />
-                              </button>
-                            </div>
+                            <span className="font-mono text-xs text-indigo-400">
+                              {item.startingTime} – {item.endTime}
+                            </span>
+                            <p className="mt-1 truncate text-sm font-medium text-slate-100">{item.title}</p>
+                            <p className="text-xs text-slate-500">{item.category}</p>
                           </li>
                         ))
                       )}
@@ -214,28 +120,6 @@ export default function ScheduleManagementPage() {
           )}
         </>
       )}
-
-      <Modal
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        title={editing ? "Edit Schedule Item" : "Add Schedule Item"}
-      >
-        <ScheduleForm
-          initial={editing ?? undefined}
-          defaultDay={activeDay}
-          onCancel={() => setModalOpen(false)}
-          onSubmit={handleSubmit}
-        />
-      </Modal>
-
-      <ConfirmDialog
-        open={Boolean(deleteTarget)}
-        title="Delete schedule item?"
-        description={`This will permanently remove "${deleteTarget?.title}" from the schedule. This action cannot be undone.`}
-        loading={deleting}
-        onConfirm={handleDelete}
-        onCancel={() => setDeleteTarget(null)}
-      />
     </div>
   );
 }

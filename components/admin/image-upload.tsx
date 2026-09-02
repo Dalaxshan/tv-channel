@@ -16,7 +16,7 @@ export function ImageUpload({
   error,
   label = "Image",
 }: {
-  folder: "heroes" | "teledramas";
+  folder: "heroes" | "teledramas" | "programs";
   value: UploadedImage | null;
   onChange: (image: UploadedImage | null) => void;
   error?: string;

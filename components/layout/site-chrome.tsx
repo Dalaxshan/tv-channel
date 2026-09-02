@@ -25,10 +25,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     <>
       <Navbar />
       <main id="main-content">{children}</main>
+       <SocialIcons />
       <Footer />
-      <BackToTop />
+      
+      {/* <BackToTop /> */}
       <CookieConsent />
-      <SocialIcons />
+     
     </>
   );
 }

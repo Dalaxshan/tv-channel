@@ -51,8 +51,6 @@ export default function TeledramaManagementPage() {
   async function handleSubmit(values: TeledramaFormValues, image: UploadedImage | null) {
     const payload = {
       title: values.title,
-      duration: values.duration,
-      startingAt: values.startingAt,
       thumbnailKey: image?.key,
       thumbnailUrl: image?.url,
     };
@@ -142,11 +140,9 @@ export default function TeledramaManagementPage() {
 
       {teledramas && teledramas.length > 0 && (
         <div className="overflow-hidden rounded-xl border border-slate-800">
-          <div className="hidden grid-cols-[80px_1fr_120px_120px_140px_120px_160px] gap-4 border-b border-slate-800 bg-slate-900 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid">
+          <div className="hidden grid-cols-[80px_1fr_1fr_140px_140px] gap-4 border-b border-slate-800 bg-slate-900 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:grid">
             <span>Thumbnail</span>
             <span>Title</span>
-            <span>Duration</span>
-            <span>Starting At</span>
             <span>Slug</span>
             <span>Updated</span>
             <span className="text-right">Actions</span>
@@ -155,14 +151,12 @@ export default function TeledramaManagementPage() {
             {teledramas.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col gap-3 px-4 py-3 sm:grid sm:grid-cols-[80px_1fr_120px_120px_140px_120px_160px] sm:items-center sm:gap-4"
+                className="flex flex-col gap-3 px-4 py-3 sm:grid sm:grid-cols-[80px_1fr_1fr_140px_140px] sm:items-center sm:gap-4"
               >
                 <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-slate-800">
                   <Image src={item.thumbnailUrl} alt={item.title} fill unoptimized className="object-cover" sizes="56px" />
                 </div>
                 <p className="truncate text-sm font-medium text-white">{item.title}</p>
-                <p className="truncate text-sm text-slate-300">{item.duration}</p>
-                <p className="truncate text-sm text-slate-300">{item.startingAt}</p>
                 <p className="truncate font-mono text-xs text-indigo-400">{item.slug}</p>
                 <p className="text-xs text-slate-500">{new Date(item.updatedAt).toLocaleDateString()}</p>
                 <div className="flex gap-2 sm:justify-end">

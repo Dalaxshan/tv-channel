@@ -33,7 +33,7 @@ export function AppPromo() {
     setIndex((i) => (i - 1 + screenshots.length) % screenshots.length);
 
   return (
-    <section id="app-promo" className="container-page py-6 lg:py-4">
+    <section id="app-promo" className="container-page lg:py-1">
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-secondary to-background p-6 sm:p-10 lg:p-16">
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/25 blur-[110px]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
@@ -104,7 +104,7 @@ export function AppPromo() {
 
           {/* Image slider - vertically aligned with the feature column */}
           <div className="flex flex-col items-center justify-center gap-4">
-            <div className="group relative w-full max-w-[220px] sm:max-w-xs overflow-hidden rounded-2xl glass">
+            <div className="group relative w-full max-w-[320px] sm:max-w-xs overflow-hidden rounded-2xl glass">
               <button
                 type="button"
                 onClick={() => setZoomed(true)}

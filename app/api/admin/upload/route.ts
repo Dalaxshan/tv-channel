@@ -9,7 +9,7 @@ import {
 import { apiSuccess, apiError } from "@/lib/api-response";
 
 /**
- * Handles image uploads for Hero and Teledrama forms. The browser sends the
+ * Handles image uploads for Hero and Program forms. The browser sends the
  * raw file as multipart/form-data; this route validates type/size on the
  * server (never trusting client-side checks alone) and streams the bytes to
  * Cloudflare R2. R2 credentials never leave the server.
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const file = formData.get("file");
     const folderRaw = formData.get("folder");
-    const folder = folderRaw === "teledramas" ? "teledramas" : "heroes";
+    const folder = folderRaw === "programs" ? "programs" : "heroes";
 
     if (!(file instanceof File)) {
       return apiError("No file was provided", 400);

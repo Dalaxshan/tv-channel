@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Image as ImageIcon, Clapperboard, CalendarClock, ArrowRight } from "lucide-react";
+import { Image as ImageIcon, ListVideo, CalendarClock, ArrowRight } from "lucide-react";
 import { getDb, COLLECTIONS } from "@/lib/db/mongodb";
 import { getServerSession } from "@/lib/auth/session";
 
@@ -8,20 +8,32 @@ export const dynamic = "force-dynamic";
 async function getStats() {
   try {
     const db = await getDb();
-    const [heroCount, teledramaCount, scheduleCount] = await Promise.all([
+    const [heroCount, programs] = await Promise.all([
       db.collection(COLLECTIONS.heroes).countDocuments(),
-      db.collection(COLLECTIONS.teledramas).countDocuments(),
-      db.collection(COLLECTIONS.schedules).countDocuments(),
+      db
+        .collection(COLLECTIONS.programs)
+        .find({}, { projection: { schedule: 1 } })
+        .toArray(),
     ]);
-    return { heroCount, teledramaCount, scheduleCount, error: null as string | null };
+
+    const programCount = programs.length;
+    // "Schedule Items" is generated, not stored — total airing slots across
+    // every program's `schedule` array (the Program collection is the
+    // single source of truth for schedule data).
+    const scheduleCount = programs.reduce(
+      (sum, p) => sum + (Array.isArray(p.schedule) ? p.schedule.length : 0),
+      0
+    );
+
+    return { heroCount, programCount, scheduleCount, error: null as string | null };
   } catch {
-    return { heroCount: 0, teledramaCount: 0, scheduleCount: 0, error: "Could not connect to the database." };
+    return { heroCount: 0, programCount: 0, scheduleCount: 0, error: "Could not connect to the database." };
   }
 }
 
 export default async function DashboardOverviewPage() {
   const session = await getServerSession();
-  const { heroCount, teledramaCount, scheduleCount, error } = await getStats();
+  const { heroCount, programCount, scheduleCount, error } = await getStats();
 
   const cards = [
     {
@@ -32,10 +44,10 @@ export default async function DashboardOverviewPage() {
       color: "bg-indigo-600",
     },
     {
-      href: "/admin-panel/dashboard/teledrama",
-      label: "Teledramas",
-      count: teledramaCount,
-      icon: Clapperboard,
+      href: "/admin-panel/dashboard/program",
+      label: "Programs",
+      count: programCount,
+      icon: ListVideo,
       color: "bg-fuchsia-600",
     },
     {
