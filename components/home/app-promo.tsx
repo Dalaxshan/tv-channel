@@ -33,7 +33,7 @@ export function AppPromo() {
     setIndex((i) => (i - 1 + screenshots.length) % screenshots.length);
 
   return (
-    <section id="app-promo" className="container-page py-6 lg:py-4">
+    <section id="app-promo" className="container-page lg:py-1">
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-secondary to-background p-6 sm:p-10 lg:p-16">
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/25 blur-[110px]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
@@ -63,7 +63,7 @@ export function AppPromo() {
               ))}
             </ul>
 
-            {/* Store buttons + QR badge — wraps to its own row on small screens */}
+            {/* Store buttons + QR badge - wraps to its own row on small screens */}
             <div className="mt-6 flex flex-col gap-2">
               {/* Row 1: Store buttons */}
               <div className="flex flex-wrap items-center gap-3">
@@ -87,7 +87,7 @@ export function AppPromo() {
                 </a>
               </div>
 
-              {/* Row 2: QR badge — always on its own row */}
+              {/* Row 2: QR badge - always on its own row */}
               <div className="flex w-fit items-center gap-1 rounded-xl bg-white/90 p-3 shadow-lg backdrop-blur-sm sm:p-4">
                 <QrCode
                   className="h-20 w-20 shrink-0 text-black sm:h-28 sm:w-28"
@@ -102,9 +102,9 @@ export function AppPromo() {
             </div>
           </div>
 
-          {/* Image slider — vertically aligned with the feature column */}
+          {/* Image slider - vertically aligned with the feature column */}
           <div className="flex flex-col items-center justify-center gap-4">
-            <div className="group relative w-full max-w-[220px] sm:max-w-xs overflow-hidden rounded-2xl glass">
+            <div className="group relative w-full max-w-[320px] sm:max-w-xs overflow-hidden rounded-2xl glass">
               <button
                 type="button"
                 onClick={() => setZoomed(true)}

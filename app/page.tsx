@@ -7,20 +7,19 @@ import { Sponsors } from "@/components/home/sponsors";
 import { PulseDivider } from "@/components/ui/pulse-mark";
 import { FeaturedShows } from "@/components/home/featured-shows";
 import { shows } from "@/lib/data";
-import { LatestNews } from "@/components/home/latest-news";
+import { RealityShows } from "@/components/home/reality-show";
 import { Entertainments } from "@/components/home/entertainments";
 
 export default async function HomePage() {
-
   return (
     <>
       <HeroCarousel />
       <LiveTvSection />
       <PulseDivider className="container-page opacity-40" />
       <LatestEpisodes />
-      <LatestNews />
-      <Entertainments/>
-       <TrendingPrograms />
+      <Entertainments />
+      <RealityShows />
+      <TrendingPrograms />
       <FeaturedShows shows={shows} />
       <AppPromo />
       <Sponsors />

@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { Share2, X } from "lucide-react";
+
 export function SocialIcons() {
+  const [open, setOpen] = useState(false);
+
   const socials = [
     {
       name: "YouTube",
@@ -41,14 +46,14 @@ export function SocialIcons() {
       ),
     },
     {
-      name: 'TikTok',
-      href:"https://www.tiktok.com/@aluthmaeka",
+      name: "TikTok",
+      href: "https://www.tiktok.com/@aluthmaeka",
       color: "#000",
       svg: (
-     <svg viewBox="0 0 24 24" fill="currentColor">
+        <svg viewBox="0 0 24 24" fill="currentColor">
           <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743 2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
         </svg>
-      )
+      ),
     },
     {
       name: "Threads",
@@ -83,20 +88,56 @@ export function SocialIcons() {
   ];
 
   return (
-    <div className="fixed right-2  top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3">
-      {socials.map((social) => (
-        <a
-          key={social.name}
-          href={social.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={social.name}
-          className="w-9 h-9 flex items-center justify-center rounded-full text-white shadow-lg hover:scale-110 hover:opacity-90 transition-all duration-200"
-          style={{ backgroundColor: social.color }}
-        >
-          <span className="w-4 h-4">{social.svg}</span>
-        </a>
-      ))}
+    <div className="fixed right-3 bottom-4 z-40 flex flex-col items-center gap-2.5">
+      {/* Expandable icons */}
+      <div
+        className={`flex flex-col items-center gap-2.5 transition-all duration-300 ${
+          open ? "mb-1" : "mb-0"
+        }`}
+      >
+        {socials.map((social, i) => (
+          <a
+            key={social.name}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.name}
+            className={`group relative flex h-10 w-10 items-center justify-center rounded-full text-white shadow-md ring-1 ring-white/20 transition-all duration-300 ease-out hover:scale-110 hover:shadow-lg ${
+              open
+                ? "opacity-100 scale-100 translate-y-0 pointer-events-auto"
+                : "opacity-0 scale-50 translate-y-3 pointer-events-none"
+            }`}
+            style={{
+              backgroundColor: social.color,
+              transitionDelay: open
+                ? `${i * 35}ms`
+                : `${(socials.length - i) * 20}ms`,
+            }}
+          >
+            <span className="h-4.5 w-4.5">{social.svg}</span>
+
+            {/* Tooltip */}
+            <span className="pointer-events-none absolute right-12 whitespace-nowrap rounded-md bg-neutral-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100">
+              {social.name}
+            </span>
+          </a>
+        ))}
+      </div>
+
+      {/* Toggle button */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label={open ? "Close social menu" : "Open social menu"}
+        aria-expanded={open}
+        className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-lg ring-2 ring-white/30 backdrop-blur transition-all duration-300 hover:scale-105 active:scale-95 ${
+          open
+            ? "bg-neutral-800 rotate-90"
+            : "bg-gradient-to-br from-blue-500 to-blue-800"
+        }`}
+      >
+        {open ? <X className="h-5 w-5" /> : <Share2 className="h-5 w-5" />}
+      </button>
     </div>
   );
 }

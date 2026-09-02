@@ -10,7 +10,6 @@ const columns = [
       { label: "Live TV", href: "/watch-live" },
       { label: "Programs", href: "/programs" },
       { label: "TV Schedule", href: "/schedule" },
-      { label: "Video Library", href: "/videos" },
     ],
   },
   {
@@ -19,7 +18,6 @@ const columns = [
       { label: "Latest News", href: "/news" },
       { label: "Politics", href: "/news?category=Politics" },
       { label: "Business", href: "/news?category=Business" },
-      { label: "Sports", href: "/news?category=Sports" },
     ],
   },
   {
@@ -27,7 +25,6 @@ const columns = [
     links: [
       { label: "About Us", href: "/about" },
       { label: "Presenters", href: "/presenters" },
-      { label: "Advertise With Us", href: "/advertise" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -36,13 +33,10 @@ const columns = [
     links: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
-      { label: "Cookie Policy", href: "/cookies" },
-      { label: "Careers", href: "/careers" },
+      { label: "Advertises", href: "/advertise" },
     ],
   },
 ];
-
-
 
 export function Footer() {
   return (
@@ -57,7 +51,10 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm text-text-muted">
-The nation’s home for live television, original drama, and breaking news, bringing you the latest entertainment, stories, and unforgettable moments all in one place. Stay connected with your favorite programs, discover exclusive original content, and never miss the important events shaping the nation.            </p>
+              The nation’s home for live television, original drama, and
+              breaking news, bringing you the latest entertainment, stories, and
+              unforgettable moments all in one place.{" "}
+            </p>
             {/* <div className="mt-6 flex gap-3">
               {[FacebookIcon, InstagramIcon, YoutubeIcon, XIcon].map(
                 (Icon, i) => (
@@ -110,13 +107,23 @@ The nation’s home for live television, original drama, and breaking news, brin
                 href="#"
                 className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
               >
-                <Image src="/app-store.svg" alt="App Store" width={120} height={30} />
+                <Image
+                  src="/app-store.svg"
+                  alt="App Store"
+                  width={120}
+                  height={30}
+                />
               </a>
               <a
                 href="#"
                 className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
               >
-                <Image src="/google-play.svg" alt="Google Play" width={120} height={30} />
+                <Image
+                  src="/google-play.svg"
+                  alt="Google Play"
+                  width={120}
+                  height={30}
+                />
               </a>
             </div>
           </div>

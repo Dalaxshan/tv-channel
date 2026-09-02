@@ -12,8 +12,11 @@ import type {
 // exports for fetch calls to your CMS (Sanity, Strapi, Contentful, etc.)
 // while keeping the same shapes so components require no changes.
 
-const img = (seed: string, w = 800, h = 500) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const img = (seed: string, w = 800, h = 500) => {
+  // Fallback to a stable Unsplash image with random parameter for variety
+  const hash = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return `https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=${w}&h=${h}&fit=crop&q=80&v=${hash}`;
+};
 
 export const shows: Show[] = [
   {
@@ -324,7 +327,7 @@ export const presenters: Presenter[] = [
   },
 ];
 
-export const latestnews: Podcast[] = [
+export const realityShow: Podcast[] = [
 {
   slug: "bus-lalith-brought-back-to-sri-lanka",
   title: "‘Bus Lalith’ Brought Back to Sri Lanka",
