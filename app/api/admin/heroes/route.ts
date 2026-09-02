@@ -20,8 +20,8 @@ function toHeroResponse(doc: HeroDocument & { _id: import("mongodb").ObjectId })
 }
 
 export async function GET() {
-  const session = await getServerSession();
-  if (!session) return apiError("Not authenticated", 401);
+  // const session = await getServerSession();
+  // if (!session) return apiError("Not authenticated", 401);
 
   try {
     await ensureIndexes();

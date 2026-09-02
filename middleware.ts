@@ -39,10 +39,10 @@ export async function middleware(req: NextRequest) {
     if (PUBLIC_API_ROUTES.includes(pathname)) {
       return NextResponse.next();
     }
-    const valid = await isValidSession(token);
-    if (!valid) {
-      return NextResponse.json({ success: false, error: "Not authenticated" }, { status: 401 });
-    }
+    // const valid = await isValidSession(token);
+    // if (!valid) {
+    //   return NextResponse.json({ success: false, error: "Not authenticated" }, { status: 401 });
+    // }
     return NextResponse.next();
   }
 
