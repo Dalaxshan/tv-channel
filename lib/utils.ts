@@ -1,6 +1,10 @@
-import { ProgramResponse } from "@/types/admin";
+import { ProgramDocument, ProgramResponse } from "@/types/admin";
 import { clsx, type ClassValue } from "clsx";
+import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
+import { COLLECTIONS, ensureIndexes, getDb } from "./db/mongodb";
+import { ObjectId } from "mongoose";
+import { toProgramResponse } from "./program-serializer";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,6 +45,12 @@ export const DAY_ABBR: Record<string, string> = {
   Friday: "Fri",
   Saturday: "Sat",
   Sunday: "Sun",
+};
+
+type ScheduleSlot = {
+  day: string;
+  startingTime: string;
+  endTime: string;
 };
 
 /** "19:30" -> "7:30 PM" */
@@ -100,3 +110,80 @@ export function groupSchedule(schedule: ProgramResponse["schedule"]) {
     };
   });
 }
+
+function to12Hour(time: string): string {
+  const [hStr, mStr] = time.split(":");
+  const h = parseInt(hStr, 10);
+  const period = h >= 12 ? "PM" : "AM";
+  const hour12 = h % 12 === 0 ? 12 : h % 12;
+  return `${hour12}:${mStr} ${period}`;
+}
+
+export function summarizeSchedule(schedule?: ScheduleSlot[]) {
+  if (!schedule || schedule.length === 0) return null;
+
+  const sorted = [...schedule].sort(
+    (a, b) => DAY_ORDER.indexOf(a.day) - DAY_ORDER.indexOf(b.day),
+  );
+
+  const days = sorted.map((s) => DAY_ABBR[s.day] ?? s.day);
+  const dayLabel =
+    days.length > 1 ? `${days[0]} - ${days[days.length - 1]}` : days[0];
+
+  const { startingTime, endTime } = sorted[0];
+  const timeLabel = `${to12Hour(startingTime)} - ${to12Hour(endTime)}`;
+
+  return { dayLabel, timeLabel };
+}
+
+export async function getProgramBySlug(slug: string): Promise<ProgramResponse | null> {
+  try {
+    await ensureIndexes();
+    const db = await getDb();
+    const doc = await db
+      .collection<ProgramDocument>(COLLECTIONS.programs)
+      .findOne({ slug });
+    if (!doc) return null;
+    return toProgramResponse(doc as ProgramDocument & { _id: ObjectId });
+  } catch {
+    return null;
+  }
+}
+
+export async function getAllPrograms(): Promise<ProgramResponse[]> {
+  try {
+    await ensureIndexes();
+    const db = await getDb();
+    const docs = await db
+      .collection<ProgramDocument>(COLLECTIONS.programs)
+      .find({})
+      .toArray();
+    return docs.map((d) =>
+      toProgramResponse(d as ProgramDocument & { _id: ObjectId }),
+    );
+  } catch {
+    return [];
+  }
+}
+
+export async function generateStaticParams() {
+  const programs = await getAllPrograms();
+  return programs.map((p) => ({ slug: p.slug }));
+}
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const program = await getProgramBySlug(slug);
+  if (!program) return {};
+  return {
+    title: program.title,
+    alternates: { canonical: `/programs/${slug}` },
+    openGraph: { images: [{ url: program.thumbnailUrl }] },
+  };
+}
+

@@ -98,3 +98,13 @@ export interface Podcast {
   date: string;
   youtubeId?: string;
 }
+
+export interface videos {
+  slug: string;
+  title: string;
+  guest: string;
+  duration: string;
+  image: string;
+  date: string;
+  youtubeId?: string;
+}
