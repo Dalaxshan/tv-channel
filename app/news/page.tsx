@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { podcasts } from "@/lib/data";
-import { NewsBrowser } from "@/components/news/news-browser";
-import { getEpisodesByShowSlug } from "@/lib/youtube";
 
 export const metadata: Metadata = {
   title: "News",

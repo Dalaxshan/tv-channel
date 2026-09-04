@@ -1,12 +1,65 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CalendarDays, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getEpisodesByShowSlug } from "@/lib/youtube";
+import { getDb, COLLECTIONS, ensureIndexes } from "@/lib/db/mongodb";
+import { toProgramResponse } from "@/lib/program-serializer";
+import { summarizeSchedule } from "@/lib/utils";
+import type { ProgramDocument, ProgramResponse } from "@/types/admin";
 import type { Category } from "@/types";
+import type { ObjectId } from "mongodb";
 import ProgramGrid from "@/components/programs/program-grid";
-import {  getProgramBySlug, summarizeSchedule } from "@/lib/utils";
 
+async function getProgramBySlug(slug: string): Promise<ProgramResponse | null> {
+  try {
+    await ensureIndexes();
+    const db = await getDb();
+    const decoded = decodeURIComponent(slug);
+    const doc = await db
+      .collection<ProgramDocument>(COLLECTIONS.programs)
+      .findOne({ slug: decoded });
+    if (!doc) return null;
+    return toProgramResponse(doc as ProgramDocument & { _id: ObjectId });
+  } catch {
+    return null;
+  }
+}
+
+async function getAllPrograms(): Promise<ProgramResponse[]> {
+  try {
+    await ensureIndexes();
+    const db = await getDb();
+    const docs = await db
+      .collection<ProgramDocument>(COLLECTIONS.programs)
+      .find({})
+      .toArray();
+    return docs.map((d) => toProgramResponse(d as ProgramDocument & { _id: ObjectId }));
+  } catch {
+    return [];
+  }
+}
+
+export async function generateStaticParams() {
+  const programs = await getAllPrograms();
+  return programs.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const program = await getProgramBySlug(slug);
+  if (!program) return {};
+  return {
+    title: program.title,
+    alternates: { canonical: `/programs/${slug}` },
+    openGraph: { images: [{ url: program.thumbnailUrl }] },
+  };
+}
 
 export default async function ProgramDetailPage({
   params,
@@ -24,12 +77,11 @@ export default async function ProgramDetailPage({
   );
 
   const sortedEpisodes = [...episodes].sort(
-    (a, b) =>
-      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime(),
+    (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime(),
   );
 
   const heroImage = sortedEpisodes[0]?.image ?? program.thumbnailUrl;
-  const scheduleInfo = summarizeSchedule((program as any).schedule);
+  const scheduleInfo = summarizeSchedule(program.schedule);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -53,10 +105,8 @@ export default async function ProgramDetailPage({
           priority
           className="object-cover scale-105"
         />
-
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/5 to-background/1" />
         <div className="absolute inset-0 bg-linear-to-r from-background/80 via-background/20 to-transparent" />
-
         <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-primary/10 blur-3xl" />
 

@@ -42,8 +42,11 @@ globalForMongo._mongoAdminCache = cached;
 async function getClient(): Promise<MongoClient> {
   if (cached.client) return cached.client;
 
+  const MONGODB_URI = process.env.MONGODB_URI;
+  if (!MONGODB_URI) throw new Error("Missing MONGODB_URI environment variable.");
+
   if (!cached.promise) {
-    const client = new MongoClient(MONGODB_URI as string, options);
+    const client = new MongoClient(MONGODB_URI, options);
     cached.promise = client.connect();
   }
 

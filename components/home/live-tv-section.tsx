@@ -95,7 +95,7 @@ export function LiveTvSection() {
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface glow-primary">
           <Image
-            src="https://picsum.photos/seed/live-player/1200/675"
+            src="https://pub-3bfe14d0c2c34e5687e41c228cf8ae2e.r2.dev/heroes/8f9b6523-9071-4522-940d-9c8f7e7764a3.jpg"
             alt="Live broadcast preview"
             fill
             className="object-cover opacity-80"

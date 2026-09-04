@@ -73,7 +73,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <a
           href="#main-content"

@@ -42,7 +42,7 @@ export function TrendingPrograms() {
   const filtered = programs.filter((s) => genre === "All" || s.category === genre);
 
   return (
-    <section className="container-page py-6 lg:py-4">
+    <section className="container-page py-6 lg:py-14">
       <SectionHeading
         eyebrow="What's Hot"
         title="Trending Programs"

@@ -1,10 +1,6 @@
-import { ProgramDocument, ProgramResponse } from "@/types/admin";
+import { ProgramResponse } from "@/types/admin";
 import { clsx, type ClassValue } from "clsx";
-import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
-import { COLLECTIONS, ensureIndexes, getDb } from "./db/mongodb";
-import { ObjectId } from "mongoose";
-import { toProgramResponse } from "./program-serializer";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -136,54 +132,4 @@ export function summarizeSchedule(schedule?: ScheduleSlot[]) {
   return { dayLabel, timeLabel };
 }
 
-export async function getProgramBySlug(slug: string): Promise<ProgramResponse | null> {
-  try {
-    await ensureIndexes();
-    const db = await getDb();
-    const doc = await db
-      .collection<ProgramDocument>(COLLECTIONS.programs)
-      .findOne({ slug });
-    if (!doc) return null;
-    return toProgramResponse(doc as ProgramDocument & { _id: ObjectId });
-  } catch {
-    return null;
-  }
-}
-
-export async function getAllPrograms(): Promise<ProgramResponse[]> {
-  try {
-    await ensureIndexes();
-    const db = await getDb();
-    const docs = await db
-      .collection<ProgramDocument>(COLLECTIONS.programs)
-      .find({})
-      .toArray();
-    return docs.map((d) =>
-      toProgramResponse(d as ProgramDocument & { _id: ObjectId }),
-    );
-  } catch {
-    return [];
-  }
-}
-
-export async function generateStaticParams() {
-  const programs = await getAllPrograms();
-  return programs.map((p) => ({ slug: p.slug }));
-}
-
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const program = await getProgramBySlug(slug);
-  if (!program) return {};
-  return {
-    title: program.title,
-    alternates: { canonical: `/programs/${slug}` },
-    openGraph: { images: [{ url: program.thumbnailUrl }] },
-  };
-}
 
