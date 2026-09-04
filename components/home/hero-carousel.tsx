@@ -8,6 +8,7 @@ import { Play, Radio, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { HeroResponse } from "@/types/admin";
+import { HeroSkeleton } from "../ui/hero-skeleton";
 
 const socials = [
   {
@@ -121,17 +122,24 @@ export function HeroCarousel() {
 
   if (!slide) {
     return (
-      <section className="relative h-[92svh] min-h-150 w-full overflow-hidden flex items-center justify-center">
-        <div className="text-center">
-          {loadError ? (
+      <section className="relative h-[92svh] min-h-150 w-full overflow-hidden">
+        {/* Skeleton background */}
+        <div className="absolute inset-0 animate-pulse bg-slate-900" />
+        <div className="absolute inset-0 bg-linear-to-t from-background via-background/5 to-background/1" />
+        <div className="absolute inset-0 bg-linear-to-r from-background/80 via-background/20 to-transparent" />
+
+        {loadError ? (
+          <div className="relative z-10 flex h-full items-center justify-center">
             <p className="text-destructive">{loadError}</p>
-          ) : (
-            <p className="text-text-muted">Loading...</p>
-          )}
-        </div>
+          </div>
+        ) : (
+       
+          <HeroSkeleton />
+        )}
       </section>
     );
   }
+      
 
   return (
     <section className="relative h-[92svh] min-h-150 w-full overflow-hidden" aria-roledescription="carousel">
@@ -156,8 +164,8 @@ export function HeroCarousel() {
       </AnimatePresence>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-background/10" />
-      <div className="absolute inset-0 bg-linear-to-r from-background/95 via-background/20 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-background via-background/5 to-background/1" />
+      <div className="absolute inset-0 bg-linear-to-r from-background/100 via-background/20 to-transparent" />
       <div className="absolute inset-0 animate-glow bg-[radial-gradient(circle_at_20%_30%,rgba(229,9,20,0.25),transparent_55%)]" />
 
       <div className="relative z-10 flex h-full items-end">

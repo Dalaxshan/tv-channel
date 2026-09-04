@@ -33,7 +33,7 @@ export function AppPromo() {
     setIndex((i) => (i - 1 + screenshots.length) % screenshots.length);
 
   return (
-    <section id="app-promo" className="container-page lg:py-1">
+    <section id="app-promo" className="container-page lg:py-14">
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-secondary to-background p-6 sm:p-10 lg:p-16">
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/25 blur-[110px]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">

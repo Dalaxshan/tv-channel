@@ -34,6 +34,13 @@ export function Navbar() {
   const [megaOpen, setMegaOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [light, setLight] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const saved = localStorage.getItem("theme-light") === "1";
+    setLight(saved);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -44,7 +51,8 @@ export function Navbar() {
 
   useEffect(() => {
     document.documentElement.classList.toggle("theme-light", light);
-  }, [light]);
+    if (mounted) localStorage.setItem("theme-light", light ? "1" : "0");
+  }, [light, mounted]);
 
   const categories = Array.from(new Set(shows.map((s) => s.category)));
 
@@ -137,8 +145,9 @@ export function Navbar() {
               onClick={() => setLight((v) => !v)}
               className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
               aria-label="Toggle theme"
+              suppressHydrationWarning
             >
-              {light ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />}
+              {mounted && (light ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />)}
             </button>
             <button
               className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors"

@@ -14,7 +14,7 @@ export function FeaturedShows({ shows }: { shows: Show[] }) {
   };
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-4">
       <div className="container-page">
         <SectionHeading
           eyebrow="Don't Miss"

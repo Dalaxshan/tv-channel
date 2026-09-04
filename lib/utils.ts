@@ -43,6 +43,12 @@ export const DAY_ABBR: Record<string, string> = {
   Sunday: "Sun",
 };
 
+type ScheduleSlot = {
+  day: string;
+  startingTime: string;
+  endTime: string;
+};
+
 /** "19:30" -> "7:30 PM" */
 export function formatTime12(time: string): string {
   const [hStr, mStr] = time.split(":");
@@ -100,3 +106,30 @@ export function groupSchedule(schedule: ProgramResponse["schedule"]) {
     };
   });
 }
+
+function to12Hour(time: string): string {
+  const [hStr, mStr] = time.split(":");
+  const h = parseInt(hStr, 10);
+  const period = h >= 12 ? "PM" : "AM";
+  const hour12 = h % 12 === 0 ? 12 : h % 12;
+  return `${hour12}:${mStr} ${period}`;
+}
+
+export function summarizeSchedule(schedule?: ScheduleSlot[]) {
+  if (!schedule || schedule.length === 0) return null;
+
+  const sorted = [...schedule].sort(
+    (a, b) => DAY_ORDER.indexOf(a.day) - DAY_ORDER.indexOf(b.day),
+  );
+
+  const days = sorted.map((s) => DAY_ABBR[s.day] ?? s.day);
+  const dayLabel =
+    days.length > 1 ? `${days[0]} - ${days[days.length - 1]}` : days[0];
+
+  const { startingTime, endTime } = sorted[0];
+  const timeLabel = `${to12Hour(startingTime)} - ${to12Hour(endTime)}`;
+
+  return { dayLabel, timeLabel };
+}
+
+

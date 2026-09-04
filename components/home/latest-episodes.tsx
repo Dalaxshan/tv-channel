@@ -5,9 +5,11 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import type { ProgramResponse } from "@/types/admin";
 import { useEffect, useRef, useState } from "react";
 import { ProgramCard2 } from "./program-card2";
+import { ProgramListSkeleton } from "@/components/ui/programlist-skeleton";
 
 export function LatestEpisodes() {
   const [teledramas, setTeledramas] = useState<ProgramResponse[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const scroller = useRef<HTMLDivElement>(null);
 
@@ -20,37 +22,20 @@ export function LatestEpisodes() {
       .then((r) => r.json())
       .then((json) => {
         if (json.success) setTeledramas(json.data);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <section className="container-page py-6 lg:py-4">
-      <SectionHeading
-        eyebrow="Fresh Off Air"
-        title="TV TeleDrama"
-        description="Catch up on everything that aired this week, on demand."
-        // action={{ label: "All TeleDramas", href: "/videos" }}
-      />
-      <div className="relative">
-        <div
-          ref={scroller}
-          className="flex gap-5 overflow-x-auto pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {" "}
-          {teledramas.length === 0 && (
-            <p className="col-span-full text-sm text-text-muted">
-              No teledramas available.
-            </p>
-          )}
-          {teledramas.map((ep) => (
-            <div key={ep.slug} className="w-65 shrink-0 sm:w-75">
-              <ProgramCard2 key={ep.slug} program={ep} />
-            </div>
-          ))}
-        </div>
+      <div className="mb-6 flex justify-between">
+        <SectionHeading
+          eyebrow="Fresh Off Air"
+          title="TV TeleDrama"
+          description="Catch up on everything that aired this week, on demand."
+        />
 
-        {/* scrollable controls */}
-        <div className="mt-6 mb-6 hidden justify-end gap-2 container-page sm:flex">
+        <div className="mt-6 mb-6  hidden gap-2 sm:flex">
           <button
             onClick={() => scroll(-1)}
             aria-label="Scroll left"
@@ -67,6 +52,28 @@ export function LatestEpisodes() {
           </button>
         </div>
       </div>
+
+      {loading ? (
+        <ProgramListSkeleton />
+      ) : (
+        <div className="relative">
+          <div
+            ref={scroller}
+            className="flex gap-5 overflow-x-auto pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {teledramas.length === 0 && (
+              <p className="col-span-full text-sm text-text-muted">
+                No teledramas available.
+              </p>
+            )}
+            {teledramas.map((ep) => (
+              <div key={ep.slug} className="w-65 shrink-0 sm:w-75">
+                <ProgramCard2 key={ep.slug} program={ep} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

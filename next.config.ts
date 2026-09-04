@@ -3,20 +3,30 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "picsum.photos" },
-      { protocol: "https", hostname: "images.unsplash.com" },
       {
         protocol: "https",
-        hostname: "i.ytimg.com",
+        hostname: "images.pexels.com",
       },
       {
         protocol: "https",
-        hostname: "yt3.ggpht.com",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.net",
+        pathname: "/**",
       },
       {
         protocol: "https",
         hostname: "pub-3bfe14d0c2c34e5687e41c228cf8ae2e.r2.dev",
-      }
+        pathname: "/**",
+      },
     ],
   },
 };
