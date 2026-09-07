@@ -50,7 +50,6 @@ export interface HeroResponse {
 
 export const PROGRAM_CATEGORIES = [
   "Teledrama",
-  "News",
   "Lifestyle",
   "Interactive",
   "Kids",

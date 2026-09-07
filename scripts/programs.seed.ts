@@ -2,7 +2,7 @@ import type { ObjectId } from "mongodb";
 
 export const PROGRAM_CATEGORIES = [
   "Teledrama",
-  "News",
+  
   "Lifestyle",
   "Interactive",
   "Kids",
@@ -91,15 +91,7 @@ const seedPrograms: SeedProgram[] = [
     category: "Religious",
     schedule: slots(MON_SUN, "04:30", "06:00"),
   },
-  {
-    title: "Puwath Wimasuma",
-    slug: "puwath-wimasuma",
-    category: "News",
-    schedule: [
-      ...slots(MON_FRI, "06:00", "07:30"),
-      ...slots(SAT_SUN, "06:00", "08:00"),
-    ],
-  },
+ 
   {
     title: "Morning Cafe",
     slug: "morning-cafe",
@@ -154,16 +146,7 @@ const seedPrograms: SeedProgram[] = [
     category: "Talk Show",
     schedule: slots(["Sunday"], "11:00", "11:55"),
   },
-  {
-    title: "News",
-    slug: "news",
-    category: "News",
-    schedule: [
-      ...slots(MON_SUN, "11:55", "12:30"),
-      ...slots(MON_SUN, "18:55", "19:30"),
-      ...slots(MON_SUN, "21:30", "22:15"),
-    ],
-  },
+ 
   {
     title: "Movie + Channel Promo",
     slug: "movie-channel-promo",
@@ -216,28 +199,10 @@ const seedPrograms: SeedProgram[] = [
     schedule: slots(MON_FRI, "21:00", "21:30"),
   },
   {
-    title: "Non-Political News",
-    slug: "non-political-news",
-    category: "News",
-    schedule: slots(["Monday"], "22:15", "24:00"),
-  },
-  {
-    title: "GenZ News",
-    slug: "genz-news",
-    category: "News",
-    schedule: slots(["Tuesday"], "22:15", "24:00"),
-  },
-  {
     title: "Mage Thaththa - Content",
     slug: "mage-thaththa-content",
     category: "Talk Show",
     schedule: slots(["Wednesday"], "22:15", "24:00"),
-  },
-  {
-    title: "Bala Satana - News",
-    slug: "bala-satana-news",
-    category: "News",
-    schedule: slots(["Thursday"], "22:15", "24:00"),
   },
   {
     title: "Swara Ahasa - Content",

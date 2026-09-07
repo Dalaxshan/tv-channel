@@ -6,10 +6,6 @@ import type {
   Podcast,
 } from "@/types";
 
-// NOTE: This file simulates a CMS data layer. In production, swap these
-// exports for fetch calls to your CMS (Sanity, Strapi, Contentful, etc.)
-// while keeping the same shapes so components require no changes.
-
 const img = (seed: string, w = 800, h = 500) => {
   // Fallback to a stable Unsplash image with random parameter for variety
   const hash = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -20,7 +16,7 @@ export const shows: Show[] = [
   {
     slug: "crimson-hour",
     title: "Crimson Hour",
-    category: "Drama",
+    category: "Teledrama",
     synopsis:
       "A gripping primetime drama following a family navigating power and betrayal in the capital.",
     duration: "45 min",
@@ -41,17 +37,7 @@ export const shows: Show[] = [
     image: img("island-beats"),
     trending: true,
   },
-  {
-    slug: "frontline-report",
-    title: "Frontline Report",
-    category: "News",
-    synopsis:
-      "In-depth investigative journalism covering the stories that matter most.",
-    duration: "30 min",
-    rating: "PG",
-    image: img("frontline"),
-    isNewEpisode: true,
-  },
+ 
   {
     slug: "match-night",
     title: "Match Night",
@@ -113,6 +99,16 @@ export const shows: Show[] = [
     image: img("wild-reality"),
     trending: true,
   },
+    {
+    slug: "wild-reality",
+    title: "Wild Reality",
+    category: "Reality",
+    synopsis: "Strangers, one villa, and a season of unscripted drama.",
+    duration: "55 min",
+    rating: "PG-13",
+    image: img("wild-reality"),
+    trending: true,
+  },
 ];
 
 export const episodes: Episode[] = [
@@ -138,17 +134,7 @@ export const episodes: Episode[] = [
     image: img("ep-island-12"),
     category: "Music",
   },
-  {
-    slug: "frontline-report-s5e21",
-    showSlug: "frontline-report",
-    showTitle: "Frontline Report",
-    episodeNumber: 21,
-    title: "The Cost of Concrete",
-    duration: "31 min",
-    publishDate: "2026-07-24",
-    image: img("ep-frontline-21"),
-    category: "News",
-  },
+ 
   {
     slug: "green-room-s4e30",
     showSlug: "the-green-room",
@@ -356,7 +342,7 @@ export const stats = [
   { label: "Weekly Reach", value: "4.2M" },
   { label: "Live Viewers Peak", value: "310K" },
   { label: "Original Shows", value: "38" },
-  { label: "Years On Air", value: "22" },
+  { label: "Years On Air", value: "1+" },
 ];
 
 export const sponsors = [

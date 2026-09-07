@@ -87,8 +87,8 @@ export function SocialIcons() {
     },
   ];
 
-  return (
-    <div className="fixed right-3 bottom-4 z-40 flex flex-col items-center gap-2.5">
+  return ( 
+    <div className="fixed right-3 bottom-10 z-40 flex flex-col items-center gap-2.5">
       {/* Expandable icons */}
       <div
         className={`flex flex-col items-center gap-2.5 transition-all duration-300 ${

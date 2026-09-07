@@ -8,7 +8,7 @@ import { ProgramCard2 } from "./program-card2";
 import { ProgramListSkeleton } from "@/components/ui/programlist-skeleton";
 
 export function RealityShows() {
-  const [program,setProgram] = useState<ProgramResponse[]>([]);
+  const [program, setProgram] = useState<ProgramResponse[]>([]);
   const [loading, setLoading] = useState(true);
 
   const scroller = useRef<HTMLDivElement>(null);
@@ -56,23 +56,21 @@ export function RealityShows() {
       {loading ? (
         <ProgramListSkeleton />
       ) : (
-        <div className="relative">
-          <div
-            ref={scroller}
-            className="flex gap-5 overflow-x-auto pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
+    
+          <>
             {program.length === 0 && (
               <p className="col-span-full text-sm text-text-muted">
                 No programs available.
               </p>
             )}
-            {program.map((ep) => (
-              <div key={ep.slug} className="w-65 shrink-0 sm:w-75">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+              {program.map((ep) => (
                 <ProgramCard2 key={ep.slug} program={ep} />
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+        
+      </>
+      
       )}
     </section>
   );
