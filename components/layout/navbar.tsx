@@ -3,18 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Menu,
-  X,
-  Search,
-  Sun,
-  Moon,
-  Globe,
-  ChevronDown,
-} from "lucide-react";
+import { Menu, X, Search, Sun, Moon, ChevronDown } from "lucide-react";
 import { PulseMark } from "@/components/ui/pulse-mark";
 import { SearchModal } from "@/components/layout/search-modal";
 import { shows } from "@/lib/data";
+import { PROGRAM_CATEGORIES } from "@/types/admin";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -24,7 +17,7 @@ const navLinks = [
     mega: true,
   },
   { label: "TV Schedule", href: "/schedule" },
-  { label: "News", href: "/news" },
+  { label: "News", href: "https://tv-channel-news.vercel.app" },
   { label: "About", href: "/about" },
 ];
 
@@ -54,8 +47,6 @@ export function Navbar() {
     if (mounted) localStorage.setItem("theme-light", light ? "1" : "0");
   }, [light, mounted]);
 
-  const categories = Array.from(new Set(shows.map((s) => s.category)));
-
   return (
     <>
       <header
@@ -64,14 +55,21 @@ export function Navbar() {
         }`}
       >
         <div className="container-page flex h-16 lg:h-20 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="TV Channel home">
+          <Link
+            href="/"
+            className="flex items-center gap-2 shrink-0"
+            aria-label="TV Channel home"
+          >
             <PulseMark className="h-6 w-14 text-primary-light" />
             <span className="font-display text-xl lg:text-2xl font-bold tracking-tight">
               TV<span className="text-primary-light">Channel</span>
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+          <nav
+            className="hidden lg:flex items-center gap-1"
+            aria-label="Primary"
+          >
             {navLinks.map((link) =>
               link.mega ? (
                 <div
@@ -97,23 +95,23 @@ export function Navbar() {
                         className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl bg-white p-6 shadow-2xl"
                       >
                         <div className="grid grid-cols-3 gap-x-6 gap-y-3">
-                          {categories.map((cat) => (
+                          {PROGRAM_CATEGORIES.map((cat) => (
                             <Link
                               key={cat}
                               href={`/programs?category=${cat}`}
-                              className="text-sm text-text-muted hover:text-accent transition-colors"
+                              className="text-sm text-black/50 hover:text-accent transition-colors"
                             >
                               {cat}
                             </Link>
                           ))}
                         </div>
                         <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
-                          <p className="text-xs text-text-muted">
+                          <p className="text-xs text-black/50">
                             Browse all {shows.length}+ original shows
                           </p>
                           <Link
                             href="/programs"
-                            className="text-xs font-semibold text-accent hover:underline"
+                            className="text-xs font-semibold text-black/60 hover:underline"
                           >
                             View all programs →
                           </Link>
@@ -130,7 +128,7 @@ export function Navbar() {
                 >
                   {link.label}
                 </Link>
-              )
+              ),
             )}
           </nav>
           <div className="flex items-center gap-1.5 lg:gap-2">
@@ -147,20 +145,14 @@ export function Navbar() {
               aria-label="Toggle theme"
               suppressHydrationWarning
             >
-              {mounted && (light ? <Moon className="h-4.5 w-4.5" /> : <Sun className="h-4.5 w-4.5" />)}
+              {mounted &&
+                (light ? (
+                  <Moon className="h-4.5 w-4.5" />
+                ) : (
+                  <Sun className="h-4.5 w-4.5" />
+                ))}
             </button>
-            <button
-              className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-              aria-label="Change language"
-            >
-              <Globe className="h-4.5 w-4.5" />
-            </button>
-            {/* <Button asChild size="sm" className="hidden md:inline-flex">
-              <Link href="/watch-live">
-                <Radio className="h-3.5 w-3.5" />
-                Watch Live
-              </Link>
-            </Button> */}
+
             <button
               onClick={() => setMobileOpen(true)}
               className="flex lg:hidden h-10 w-10 items-center justify-center rounded-full hover:bg-white/10"
@@ -202,8 +194,6 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
-
-            
           </motion.div>
         )}
       </AnimatePresence>

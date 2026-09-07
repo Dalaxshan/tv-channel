@@ -157,7 +157,7 @@ export function HeroCarousel() {
             alt=""
             fill
             priority={index === 0}
-            className="object-cover"
+            className="object-cover object-right md:object-center"
             sizes="100vw"
           />
         </motion.div>

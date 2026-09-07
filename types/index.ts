@@ -1,4 +1,11 @@
-import { JSX } from "react";
+export type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  title: string;
+  service: string;
+  message: string;
+};
 
 export type Category =
   | "Reality"
@@ -11,7 +18,6 @@ export type Category =
   | "Gaming"
   | "Travel"
   | "Drama"
-  | "News"
   | "Sports"
   | "Lifestyle"
   | "Kids"
