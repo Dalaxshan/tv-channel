@@ -29,17 +29,22 @@ function timeToMinutes(t: string): number {
 export function LiveTvSection() {
   const [viewers, setViewers] = useState(48213);
   const [schedule, setSchedule] = useState<GeneratedScheduleItem[]>([]);
-  const [displayedPrograms, setDisplayedPrograms] = useState<
-    GeneratedScheduleItem[]
-  >([]);
+  const [displayedPrograms, setDisplayedPrograms] = useState<GeneratedScheduleItem[]>([]);
   const [currentId, setCurrentId] = useState<string | null>(null);
+  const [thumbnailMap, setThumbnailMap] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    fetch("/api/schedule")
-      .then((r) => r.json())
-      .then((json) => {
-        if (json.success) setSchedule(json.data);
-      });
+    Promise.all([
+      fetch("/api/schedule").then((r) => r.json()),
+      fetch("/api/programs").then((r) => r.json()),
+    ]).then(([scheduleJson, programsJson]) => {
+      if (scheduleJson.success) setSchedule(scheduleJson.data);
+      if (programsJson.success) {
+        const map: Record<string, string> = {};
+        for (const p of programsJson.data) map[p.id] = p.thumbnailUrl;
+        setThumbnailMap(map);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -84,22 +89,27 @@ export function LiveTvSection() {
     return () => clearInterval(t);
   }, []);
 
+  const currentProgram = displayedPrograms.find((p) => p.id === currentId);
+  const currentThumbnail = currentProgram ? thumbnailMap[currentProgram.programId] : null;
+
   return (
     <section className="container-page py-6 lg:py-4" id="watch">
       <SectionHeading
         eyebrow="Live Now"
-        title="Live TV"
+        title="Live Program"
         description="Stream TV Channel's primary channel live - no sign-up required."
-        action={{ label: "Alternative stream", href: "/watch-live" }}
       />
+      {/* right side image */}
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface glow-primary">
-          <Image
-            src="https://pub-3bfe14d0c2c34e5687e41c228cf8ae2e.r2.dev/heroes/8f9b6523-9071-4522-940d-9c8f7e7764a3.jpg"
-            alt="Live broadcast preview"
-            fill
-            className="object-cover opacity-80"
-          />
+          {currentThumbnail && (
+            <Image
+              src={currentThumbnail}
+              alt={currentProgram?.title ?? "Live broadcast preview"}
+              fill
+              className="object-cover opacity-80"
+            />
+          )}
           <div className="absolute inset-0 flex items-center justify-center" />
           <div className="absolute left-4 top-4 flex items-center gap-2">
             <Badge variant="live">Live</Badge>
@@ -107,23 +117,8 @@ export function LiveTvSection() {
               <Users className="h-3 w-3" /> {viewers.toLocaleString()} watching
             </span>
           </div>
-          {/* <div className="absolute right-4 top-4 flex gap-2">
-            <button
-              aria-label="Share stream"
-              className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent"
-            >
-              <Share2 className="h-4 w-4" />
-            </button>
-            <button
-              aria-label="Watch fullscreen"
-              className="flex h-9 w-9 items-center justify-center rounded-full glass hover:text-accent"
-            >
-              <Maximize2 className="h-4 w-4" />
-            </button>
-          </div> */}
         </div>
 
-        {/* current program */}
         <div className="bg-hirugray dark:bg-hirugray rounded-xl p-5 border border-zinc-300 dark:border-zinc-800 h-full flex flex-col justify-between">
           <div>
             <div className="flex justify-between items-center border-b border-zinc-300 dark:border-zinc-800 pb-3 mb-4">
@@ -135,7 +130,6 @@ export function LiveTvSection() {
               </span>
             </div>
 
-            {/* change color */}
             <ul className="space-y-3 text-sm">
               {displayedPrograms.map((program) => {
                 const isCurrent = program.id === currentId;
@@ -149,15 +143,11 @@ export function LiveTvSection() {
                     }`}
                   >
                     <div>
-                      <p
-                        className={`text-xs ${isCurrent ? "text-white font-bold" : "text-zinc-600"}`}
-                      >
+                      <p className={`text-xs ${isCurrent ? "text-white font-bold" : "text-zinc-600"}`}>
                         {program.startingTime}
                         {isCurrent && " (NOW)"}
                       </p>
-                      <p
-                        className={`font-semibold ${isCurrent ? "text-white font-bold" : "text-black"}`}
-                      >
+                      <p className={`font-semibold ${isCurrent ? "text-white font-bold" : "text-black"}`}>
                         {program.title}
                       </p>
                     </div>
@@ -175,9 +165,7 @@ export function LiveTvSection() {
               })}
             </ul>
           </div>
-          <Link
-            href="/schedule"
-          >
+          <Link href="/schedule">
             <button className="w-full mt-4 bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-xs py-2.5 rounded font-semibold transition border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-white">
               Full TV Schedule &rarr;
             </button>

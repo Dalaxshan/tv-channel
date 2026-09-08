@@ -142,7 +142,7 @@ export function HeroCarousel() {
       
 
   return (
-    <section className="relative h-[92svh] min-h-150 w-full overflow-hidden" aria-roledescription="carousel">
+    <section className="relative h-[92svh] min-h-screen w-full overflow-hidden" aria-roledescription="carousel">
       <AnimatePresence mode="sync">
         <motion.div
           key={slide.title}

@@ -7,7 +7,7 @@ const columns = [
   {
     title: "Watch",
     links: [
-      { label: "Live TV", href: "/watch-live" },
+      { label: "Live Program", href: "/watch-live" },
       { label: "Programs", href: "/programs" },
       { label: "TV Schedule", href: "/schedule" },
     ],

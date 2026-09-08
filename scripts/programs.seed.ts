@@ -14,6 +14,7 @@ export const PROGRAM_CATEGORIES = [
   "Reality",
   "Arts",
   "Movie",
+  "News"
 ] as const;
 export type ProgramCategory = (typeof PROGRAM_CATEGORIES)[number];
 
