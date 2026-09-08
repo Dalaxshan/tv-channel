@@ -3,23 +3,20 @@ import type {
   Episode,
   NewsArticle,
   Presenter,
-  ScheduleItem,
   Podcast,
-  ScheduleWeekItem,
 } from "@/types";
 
-// NOTE: This file simulates a CMS data layer. In production, swap these
-// exports for fetch calls to your CMS (Sanity, Strapi, Contentful, etc.)
-// while keeping the same shapes so components require no changes.
-
-const img = (seed: string, w = 800, h = 500) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+const img = (seed: string, w = 800, h = 500) => {
+  // Fallback to a stable Unsplash image with random parameter for variety
+  const hash = seed.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return `https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=${w}&h=${h}&fit=crop&q=80&v=${hash}`;
+};
 
 export const shows: Show[] = [
   {
     slug: "crimson-hour",
     title: "Crimson Hour",
-    category: "Drama",
+    category: "Teledrama",
     synopsis:
       "A gripping primetime drama following a family navigating power and betrayal in the capital.",
     duration: "45 min",
@@ -40,17 +37,7 @@ export const shows: Show[] = [
     image: img("island-beats"),
     trending: true,
   },
-  {
-    slug: "frontline-report",
-    title: "Frontline Report",
-    category: "News",
-    synopsis:
-      "In-depth investigative journalism covering the stories that matter most.",
-    duration: "30 min",
-    rating: "PG",
-    image: img("frontline"),
-    isNewEpisode: true,
-  },
+ 
   {
     slug: "match-night",
     title: "Match Night",
@@ -112,6 +99,16 @@ export const shows: Show[] = [
     image: img("wild-reality"),
     trending: true,
   },
+    {
+    slug: "wild-reality",
+    title: "Wild Reality",
+    category: "Reality",
+    synopsis: "Strangers, one villa, and a season of unscripted drama.",
+    duration: "55 min",
+    rating: "PG-13",
+    image: img("wild-reality"),
+    trending: true,
+  },
 ];
 
 export const episodes: Episode[] = [
@@ -137,17 +134,7 @@ export const episodes: Episode[] = [
     image: img("ep-island-12"),
     category: "Music",
   },
-  {
-    slug: "frontline-report-s5e21",
-    showSlug: "frontline-report",
-    showTitle: "Frontline Report",
-    episodeNumber: 21,
-    title: "The Cost of Concrete",
-    duration: "31 min",
-    publishDate: "2026-07-24",
-    image: img("ep-frontline-21"),
-    category: "News",
-  },
+ 
   {
     slug: "green-room-s4e30",
     showSlug: "the-green-room",
@@ -324,44 +311,6 @@ export const presenters: Presenter[] = [
   },
 ];
 
-export const latestnews: Podcast[] = [
-{
-  slug: "bus-lalith-brought-back-to-sri-lanka",
-  title: "‘Bus Lalith’ Brought Back to Sri Lanka",
-  guest: "Local News",
-  duration: "3 min read",
-  image: img("news-local"),
-  date: "2026-08-25",
-},
-
-{
-  slug: "sri-lanka-extends-msme-working-capital",
-  title: "Sri Lanka Extends Rs. 235 Million Working Capital Support to MSMEs",
-  guest: "Business News",
-  duration: "4 min read",
-  image: img("news-business"),
-  date: "2026-08-25",
-},
-
-{
-  slug: "india-takes-control-against-sri-lanka",
-  title: "India Takes Control in Second Test Against Sri Lanka",
-  guest: "Sports News",
-  duration: "5 min read",
-  image: img("news-sports"),
-  date: "2026-08-25",
-},
-
-{
-  slug: "sri-lanka-tourism-push-2026",
-  title: "Sri Lanka Launches New Tourism Push to Boost Arrivals",
-  guest: "International News",
-  duration: "4 min read",
-  image: img("news-tourism"),
-  date: "2026-08-25",
-},
-];
-
 export const podcasts: Podcast[] = [
   {
     slug: "founders-hour-ep12",
@@ -389,225 +338,11 @@ export const podcasts: Podcast[] = [
   },
 ];
 
-export const scheduleWeek: ScheduleWeekItem[] = [
-  // ==================== Mon ====================
-  { airTime: "04:30", day: "Mon", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Mon", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "07:30", day: "Mon", time: "07:30", block: "Morning", title: "Morning Café", category: "Lifestyle" },
-  { airTime: "10:00", day: "Mon", time: "10:00", block: "Morning", title: "Text to Win", category: "Interactive" },
-  { airTime: "11:55", day: "Mon", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Mon", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Mon", time: "16:00", block: "Afternoon", title: "Cartoon X2 (SIN) Age 3-6", category: "Kids" },
-  { airTime: "17:00", day: "Mon", time: "17:00", block: "Evening", title: "Cartoon X2 (SIN) Age 6-14", category: "Kids" },
-  { airTime: "18:00", day: "Mon", time: "18:00", block: "Evening", title: "Kids Quiz", category: "Kids" },
-  { airTime: "18:55", day: "Mon", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Mon", time: "19:30", block: "Evening", title: "Taxi", category: "Teledrama" },
-  { airTime: "20:00", day: "Mon", time: "20:00", block: "Evening", title: "Heena", category: "Teledrama" },
-  { airTime: "20:30", day: "Mon", time: "20:30", block: "Evening", title: "Ada Baas", category: "Teledrama" },
-  { airTime: "21:00", day: "Mon", time: "21:00", block: "Evening", title: "Kotuwa Pitakotuwa", category: "Teledrama" },
-  { airTime: "21:30", day: "Mon", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Mon", time: "22:15", block: "Night", title: "Non-political - News", category: "News" },
-
-  // ==================== Tue ====================
-  { airTime: "04:30", day: "Tue", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Tue", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "07:30", day: "Tue", time: "07:30", block: "Morning", title: "Morning Café", category: "Lifestyle" },
-  { airTime: "10:00", day: "Tue", time: "10:00", block: "Morning", title: "Text to Win", category: "Interactive" },
-  { airTime: "11:55", day: "Tue", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Tue", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Tue", time: "16:00", block: "Afternoon", title: "Cartoon X2 (SIN) Age 3-6", category: "Kids" },
-  { airTime: "17:00", day: "Tue", time: "17:00", block: "Evening", title: "Cartoon X2 (SIN) Age 6-14", category: "Kids" },
-  { airTime: "18:00", day: "Tue", time: "18:00", block: "Evening", title: "Kids Quiz", category: "Kids" },
-  { airTime: "18:55", day: "Tue", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Tue", time: "19:30", block: "Evening", title: "Taxi", category: "Teledrama" },
-  { airTime: "20:00", day: "Tue", time: "20:00", block: "Evening", title: "Heena", category: "Teledrama" },
-  { airTime: "20:30", day: "Tue", time: "20:30", block: "Evening", title: "Ada Baas", category: "Teledrama" },
-  { airTime: "21:00", day: "Tue", time: "21:00", block: "Evening", title: "Kotuwa Pitakotuwa", category: "Teledrama" },
-  { airTime: "21:30", day: "Tue", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Tue", time: "22:15", block: "Night", title: "GenZ - News", category: "News" },
-
-  // ==================== Wed ====================
-  { airTime: "04:30", day: "Wed", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Wed", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "07:30", day: "Wed", time: "07:30", block: "Morning", title: "Morning Café", category: "Lifestyle" },
-  { airTime: "10:00", day: "Wed", time: "10:00", block: "Morning", title: "Text to Win", category: "Interactive" },
-  { airTime: "11:55", day: "Wed", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Wed", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Wed", time: "16:00", block: "Afternoon", title: "Cartoon X2 (SIN) Age 3-6", category: "Kids" },
-  { airTime: "17:00", day: "Wed", time: "17:00", block: "Evening", title: "Cartoon X2 (SIN) Age 6-14", category: "Kids" },
-  { airTime: "18:00", day: "Wed", time: "18:00", block: "Evening", title: "Kids Quiz", category: "Kids" },
-  { airTime: "18:55", day: "Wed", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Wed", time: "19:30", block: "Evening", title: "Taxi", category: "Teledrama" },
-  { airTime: "20:00", day: "Wed", time: "20:00", block: "Evening", title: "Heena", category: "Teledrama" },
-  { airTime: "20:30", day: "Wed", time: "20:30", block: "Evening", title: "Ada Baas", category: "Teledrama" },
-  { airTime: "21:00", day: "Wed", time: "21:00", block: "Evening", title: "Kotuwa Pitakotuwa", category: "Teledrama" },
-  { airTime: "21:30", day: "Wed", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Wed", time: "22:15", block: "Night", title: "Mage Thaaththa - Content", category: "Talk Show" },
-
-  // ==================== Thu ====================
-  { airTime: "04:30", day: "Thu", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Thu", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "07:30", day: "Thu", time: "07:30", block: "Morning", title: "Morning Café", category: "Lifestyle" },
-  { airTime: "10:00", day: "Thu", time: "10:00", block: "Morning", title: "Text to Win", category: "Interactive" },
-  { airTime: "11:55", day: "Thu", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Thu", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Thu", time: "16:00", block: "Afternoon", title: "Cartoon X2 (SIN) Age 3-6", category: "Kids" },
-  { airTime: "17:00", day: "Thu", time: "17:00", block: "Evening", title: "Cartoon X2 (SIN) Age 6-14", category: "Kids" },
-  { airTime: "18:00", day: "Thu", time: "18:00", block: "Evening", title: "Kids Quiz", category: "Kids" },
-  { airTime: "18:55", day: "Thu", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Thu", time: "19:30", block: "Evening", title: "Taxi", category: "Teledrama" },
-  { airTime: "20:00", day: "Thu", time: "20:00", block: "Evening", title: "Heena", category: "Teledrama" },
-  { airTime: "20:30", day: "Thu", time: "20:30", block: "Evening", title: "Ada Baas", category: "Teledrama" },
-  { airTime: "21:00", day: "Thu", time: "21:00", block: "Evening", title: "Kotuwa Pitakotuwa", category: "Teledrama" },
-  { airTime: "21:30", day: "Thu", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Thu", time: "22:15", block: "Night", title: "Bala Satana - News", category: "News" },
-
-  // ==================== Fri ====================
-  { airTime: "04:30", day: "Fri", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Fri", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "07:30", day: "Fri", time: "07:30", block: "Morning", title: "Morning Café", category: "Lifestyle" },
-  { airTime: "10:00", day: "Fri", time: "10:00", block: "Morning", title: "Text to Win", category: "Interactive" },
-  { airTime: "11:55", day: "Fri", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Fri", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Fri", time: "16:00", block: "Afternoon", title: "Cartoon X2 (SIN) Age 3-6", category: "Kids" },
-  { airTime: "17:00", day: "Fri", time: "17:00", block: "Evening", title: "Cartoon X2 (SIN) Age 6-14", category: "Kids" },
-  { airTime: "18:00", day: "Fri", time: "18:00", block: "Evening", title: "Kids Quiz", category: "Kids" },
-  { airTime: "18:55", day: "Fri", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Fri", time: "19:30", block: "Evening", title: "Taxi", category: "Teledrama" },
-  { airTime: "20:00", day: "Fri", time: "20:00", block: "Evening", title: "Heena", category: "Teledrama" },
-  { airTime: "20:30", day: "Fri", time: "20:30", block: "Evening", title: "Ada Baas", category: "Teledrama" },
-  { airTime: "21:00", day: "Fri", time: "21:00", block: "Evening", title: "Kotuwa Pitakotuwa", category: "Teledrama" },
-  { airTime: "21:30", day: "Fri", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Fri", time: "22:15", block: "Night", title: "Swara Ahasa - Content", category: "Talk Show" },
-
-  // ==================== Sat ====================
-  { airTime: "04:30", day: "Sat", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Sat", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "08:00", day: "Sat", time: "08:00", block: "Morning", title: "Kids Movie + Channel Promo", category: "Kids" },
-  { airTime: "10:00", day: "Sat", time: "10:00", block: "Morning", title: "Star Seat", category: "Talk Show" },
-  { airTime: "11:00", day: "Sat", time: "11:00", block: "Morning", title: "Art Pulse", category: "Arts" },
-  { airTime: "11:55", day: "Sat", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Sat", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "16:00", day: "Sat", time: "16:00", block: "Afternoon", title: "Speed", category: "Entertainment" },
-  { airTime: "17:00", day: "Sat", time: "17:00", block: "Evening", title: "Gaming: Angampora", category: "Gaming" },
-  { airTime: "17:30", day: "Sat", time: "17:30", block: "Evening", title: "KFL", category: "Sports" },
-  { airTime: "18:00", day: "Sat", time: "18:00", block: "Evening", title: "Sports - News", category: "Sports" },
-  { airTime: "18:55", day: "Sat", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Sat", time: "19:30", block: "Evening", title: "Aadareta Oone Deyak", category: "Reality" },
-  { airTime: "21:00", day: "Sat", time: "21:00", block: "Evening", title: "Manawari", category: "Teledrama" },
-  { airTime: "21:30", day: "Sat", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Sat", time: "22:15", block: "Night", title: "Bajau Padura", category: "Entertainment" },
-
-  // ==================== Sun ====================
-  { airTime: "04:30", day: "Sun", time: "04:30", block: "Morning", title: "Pinsaara Ahasa / Seth Kavi", category: "Religious" },
-  { airTime: "06:00", day: "Sun", time: "06:00", block: "Morning", title: "Puwath Wimasuma", category: "News" },
-  { airTime: "08:00", day: "Sun", time: "08:00", block: "Morning", title: "Dear Mom", category: "Lifestyle" },
-  { airTime: "09:00", day: "Sun", time: "09:00", block: "Morning", title: "Cooking Show", category: "Lifestyle" },
-  { airTime: "10:00", day: "Sun", time: "10:00", block: "Morning", title: "Travel Birds", category: "Travel" },
-  { airTime: "11:00", day: "Sun", time: "11:00", block: "Morning", title: "Hada Vimana", category: "Talk Show" },
-  { airTime: "11:55", day: "Sun", time: "11:55", block: "Morning", title: "News", category: "News" },
-  { airTime: "12:30", day: "Sun", time: "12:30", block: "Afternoon", title: "Movie + Channel Promo", category: "Movie" },
-  { airTime: "15:30", day: "Sun", time: "15:30", block: "Afternoon", title: "Ranga Sutra", category: "Arts" },
-  { airTime: "16:00", day: "Sun", time: "16:00", block: "Afternoon", title: "Feel the Beat", category: "Music" },
-  { airTime: "18:00", day: "Sun", time: "18:00", block: "Evening", title: "Queen", category: "Entertainment" },
-  { airTime: "18:55", day: "Sun", time: "18:55", block: "Evening", title: "News", category: "News" },
-  { airTime: "19:30", day: "Sun", time: "19:30", block: "Evening", title: "Aadareta Oone Deyak", category: "Reality" },
-  { airTime: "21:00", day: "Sun", time: "21:00", block: "Evening", title: "Manawari", category: "Teledrama" },
-  { airTime: "21:30", day: "Sun", time: "21:30", block: "Night", title: "News", category: "News" },
-  { airTime: "22:15", day: "Sun", time: "22:15", block: "Night", title: "Cinema Ahasa", category: "Movie" },
-];
-
-export const schedule: ScheduleItem[] = [
-  {
-    day: "Today",
-    time: "06:00",
-    block: "Morning",
-    title: "Morning Light",
-    category: "Religious",
-    host: "Rev. A. Costa",
-  },
-  {
-    day: "Today",
-    time: "07:30",
-    block: "Morning",
-    title: "Sunrise Bulletin",
-    category: "News",
-    host: "Nadia Fernando",
-  },
-  {
-    day: "Today",
-    time: "09:00",
-    block: "Morning",
-    title: "Everyday Luxe",
-    category: "Lifestyle",
-  },
-  {
-    day: "Today",
-    time: "12:30",
-    block: "Afternoon",
-    title: "Midday Report",
-    category: "News",
-  },
-  {
-    day: "Today",
-    time: "14:00",
-    block: "Afternoon",
-    title: "Little Stars",
-    category: "Kids",
-  },
-  {
-    day: "Today",
-    time: "16:00",
-    block: "Afternoon",
-    title: "Island Beats",
-    category: "Music",
-    host: "Kasun Jayawardena",
-  },
-  {
-    day: "Today",
-    time: "19:00",
-    block: "Evening",
-    title: "Frontline Report",
-    category: "News",
-    host: "Nadia Fernando",
-    live: true,
-  },
-  {
-    day: "Today",
-    time: "20:00",
-    block: "Evening",
-    title: "Crimson Hour",
-    category: "Drama",
-  },
-  {
-    day: "Today",
-    time: "21:30",
-    block: "Evening",
-    title: "The Green Room",
-    category: "Entertainment",
-    host: "Amaya Rathnayake",
-  },
-  {
-    day: "Today",
-    time: "23:00",
-    block: "Night",
-    title: "Match Night Highlights",
-    category: "Sports",
-  },
-  {
-    day: "Today",
-    time: "00:30",
-    block: "Night",
-    title: "Wild Reality",
-    category: "Reality",
-  },
-];
-
 export const stats = [
   { label: "Weekly Reach", value: "4.2M" },
   { label: "Live Viewers Peak", value: "310K" },
   { label: "Original Shows", value: "38" },
-  { label: "Years On Air", value: "22" },
+  { label: "Years On Air", value: "1+" },
 ];
 
 export const sponsors = [

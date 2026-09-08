@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URL = process.env.MONGODB_URL!;
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 type MongooseCache = {
   conn: typeof mongoose | null;
@@ -13,7 +13,7 @@ const cached = (global as unknown as { mongoose?: MongooseCache }).mongoose ?? {
 export async function connectDB() {
   if (cached.conn) return cached.conn;
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URL, {
+    cached.promise = mongoose.connect(MONGODB_URI, {
       dbName: "test",
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 10000,

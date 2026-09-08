@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import { podcasts } from "@/lib/data";
-import { getYouTubeEpisodes } from "@/lib/youtube";
-import { NewsBrowser } from "@/components/news/news-browser";
 
 export const metadata: Metadata = {
   title: "News",
@@ -10,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-  const episodes = await getYouTubeEpisodes();
+  // const episodes = await getEpisodesByShowSlug("news");
 
   return (
     <div className="container-page pb-24 pt-22 lg:pt-30">
@@ -19,7 +16,7 @@ export default async function NewsPage() {
         <h1 className="mt-2 font-display text-4xl font-bold">News</h1>
         <p className="mt-3 text-text-muted">Recently added and most viewed - all in one searchable library.</p>
       </div>
-      <NewsBrowser episodes={episodes} podcasts={podcasts} />
+      {/* <NewsBrowser episodes={episodes} podcasts={podcasts} />  */}
     </div>
   );
 }

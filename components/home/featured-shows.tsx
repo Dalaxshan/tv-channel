@@ -14,7 +14,7 @@ export function FeaturedShows({ shows }: { shows: Show[] }) {
   };
 
   return (
-    <section className="py-16 lg:py-24">
+    <section className="py-16 lg:py-4">
       <div className="container-page">
         <SectionHeading
           eyebrow="Don't Miss"
@@ -34,6 +34,7 @@ export function FeaturedShows({ shows }: { shows: Show[] }) {
             </div>
           ))}
         </div>
+
         <div className="mt-6 hidden justify-end gap-2 container-page sm:flex">
           <button
             onClick={() => scroll(-1)}
