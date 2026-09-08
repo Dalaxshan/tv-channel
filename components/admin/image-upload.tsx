@@ -3,9 +3,10 @@
 import { useRef, useState } from "react";
 import { ImagePlus, X, Loader2, ImageOff } from "lucide-react";
 import { useToast } from "@/components/admin/toast";
+import imageCompression from "browser-image-compression";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-const MAX_SIZE_BYTES = 5 * 1024 * 1024;
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif" , "image/tif"];
+const COMPRESSION_OPTIONS = { maxSizeMB: 1, maxWidthOrHeight: 1920, useWebWorker: true,fileType: "image/webp" };
 
 export type UploadedImage = { key: string; url: string };
 
@@ -35,19 +36,17 @@ export function ImageUpload({
       toast.error("Only JPEG, PNG, WEBP, or GIF images are allowed");
       return;
     }
-    if (file.size > MAX_SIZE_BYTES) {
-      toast.error("Image must be smaller than 5MB");
-      return;
-    }
 
-    const localPreview = URL.createObjectURL(file);
-    setPreviewUrl(localPreview);
     setLoadFailed(false);
     setUploading(true);
 
     try {
+      const compressed = await imageCompression(file, COMPRESSION_OPTIONS);
+      const localPreview = URL.createObjectURL(compressed);
+      setPreviewUrl(localPreview);
+
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", compressed, file.name);
       formData.append("folder", folder);
 
       const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
@@ -127,7 +126,7 @@ export function ImageUpload({
             <span className="text-sm font-medium">
               {loadFailed ? "Image failed to load - click to replace" : "Click to upload an image"}
             </span>
-            <span className="text-xs text-slate-500">JPEG, PNG, WEBP, or GIF - up to 5MB</span>
+            <span className="text-xs text-slate-500">JPEG, PNG, WEBP, or GIF - compressed to 1MB / 1920px</span>
           </button>
         )}
       </div>

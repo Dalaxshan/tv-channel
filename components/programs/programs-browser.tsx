@@ -23,11 +23,6 @@ export function ProgramsBrowser({ programs }: { programs: ProgramResponse[] }) {
     router.push(url, { scroll: false });
   }
 
-  const categories = useMemo(
-    () => Array.from(new Set(programs.map((p) => p.category))).sort(),
-    [programs],
-  );
-
   const filtered = useMemo(() => {
     return programs
       .filter((p) => category === "All" || p.category === category)

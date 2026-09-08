@@ -22,7 +22,8 @@ export type Category =
   | "Lifestyle"
   | "Kids"
   | "Religious"
-  | "Entertainment";
+  | "Entertainment"
+  | "News"; 
 
 export interface Show {
   slug: string;

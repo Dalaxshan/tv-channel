@@ -55,6 +55,7 @@ export const PROGRAM_CATEGORIES = [
   "Kids",
   "Religious",
   "Entertainment",
+  "News",
   "Talk Show",
   "Sports",
   "Gaming",

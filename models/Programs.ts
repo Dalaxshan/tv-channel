@@ -10,6 +10,7 @@ const Genres = [
   "Religious",
   "Kids",
   "Entertainment",
+  "News"
 ] as const;
 
 const ProgramSchema = new Schema(
