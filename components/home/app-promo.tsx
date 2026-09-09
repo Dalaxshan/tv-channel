@@ -78,7 +78,7 @@ export function AppPromo() {
                 </a>
                 <a href="#" className="flex items-center text-sm font-medium">
                   <Image
-                    src="/google-play.svg"
+                    src="/google-play.png"
                     alt="Google Play"
                     width={280}
                     height={54}
