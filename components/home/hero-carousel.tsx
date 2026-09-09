@@ -190,7 +190,7 @@ export function HeroCarousel() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <Link href={slide.cta.buttonUrl}>
-                    <Radio className="h-4 w-4" /> Watch Now
+                    <Radio className="h-4 w-4" /> {slide.cta.buttonText}
                   </Link>
                 </Button>
                 <Button asChild variant="glass" size="lg">

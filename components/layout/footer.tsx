@@ -105,7 +105,7 @@ export function Footer() {
             <div className="mt-0 flex gap-1 ">
               <a
                 href="#"
-                className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
+                className=" px-3 py-4 text-xs text-text-muted hover:border-white/30"
               >
                 <Image
                   src="/app-store.svg"
@@ -119,9 +119,9 @@ export function Footer() {
                 className=" px-3 py-2 text-xs text-text-muted hover:border-white/30"
               >
                 <Image
-                  src="/google-play.svg"
+                  src="/google-play.png"
                   alt="Google Play"
-                  width={120}
+                  width={140}
                   height={30}
                 />
               </a>
