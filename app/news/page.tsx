@@ -1,4 +1,3 @@
-import { NewsBrowser } from "@/components/news-old/news-browser";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default async function NewsPage() {
         <h1 className="mt-2 font-display text-4xl font-bold">News</h1>
         <p className="mt-3 text-text-muted">Recently added and most viewed - all in one searchable library.</p>
       </div>
-      <NewsBrowser episodes={episodes} podcasts={podcasts} /> 
+      {/* <NewsBrowser episodes={episodes} podcasts={podcasts} />  */}
     </div>
   );
 }
