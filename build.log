@@ -1,0 +1,107 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.31kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 271B done
+#3 DONE 0.0s
+
+#4 [builder 1/6] FROM docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293
+#4 resolve docker.io/library/node:20-alpine@sha256:fb4cd12c85ee03686f6af5362a0b0d56d50c58a04632e6c0fb8363f609372293 0.0s done
+#4 DONE 0.0s
+
+#5 [builder 2/6] WORKDIR /app
+#5 CACHED
+
+#6 [runner 3/7] RUN apk add --no-cache dumb-init
+#6 CACHED
+
+#7 [runner 4/7] RUN addgroup -g 1001 -S nodejs &&     adduser -S nextjs -u 1001
+#7 CACHED
+
+#8 [internal] load build context
+#8 transferring context: 8.94kB 0.0s done
+#8 DONE 0.1s
+
+#9 [builder 3/6] COPY package.json yarn.lock ./
+#9 CACHED
+
+#10 [builder 4/6] RUN yarn install --frozen-lockfile
+#10 CACHED
+
+#11 [builder 5/6] COPY . .
+#11 DONE 0.3s
+
+#12 [builder 6/6] RUN yarn build
+#12 0.686 yarn run v1.22.22
+#12 0.745 $ next build
+#12 3.116    Γû▓ Next.js 15.5.22
+#12 3.121 
+#12 3.228    Creating an optimized production build ...
+#12 16.71 
+#12 16.71 
+#12 16.71 Retrying 1/3...
+#12 16.71 
+#12 16.71 
+#12 16.71 Retrying 1/3...
+#12 29.97 Failed to compile.
+#12 29.97 
+#12 29.98 ./app/admin-panel/dashboard/hero/page.tsx
+#12 29.98 Module not found: Can't resolve '@/components/admin/ui/form-controls'
+#12 29.98 
+#12 29.98 https://nextjs.org/docs/messages/module-not-found
+#12 29.98 
+#12 29.98 ./app/admin-panel/dashboard/hero/page.tsx
+#12 29.98 Module not found: Can't resolve '@/components/admin/ui/modal'
+#12 29.98 
+#12 29.98 https://nextjs.org/docs/messages/module-not-found
+#12 29.98 
+#12 29.98 ./app/admin-panel/dashboard/hero/page.tsx
+#12 29.98 Module not found: Can't resolve '@/components/admin/ui/confirm-dialog'
+#12 29.98 
+#12 29.98 https://nextjs.org/docs/messages/module-not-found
+#12 29.98 
+#12 29.98 ./app/admin-panel/dashboard/hero/page.tsx
+#12 29.98 Module not found: Can't resolve '@/components/admin/ui/empty-state'
+#12 29.98 
+#12 29.98 https://nextjs.org/docs/messages/module-not-found
+#12 29.98 
+#12 29.98 ./app/admin-panel/dashboard/hero/page.tsx
+#12 29.98 Module not found: Can't resolve '@/components/admin/hero/hero-form'
+#12 29.98 
+#12 29.98 https://nextjs.org/docs/messages/module-not-found
+#12 29.98 
+#12 30.00 
+#12 30.00 > Build failed because of webpack errors
+#12 30.08 error Command failed with exit code 1.
+#12 30.08 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+#12 ERROR: process "/bin/sh -c yarn build" did not complete successfully: exit code: 1
+------
+ > [builder 6/6] RUN yarn build:
+29.98 
+29.98 ./app/admin-panel/dashboard/hero/page.tsx
+29.98 Module not found: Can't resolve '@/components/admin/hero/hero-form'
+29.98 
+29.98 https://nextjs.org/docs/messages/module-not-found
+29.98 
+30.00 
+30.00 > Build failed because of webpack errors
+30.08 error Command failed with exit code 1.
+30.08 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+------
+Dockerfile:22
+--------------------
+  20 |         NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL \
+  21 |         NEXT_PUBLIC_WEB3FORMS_KEY=$NEXT_PUBLIC_WEB3FORMS_KEY
+  22 | >>> RUN yarn build
+  23 |     
+  24 |     # Production stage
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c yarn build" did not complete successfully: exit code: 1
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/2iykv33d5l7bb1utddorzjdgc
