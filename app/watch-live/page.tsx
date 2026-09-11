@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Play, Share2, Maximize2, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { schedule } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Watch Live",
@@ -63,7 +62,7 @@ export default function WatchLivePage() {
 
         <aside className="rounded-2xl glass p-6">
           <h2 className="font-display text-lg font-semibold">Current Schedule</h2>
-          <ol className="mt-4 space-y-4">
+          {/* <ol className="mt-4 space-y-4">
             {schedule.map((item) => (
               <li key={`${item.time}-${item.title}`} className="flex items-start justify-between gap-3 border-b border-white/5 pb-3">
                 <div>
@@ -76,7 +75,7 @@ export default function WatchLivePage() {
                 </div>
               </li>
             ))}
-          </ol>
+          </ol> */}
         </aside>
       </div>
     </div>

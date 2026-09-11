@@ -21,6 +21,7 @@ const Genres = [
   "Religious",
   "Kids",
   "Entertainment",
+  "News"
 ] as const;
 
 const TvScheduleSchema = new Schema(

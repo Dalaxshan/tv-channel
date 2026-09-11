@@ -1,4 +1,11 @@
-import { JSX } from "react";
+export type ContactFormData = {
+  name: string;
+  email: string;
+  phone: string;
+  title: string;
+  service: string;
+  message: string;
+};
 
 export type Category =
   | "Reality"
@@ -11,12 +18,12 @@ export type Category =
   | "Gaming"
   | "Travel"
   | "Drama"
-  | "News"
   | "Sports"
   | "Lifestyle"
   | "Kids"
   | "Religious"
-  | "Entertainment";
+  | "Entertainment"
+  | "News"; 
 
 export interface Show {
   slug: string;
@@ -90,6 +97,16 @@ export interface ScheduleWeekItem {
 }
 
 export interface Podcast {
+  slug: string;
+  title: string;
+  guest: string;
+  duration: string;
+  image: string;
+  date: string;
+  youtubeId?: string;
+}
+
+export interface videos {
   slug: string;
   title: string;
   guest: string;
