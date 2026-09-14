@@ -181,7 +181,7 @@ export default function AhasaTVLoader({
           >
             <Image
               ref={ahasaRef}
-              src="/ahasa-part.png"
+              src="/tv-part.png"
               alt="Ahasa"
               width={200}
               height={80}
@@ -191,7 +191,7 @@ export default function AhasaTVLoader({
             />
             <Image
               ref={tvRef}
-              src="/tv-part.png"
+              src="/channel-part.png"
               alt="TV"
               width={200}
               height={80}
