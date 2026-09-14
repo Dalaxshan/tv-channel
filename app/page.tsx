@@ -1,4 +1,3 @@
-import { HeroCarousel } from "@/components/home/hero-carousel";
 import { LiveTvSection } from "@/components/home/live-tv-section";
 import { LatestEpisodes } from "@/components/home/latest-episodes";
 import { TrendingPrograms } from "@/components/home/trending-programs";
@@ -8,11 +7,12 @@ import { shows } from "@/lib/data";
 import { RealityShows } from "@/components/home/reality-show";
 import { Entertainments } from "@/components/home/entertainments";
 import ScrollHorizontal from "@/components/ui/scroll-horizontal";
+import HomeClient from "@/components/home/home-client";
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <>
-      <HeroCarousel />
+      <HomeClient />
       <LiveTvSection />
       <PulseDivider className="container-page opacity-40" />
       <LatestEpisodes />
