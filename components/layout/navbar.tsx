@@ -91,7 +91,6 @@ export function Navbar() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.75 }}
                         className="absolute left-1/2 top-full mt-2 w-140 -translate-x-1/2 rounded-2xl bg-white p-6 shadow-2xl"
                       >
                         <div className="grid grid-cols-3 gap-x-6 gap-y-3">

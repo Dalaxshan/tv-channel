@@ -83,7 +83,7 @@ const socials = [
   },
 ];
 
-export function HeroCarousel() {
+export function HeroCarousel({ onReady }: { onReady?: () => void }) {
   const [index, setIndex] = useState(0);
   const [heroes, setHeroes] = useState<HeroResponse[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -113,6 +113,7 @@ export function HeroCarousel() {
       setHeroes(json.data);
     } catch (err) {
       setLoadError(err instanceof Error ? err.message : "Failed to load heroes");
+      onReady?.();
     }
   }
 
@@ -157,6 +158,7 @@ export function HeroCarousel() {
             alt=""
             fill
             priority={index === 0}
+            onLoad={index === 0 ? onReady : undefined}
             className="object-cover object-right md:object-center"
             sizes="100vw"
           />
