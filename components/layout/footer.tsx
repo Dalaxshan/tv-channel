@@ -55,20 +55,6 @@ export function Footer() {
               breaking news, bringing you the latest entertainment, stories, and
               unforgettable moments all in one place.{" "}
             </p>
-            {/* <div className="mt-6 flex gap-3">
-              {[FacebookIcon, InstagramIcon, YoutubeIcon, XIcon].map(
-                (Icon, i) => (
-                  <a
-                    key={i}
-                    href="#"
-                    aria-label="Social link"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-primary hover:text-primary-light transition-colors"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ),
-              )}
-            </div> */}
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">

@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import type { AdminSession } from "@/types/admin";
 
 const SESSION_COOKIE_NAME = "admin_session";
-const SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const SESSION_DURATION_SECONDS = 60 * 60 * 24; // 1 day
 
 function getSecretKey(): Uint8Array {
   const secret = process.env.ADMIN_JWT_SECRET;
