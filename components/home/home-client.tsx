@@ -8,12 +8,13 @@ export default function HomeClient() {
   const [loaderDone, setLoaderDone] = useState(false);
   const [heroReady, setHeroReady] = useState(false);
 
-  const bothReady = loaderDone && heroReady;
-
   return (
     <>
-      {!bothReady && (
-        <AhasaTVLoader onComplete={() => setLoaderDone(true)} />
+      {!loaderDone && (
+        <AhasaTVLoader
+          isLoading={!heroReady}
+          onComplete={() => setLoaderDone(true)}
+        />
       )}
       <HeroCarousel onReady={() => setHeroReady(true)} />
     </>
