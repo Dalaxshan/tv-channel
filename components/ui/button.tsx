@@ -4,18 +4,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-200 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/50 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
         primary:
-          "bg-primary text-white hover:bg-primary-light shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5",
+          "text-white bg-linear-to-b from-primary-light/90 to-primary/90 backdrop-blur-xl border border-white/15 shadow-[0_8px_24px_-8px_rgba(2,80,215,0.55),inset_0_1px_0_0_rgba(255,255,255,0.15)] hover:from-primary-light hover:to-primary hover:shadow-[0_10px_32px_-6px_rgba(59,116,232,0.65),inset_0_1px_0_0_rgba(255,255,255,0.2)] hover:-translate-y-0.5",
         accent:
-          "bg-accent text-secondary hover:brightness-105 shadow-lg shadow-accent/20 hover:-translate-y-0.5",
+          "bg-accent/80 backdrop-blur-xl text-secondary border border-white/15 hover:bg-accent shadow-lg shadow-accent/15 hover:-translate-y-0.5",
         outline:
-          "border border-white/20 text-text hover:border-white/40 hover:bg-white/5",
-        ghost: "text-text hover:bg-white/10",
-        glass: "glass text-text hover:bg-white/10",
+          "border border-primary-light/30 bg-primary-light/5 backdrop-blur-xl text-text hover:border-primary-light/50 hover:bg-primary-light/10 hover:shadow-[0_0_0_1px_rgba(59,116,232,0.2),0_8px_24px_-8px_rgba(59,116,232,0.35)]",
+        ghost: "text-text hover:bg-primary-light/10 hover:backdrop-blur-xl",
+        glass:
+          "glass text-text hover:border-primary-light/40 hover:bg-primary-light/10 hover:shadow-[0_0_0_1px_rgba(59,116,232,0.25),0_10px_28px_-10px_rgba(59,116,232,0.5)] hover:-translate-y-0.5",
       },
       size: {
         sm: "h-9 px-4 text-xs",

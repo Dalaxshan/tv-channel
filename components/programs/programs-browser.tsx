@@ -44,14 +44,14 @@ export function ProgramsBrowser({ programs }: { programs: ProgramResponse[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search programs..."
-            className="w-full rounded-full border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-accent"
+            className="w-full rounded-full glass-input border py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary-light/50"
           />
         </div>
         <div className="relative w-full sm:w-auto">
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as "title" | "newest")}
-            className="w-full appearance-none rounded-full border border-white/10 bg-white/5 py-2.5 pl-4 pr-10 text-sm outline-none focus:border-accent sm:w-auto"
+            className="w-full appearance-none rounded-full glass-input border py-2.5 pl-4 pr-10 text-sm outline-none focus:border-primary-light/50 sm:w-auto"
           >
             <option value="newest" className="text-black">
               Sort: Newest
@@ -71,7 +71,7 @@ export function ProgramsBrowser({ programs }: { programs: ProgramResponse[] }) {
             "rounded-full px-4 py-1.5 text-xs font-medium",
             category === "All"
               ? "bg-accent text-secondary"
-              : "bg-white/5 text-text-muted hover:bg-white/10",
+              : "bg-primary-light/5 backdrop-blur-md border border-primary-light/10 text-text-muted hover:bg-primary-light/15 hover:border-primary-light/25 transition-all",
           )}
         >
           All
@@ -97,7 +97,7 @@ export function ProgramsBrowser({ programs }: { programs: ProgramResponse[] }) {
           <Link
             key={program.slug}
             href={`/programs/${program.slug}`}
-            className="group block overflow-hidden rounded-2xl bg-surface"
+            className="group block glass-card glow-blue-hover overflow-hidden"
           >
             <div className="relative aspect-video overflow-hidden">
               <Image

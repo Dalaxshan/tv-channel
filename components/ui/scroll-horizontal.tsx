@@ -34,7 +34,7 @@ export default function ScrollHorizontal({ shows }: { shows: Show[] }) {
       </div>
 
       {/* scroll-container: tall enough to drive the animation */}
-      <div ref={containerRef} style={{ height: "200vh", position: "relative", marginTop: "-3rem", marginBottom: "-3rem"}}>
+      <div ref={containerRef} style={{ height: "130vh", position: "relative", marginTop: "-3rem", marginBottom: "-3rem"}}>
         <div
           ref={wrapperRef}
           style={{

@@ -22,7 +22,7 @@ export default function WatchLivePage() {
 
       <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
         <div>
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface glow-primary">
+          <div className="relative aspect-video overflow-hidden rounded-2xl glass-card glow-primary">
             <Image src="https://picsum.photos/seed/watch-live-main/1200/675" alt="TV Channel main channel" fill className="object-cover opacity-80" />
             <div className="absolute inset-0 flex items-center justify-center">
               <button aria-label="Play" className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/30">
@@ -39,7 +39,7 @@ export default function WatchLivePage() {
           <div className="mt-10">
             <h2 className="font-display text-xl font-semibold">Alternative Stream</h2>
             <p className="mt-1 text-sm text-text-muted">Regional feed with local-language programming.</p>
-            <div className="relative mt-4 aspect-video overflow-hidden rounded-2xl bg-surface">
+            <div className="relative mt-4 aspect-video glass-card glow-blue-hover overflow-hidden">
               <Image src="https://picsum.photos/seed/watch-live-alt/1200/675" alt="TV Channel alternative channel" fill className="object-cover opacity-70" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <button aria-label="Play alternative stream" className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/30">

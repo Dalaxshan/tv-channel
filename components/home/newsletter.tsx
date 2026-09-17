@@ -27,7 +27,7 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={compact ? "mt-4 flex items-center gap-3" : "mt-6 flex items-center gap-3 max-w-md"}
+      className={compact ? "mt-4 flex items-center gap-2" : "mt-6 flex items-center gap-3 max-w-md"}
     >
       <label htmlFor={compact ? "footer-email" : "newsletter-email"} className="sr-only">
         Email address
@@ -40,11 +40,11 @@ export function NewsletterForm({ compact = false }: { compact?: boolean }) {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          className="w-full rounded-full border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm outline-none placeholder:text-text-muted focus:border-accent"
+          placeholder="your@email.com"
+          className="w-full rounded-full glass-input border py-3 pl-11 pr-4 text-sm outline-none placeholder:text-text-muted focus:border-primary-light/50"
         />
       </div>
-      <Button className="flex-shrink-0" type="submit" size={compact ? "sm" : "md"}>
+      <Button className="btn-glass flex-shrink-0" type="submit" size={compact ? "sm" : "md"}>
         Subscribe
       </Button>
     </form>

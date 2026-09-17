@@ -71,7 +71,7 @@ export function TrendingPrograms() {
               key={g}
               onClick={() => setGenre(g)}
               className={cn(
-                "rounded-full px-4 py-1.5 text-xs font-medium transition-colors",
+                "rounded-full border border-white/10 px-4 py-1.5 text-xs font-medium transition-colors",
                 genre === g
                   ? "bg-accent text-secondary"
                   : "bg-white/5 text-text-muted hover:bg-white/10",

@@ -17,7 +17,7 @@ export function Podcasts() {
         />
         <div className="grid gap-6 sm:grid-cols-3">
           {podcasts.map((p) => (
-            <Link key={p.slug} href={`/videos/${p.slug}`} className="group overflow-hidden rounded-2xl bg-surface">
+            <Link key={p.slug} href={`/videos/${p.slug}`} className="group glass-card glow-blue-hover overflow-hidden">
               <div className="relative aspect-video">
                 <Image src={p.image} alt={p.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 90vw, 380px" />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">

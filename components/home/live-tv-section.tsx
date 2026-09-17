@@ -101,13 +101,13 @@ export function LiveTvSection() {
       />
       {/* right side image */}
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-        <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface glow-primary">
+        <div className="relative aspect-video overflow-hidden rounded-2xl glass-card glow-primary">
           {currentThumbnail && (
             <Image
               src={currentThumbnail}
               alt={currentProgram?.title ?? "Live broadcast preview"}
               fill
-              className="object-cover opacity-80"
+              className="object-cover"
             />
           )}
           <div className="absolute inset-0 flex items-center justify-center" />
@@ -119,13 +119,13 @@ export function LiveTvSection() {
           </div>
         </div>
 
-        <div className="bg-hirugray dark:bg-hirugray rounded-xl p-5 border border-zinc-300 dark:border-zinc-800 h-full flex flex-col justify-between">
+        <div className="glass-card rounded-xl p-5 h-full flex flex-col justify-between">
           <div>
-            <div className="flex justify-between items-center border-b border-zinc-300 dark:border-zinc-800 pb-3 mb-4">
+            <div className="flex justify-between items-center border-b border-white/10 pb-3 mb-4">
               <h3 className="font-bold text-md text-text flex items-center gap-2">
                 Today&apos;s Highlights
               </h3>
-              <span className="text-xs text-zinc-400 font-semibold">
+              <span className="text-xs text-text-muted font-semibold">
                 Live Broadcast Schedule
               </span>
             </div>
@@ -138,16 +138,16 @@ export function LiveTvSection() {
                     key={program.id}
                     className={`flex items-center justify-between p-2 rounded ${
                       isCurrent
-                        ? "bg-blue-600 dark:bg-blue-600 border-l-4 border-hirured"
-                        : "bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-300 dark:border-zinc-800"
+                        ? "bg-primary/80 border-l-4 border-primary-light"
+                        : "glass-soft border border-white/10"
                     }`}
                   >
                     <div>
-                      <p className={`text-xs ${isCurrent ? "text-white font-bold" : "text-zinc-600"}`}>
+                      <p className={`text-xs ${isCurrent ? "text-white font-bold" : "text-text-muted"}`}>
                         {program.startingTime}
                         {isCurrent && " (NOW)"}
                       </p>
-                      <p className={`font-semibold ${isCurrent ? "text-white font-bold" : "text-black"}`}>
+                      <p className={`font-semibold ${isCurrent ? "text-white font-bold" : "text-text"}`}>
                         {program.title}
                       </p>
                     </div>
@@ -156,7 +156,7 @@ export function LiveTvSection() {
                         ON AIR
                       </span>
                     ) : (
-                      <span className="text-xs text-zinc-600 dark:text-zinc-500">
+                      <span className="text-xs text-text-muted">
                         {program.category}
                       </span>
                     )}
@@ -166,7 +166,7 @@ export function LiveTvSection() {
             </ul>
           </div>
           <Link href="/schedule">
-            <button className="w-full mt-4 bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-xs py-2.5 rounded font-semibold transition border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-white">
+            <button className="btn-glass w-full mt-4 text-xs py-2.5">
               Full TV Schedule &rarr;
             </button>
           </Link>
