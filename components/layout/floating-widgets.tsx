@@ -54,7 +54,7 @@ export function BackToTop() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full glass text-text hover:text-accent transition-colors"
+          className="glass glow-blue-hover fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full text-text hover:text-primary-light transition-colors"
         >
           <ArrowUp className="h-5 w-5" />
         </motion.button>
@@ -83,9 +83,9 @@ export function CookieConsent() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
-          className="fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-2xl flex-col items-start gap-4 rounded-2xl glass p-5 shadow-2xl sm:flex-row sm:items-center"
+          className="glass-strong glass-edge fixed inset-x-4 bottom-4 z-50 mx-auto flex max-w-2xl flex-col items-start gap-4 rounded-2xl p-5 sm:flex-row sm:items-center"
         >
-          <Cookie className="h-6 w-6 shrink-0 text-accent" />
+          <Cookie className="h-6 w-6 shrink-0 text-primary-light" />
           <p className="text-sm text-text-muted">
             We use cookies to personalize content and analyze traffic. By
             continuing, you agree to our{" "}

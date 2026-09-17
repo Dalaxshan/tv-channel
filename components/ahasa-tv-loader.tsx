@@ -36,7 +36,6 @@ export default function AhasaTVLoader({
       };
 
       if (prefersReduced) {
-        // Simplified, fast path: no travel, no spin, just a clean fade.
         const tl = gsap.timeline({ onComplete: finish });
         tl.set([ahasaRef.current, tvRef.current], { x: 0, opacity: 0 })
           .to([ahasaRef.current, tvRef.current], {
@@ -55,48 +54,46 @@ export default function AhasaTVLoader({
 
       const tl = gsap.timeline({ onComplete: finish });
 
-      // 1) Initial state — pieces parked off-screen, faded and small.
       tl.set(ahasaRef.current, { xPercent: -220, opacity: 0, scale: 0.82 })
         .set(tvRef.current, { xPercent: 220, opacity: 0, scale: 0.82 })
-        .set(logoGroupRef.current, { rotate: 0, scale: 1, filter: "brightness(1)" })
+        .set(logoGroupRef.current, {
+          rotate: 0,
+          scale: 1,
+          filter: "brightness(1)",
+        })
         .set(sweepRef.current, { xPercent: -140, opacity: 0 })
         .set(glowRef.current, { opacity: 0, scale: 0.6 });
 
-      // 2) Assembly — the two halves travel in and lock into place.
       tl.to(
         ahasaRef.current,
         { xPercent: 0, opacity: 1, scale: 1, duration: 1.1, ease: "expo.out" },
-        0.15
+        0.15,
       ).to(
         tvRef.current,
         { xPercent: 0, opacity: 1, scale: 1, duration: 1.1, ease: "expo.out" },
-        0.15
+        0.15,
       );
 
-      // a faint light sweep crosses behind the mark as it locks in
       tl.to(
         sweepRef.current,
         { opacity: 0.5, duration: 0.35, ease: "sine.out" },
-        0.55
-      )
-        .to(
-          sweepRef.current,
-          { xPercent: 140, opacity: 0, duration: 0.7, ease: "sine.inOut" },
-          0.65
-        );
+        0.55,
+      ).to(
+        sweepRef.current,
+        { xPercent: 140, opacity: 0, duration: 0.7, ease: "sine.inOut" },
+        0.65,
+      );
 
-      // small settle "thud" on arrival
       tl.to(
         logoGroupRef.current,
         { scale: 1.03, duration: 0.12, ease: "power2.out" },
-        1.15
+        1.15,
       ).to(
         logoGroupRef.current,
         { scale: 1, duration: 0.22, ease: "power2.inOut" },
-        1.27
+        1.27,
       );
 
-      // 3) Brief pause, then one full, deliberate rotation.
       tl.to({}, { duration: 0.4 });
       tl.to(logoGroupRef.current, {
         rotate: 360,
@@ -104,20 +101,21 @@ export default function AhasaTVLoader({
         ease: "power2.inOut",
       });
 
-      // 4) Zoom — the assembled mark pushes forward with a soft glow.
-      tl.to(glowRef.current, { opacity: 1, scale: 1.4, duration: 0.9, ease: "power2.out" }, ">-0.15")
-        .to(
-          logoGroupRef.current,
-          {
-            scale: 1.7,
-            filter: "brightness(1.25)",
-            duration: 0.9,
-            ease: "power2.in",
-          },
-          "<"
-        );
+      tl.to(
+        glowRef.current,
+        { opacity: 1, scale: 1.4, duration: 0.9, ease: "power2.out" },
+        ">-0.15",
+      ).to(
+        logoGroupRef.current,
+        {
+          scale: 1.7,
+          filter: "brightness(1.25)",
+          duration: 0.9,
+          ease: "power2.in",
+        },
+        "<",
+      );
 
-      // 5) Hold, then the overlay lifts away to reveal the site.
       tl.to({}, { duration: 0.2 });
       tl.to(overlayRef.current, {
         yPercent: -100,
@@ -131,13 +129,29 @@ export default function AhasaTVLoader({
 
   if (!mounted) return null;
 
+  // Self-contained SVG background — dark navy gradient + faint broadcast scanlines.
+  // No external file needed, no next.config.js domain setup required.
+
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[#fff]"
+      className="fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[#05050f]"
       aria-hidden="true"
     >
-      {/* vignette */}
+      {/* background image */}
+      <Image
+        src="https://pub-626e990ccc2e4de986e8dd86852d93f3.r2.dev/loader-bg.jpg"
+        alt=""
+        fill
+        priority
+        unoptimized
+        className="object-cover opacity-90"
+      />
+
+      {/* tint overlay for logo contrast — tune the /NN value */}
+      <div className="pointer-events-none absolute inset-0 bg-black/40" />
+
+      {/* vignette on top of the image */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -164,15 +178,9 @@ export default function AhasaTVLoader({
           className="relative flex items-center"
           style={{ willChange: "transform, filter" }}
         >
-          {/* light sweep */}
           <div
             ref={sweepRef}
             className="pointer-events-none absolute inset-y-0 left-0 w-1/3"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%)",
-              mixBlendMode: "screen",
-            }}
           />
 
           <div

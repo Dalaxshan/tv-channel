@@ -63,7 +63,7 @@ export function ContactForm({ department }: { department?: string }) {
           <input
             {...register("name", { required: "Name is required" })}
             placeholder="Enter your full name"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
+            className="w-full rounded-xl glass-input border px-4 py-3 text-sm outline-none focus:border-primary-light/50"
           />
           {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>}
         </div>
@@ -73,7 +73,7 @@ export function ContactForm({ department }: { department?: string }) {
             {...register("email", { required: "Email is required" })}
             type="email"
             placeholder="Enter your email address"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
+            className="w-full rounded-xl glass-input border px-4 py-3 text-sm outline-none focus:border-primary-light/50"
           />
           {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email.message}</p>}
         </div>
@@ -85,7 +85,7 @@ export function ContactForm({ department }: { department?: string }) {
           {...register("phone")}
           type="tel"
           placeholder="Enter your phone number"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
+          className="w-full rounded-xl glass-input border px-4 py-3 text-sm outline-none focus:border-primary-light/50"
         />
       </div>
 
@@ -94,7 +94,7 @@ export function ContactForm({ department }: { department?: string }) {
           <label className="mb-1.5 block text-xs font-medium text-text-muted">Inquiry Type</label>
           <select
             {...register("service", { required: "Please select a type of inquiry" })}
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
+            className="w-full rounded-xl glass-input border px-4 py-3 text-sm outline-none focus:border-primary-light/50"
           >
             <option value="" className="text-black">Select an option</option>
             {departments.map((opt) => (
@@ -111,7 +111,7 @@ export function ContactForm({ department }: { department?: string }) {
           {...register("message", { required: "Message is required" })}
           rows={5}
           placeholder="How can we help you?"
-          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none focus:border-accent"
+          className="w-full rounded-xl glass-input border px-4 py-3 text-sm outline-none focus:border-primary-light/50"
         />
         {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message.message}</p>}
       </div>

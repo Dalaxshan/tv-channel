@@ -33,7 +33,6 @@ export function ScheduleTimeline() {
         eyebrow="Programming"
         title="TV Schedule"
         description="Plan your viewing across the day, beautifully laid out block by block."
-        action={{ label: "Full schedule", href: "/schedule" }}
       />
 
       <div className="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Day selector">
@@ -60,7 +59,7 @@ export function ScheduleTimeline() {
           {blocks.map((block) => {
             const items = dayItems.filter((item) => item.block === block.name);
             return (
-              <div key={block.name} className="rounded-2xl glass p-5">
+              <div key={block.name} className="rounded-2xl glass theme-light:glass-blue p-5">
                 <div className="mb-4 flex items-baseline justify-between">
                   <h3 className="font-display text-lg font-semibold">{block.name}</h3>
                   <span className="text-xs text-text-muted">{block.time}</span>
@@ -70,7 +69,7 @@ export function ScheduleTimeline() {
                     <p className="text-sm text-text-muted">No listings.</p>
                   ) : (
                     items.map((item) => (
-                      <li key={item.id} className="relative border-l border-white/10 pl-4">
+                      <li key={item.id} className="relative border-l border-white/10 theme-light:border-primary/20 pl-4">
                         <span className="absolute -left-1.25 top-1.5 h-2.5 w-2.5 rounded-full bg-primary-light" />
                         <span className="font-mono text-xs text-accent">
                           {item.startingTime} – {item.endTime}

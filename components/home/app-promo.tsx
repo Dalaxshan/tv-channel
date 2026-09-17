@@ -33,7 +33,7 @@ export function AppPromo() {
     setIndex((i) => (i - 1 + screenshots.length) % screenshots.length);
 
   return (
-    <section id="app-promo" className="container-page lg:py-1">
+    <section id="app-promo" className="container-page lg:pb-10">
       <div className="relative overflow-hidden rounded-3xl bg-linear-to-br from-secondary to-background p-6 sm:p-10 lg:p-16">
         <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/25 blur-[110px]" />
         <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
@@ -104,7 +104,7 @@ export function AppPromo() {
 
           {/* Image slider - vertically aligned with the feature column */}
           <div className="flex flex-col items-center justify-center gap-4">
-            <div className="group relative w-full max-w-[320px] sm:max-w-xs overflow-hidden rounded-2xl glass">
+            <div className="group relative w-full max-w-[320px] sm:max-w-xs overflow-hidden rounded-2xl">
               <button
                 type="button"
                 onClick={() => setZoomed(true)}
@@ -163,7 +163,7 @@ export function AppPromo() {
           <button
             type="button"
             onClick={() => setZoomed(false)}
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-6 sm:top-6"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary-light/20 text-white backdrop-blur-md border border-white/10 hover:bg-primary-light/30 sm:right-6 sm:top-6"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -176,7 +176,7 @@ export function AppPromo() {
               e.stopPropagation();
               prev();
             }}
-            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:left-4"
+            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary-light/20 text-white backdrop-blur-md border border-white/10 hover:bg-primary-light/30 sm:left-4"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -187,7 +187,7 @@ export function AppPromo() {
               e.stopPropagation();
               next();
             }}
-            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 sm:right-4"
+            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary-light/20 text-white backdrop-blur-md border border-white/10 hover:bg-primary-light/30 sm:right-4"
             aria-label="Next image"
           >
             <ChevronRight className="h-5 w-5" />

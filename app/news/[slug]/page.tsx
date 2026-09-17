@@ -46,7 +46,7 @@ export default async function VideoDetailPage({ params }: { params: Promise<{ sl
     <div className="container-page pb-24 pt-32 lg:pt-40">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto max-w-4xl">
-        <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface glow-primary">
+        <div className="relative aspect-video overflow-hidden rounded-2xl glass-card glow-primary">
           <Image src={video.image} alt={video.title} fill className="object-cover opacity-80" />
           <div className="absolute inset-0 flex items-center justify-center">
             <button aria-label="Play video" className="flex h-16 w-16 items-center justify-center rounded-full bg-white/15 backdrop-blur-md ring-1 ring-white/30">

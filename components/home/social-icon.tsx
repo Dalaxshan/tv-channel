@@ -102,17 +102,15 @@ export function SocialIcons() {
         ))}
       </div>
 
-      {/* Toggle button */}
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? "Close social menu" : "Open social menu"}
         aria-expanded={open}
-        className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-lg ring-2 ring-white/30 backdrop-blur transition-all duration-300 hover:scale-105 active:scale-95 ${
-          open
-            ? "bg-neutral-800 rotate-90"
-            : "bg-gradient-to-br from-blue-500 to-blue-800"
-        }`}
+        className={`h-11 w-11 shrink-0 flex items-center justify-center rounded-full text-white shadow-lg transition-all duration-300 hover:scale-105 active:scale-95
+          bg-[rgba(2,80,215,0.18)] backdrop-blur-[20px] border border-[rgba(148,180,255,0.28)]
+          hover:bg-[rgba(2,80,215,0.32)] hover:border-[rgba(148,180,255,0.48)]
+          ${ open ? "rotate-90" : "" }`}
       >
         {open ? <X className="h-5 w-5" /> : <Share2 className="h-5 w-5" />}
       </button>

@@ -20,20 +20,20 @@ const columns = [
       { label: "Business", href: "/news?category=Business" },
     ],
   },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "/about" },
-      { label: "Presenters", href: "/presenters" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
+  // {
+  //   title: "Company",
+  //   links: [
+  //     { label: "About Us", href: "/about" },
+  //     { label: "Presenters", href: "/presenters" },
+  //     { label: "Contact", href: "/contact" },
+  //   ],
+  // },
   {
     title: "Legal",
     links: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Use", href: "/terms" },
-      { label: "Advertises", href: "/advertise" },
+     { label: "About Us", href: "/about" },
     ],
   },
 ];
@@ -57,7 +57,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
             {columns.map((col) => (
               <div key={col.title}>
                 <h3 className="font-display text-sm font-semibold text-text">

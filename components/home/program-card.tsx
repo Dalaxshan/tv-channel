@@ -9,10 +9,10 @@ import { Badge } from "@/components/ui/badge";
 
 export function ProgramCard({ show }: { show: Show }) {
   return (
-    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }}>
+    <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} >
       <Link
         href={`/programs/${show.slug}`}
-        className="group block overflow-hidden rounded-2xl bg-surface"
+        className="group glass-card glow-blue-hover block overflow-hidden"
       >
         <div className="relative aspect-16/10 overflow-hidden">
           <Image
@@ -20,7 +20,7 @@ export function ProgramCard({ show }: { show: Show }) {
             alt={show.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-110"
-            sizes="(max-width: 768px) 80vw, 320px"
+            sizes="(max-width: 760px) 80vw, 320px"
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           <div className="absolute left-3 top-3 flex gap-1.5">
@@ -28,7 +28,7 @@ export function ProgramCard({ show }: { show: Show }) {
             {show.trending && <Badge variant="trending">Trending</Badge>}
           </div>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-light/25 backdrop-blur-md border border-white/20 shadow-[0_0_24px_-4px_rgba(59,116,232,0.7)]">
               <Play className="h-4 w-4 translate-x-0.5" fill="white" />
             </span>
           </div>

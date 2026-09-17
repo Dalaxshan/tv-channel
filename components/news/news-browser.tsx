@@ -53,7 +53,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={cn("rounded-full px-4 py-2 text-sm font-medium", tab === t ? "bg-primary text-white" : "bg-white/5 text-text-muted hover:bg-white/10")}
+              className={cn("rounded-full px-4 py-2 text-sm font-medium", tab === t ? "bg-primary text-white" : "bg-primary-light/5 backdrop-blur-md border border-primary-light/10 text-text-muted hover:bg-primary-light/15 hover:border-primary-light/25 transition-all")}
             >
               {t}
             </button>
@@ -65,7 +65,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search videos..."
-            className="w-full rounded-full border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-accent"
+            className="w-full rounded-full glass-input border py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary-light/50"
           />
         </div>
       </div>
@@ -75,7 +75,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
           <div
             key={ep.slug}
             onClick={() => setSelectedVideo(ep)}
-            className="group cursor-pointer overflow-hidden rounded-xl bg-surface"
+            className="group cursor-pointer glass-card glow-blue-hover overflow-hidden"
           >
             <div className="relative aspect-video overflow-hidden">
               <Image src={ep.image} alt={ep.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="260px" />
@@ -108,7 +108,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
       {/* YouTube Video Player Modal */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
           onClick={() => setSelectedVideo(null)}
         >
           <div
@@ -117,12 +117,12 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
           >
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute -right-4 -top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="absolute -right-4 -top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary-light/20 text-white backdrop-blur-md border border-white/10 transition-colors hover:bg-primary-light/30"
               aria-label="Close video"
             >
               <X className="h-5 w-5" />
             </button>
-            <div className="overflow-hidden rounded-2xl bg-surface">
+            <div className="glass-card glow-blue-hover overflow-hidden">
               {selectedVideo.slug ? (
                 <div className="relative aspect-video bg-black">
                   <iframe
@@ -173,7 +173,7 @@ export function NewsBrowser({ episodes, podcasts }: { episodes: Episode[]; podca
           <div
             key={p.slug}
             onClick={() => setSelectedVideo(p)}
-            className="group cursor-pointer overflow-hidden rounded-2xl bg-surface"
+            className="group cursor-pointer glass-card glow-blue-hover overflow-hidden"
           >
             <div className="relative aspect-video">
               <Image src={p.image} alt={p.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="380px" />

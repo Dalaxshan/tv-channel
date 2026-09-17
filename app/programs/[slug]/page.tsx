@@ -97,13 +97,13 @@ export default async function ProgramDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="relative h-[64vh] min-h-105 w-full overflow-hidden">
+      <div className="relative h-[64vh] min-h-screen w-full overflow-hidden">
         <Image
           src={heroImage}
           alt={program.title}
           fill
           priority
-          className="object-cover scale-105"
+          className="object-cover object-top scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/5 to-background/1" />
         <div className="absolute inset-0 bg-linear-to-r from-background/80 via-background/20 to-transparent" />

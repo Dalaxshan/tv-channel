@@ -36,23 +36,23 @@ export function NewsBrowser({ articles }: { articles: NewsArticle[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search news..."
-            className="w-full rounded-full border border-white/10 bg-white/5 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-accent"
+            className="w-full rounded-full glass-input border py-2.5 pl-10 pr-4 text-sm outline-none focus:border-primary-light/50"
           />
         </div>
       </div>
       <div className="mb-8 flex flex-wrap gap-2">
-        <button onClick={() => setCategory("All")} className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === "All" ? "bg-accent text-secondary" : "bg-white/5 text-text-muted hover:bg-white/10")}>
+        <button onClick={() => setCategory("All")} className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === "All" ? "bg-accent text-secondary" : "bg-primary-light/5 backdrop-blur-md border border-primary-light/10 text-text-muted hover:bg-primary-light/15 hover:border-primary-light/25 transition-all")}>
           All
         </button>
         {categories.map((c) => (
-          <button key={c} onClick={() => setCategory(c)} className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === c ? "bg-accent text-secondary" : "bg-white/5 text-text-muted hover:bg-white/10")}>
+          <button key={c} onClick={() => setCategory(c)} className={cn("rounded-full px-4 py-1.5 text-xs font-medium", category === c ? "bg-accent text-secondary" : "bg-primary-light/5 backdrop-blur-md border border-primary-light/10 text-text-muted hover:bg-primary-light/15 hover:border-primary-light/25 transition-all")}>
             {c}
           </button>
         ))}
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((a) => (
-          <Link key={a.slug} href={`/news/${a.slug}`} className="group overflow-hidden rounded-2xl bg-surface">
+          <Link key={a.slug} href={`/news/${a.slug}`} className="group glass-card glow-blue-hover overflow-hidden">
             <div className="relative aspect-16/10 overflow-hidden">
               <Image src={a.image} alt={a.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width:768px) 90vw, 380px" />
               {a.breaking && <div className="absolute left-3 top-3"><Badge variant="live">Breaking</Badge></div>}

@@ -22,7 +22,7 @@ export default function ProgramGrid({ episodes }: { episodes: Episode[] }) {
           <button
             key={ep.slug}
             onClick={() => setSelectedVideo(ep)}
-            className="group overflow-hidden rounded-xl bg-surface text-left"
+            className="group glass-card glow-blue-hover overflow-hidden text-left"
           >
             <div className="relative aspect-video overflow-hidden">
               <Image
@@ -47,7 +47,7 @@ export default function ProgramGrid({ episodes }: { episodes: Episode[] }) {
       {/* YouTube Video Player Modal */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4"
           onClick={() => setSelectedVideo(null)}
         >
           <div
@@ -56,12 +56,12 @@ export default function ProgramGrid({ episodes }: { episodes: Episode[] }) {
           >
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute -right-4 -top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+              className="absolute -right-4 -top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-primary-light/20 text-white backdrop-blur-md border border-white/10 transition-colors hover:bg-primary-light/30"
               aria-label="Close video"
             >
               <X className="h-5 w-5" />
             </button>
-            <div className="overflow-hidden rounded-2xl bg-surface">
+            <div className="glass-card glow-blue-hover overflow-hidden">
               {selectedVideo.slug ? (
                 <div className="relative aspect-video bg-black">
                   <iframe

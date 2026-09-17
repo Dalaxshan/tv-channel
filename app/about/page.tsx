@@ -121,7 +121,7 @@ export default function AboutPage() {
          We&apos;re building a founding team of storytellers, engineers, and
   broadcasters who want to build the future of television from the ground up.
         </p>
-        <a href="/contact" className="mt-6 inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-secondary">
+        <a href="/contact" className="mt-6 inline-block rounded-full btn-glass px-6 py-3 text-sm font-semibold">
           View open roles
         </a>
       </div>
